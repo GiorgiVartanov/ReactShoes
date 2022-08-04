@@ -1,0 +1,30 @@
+@import "../../../scss-variables.scss";
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem 1rem;
+    background-color: $main-orange;
+    h1 {
+        font-size: 1.5rem;
+        a {
+            color: $main-black;
+        }
+    }
+    nav {
+        ul {
+            display: flex;
+            gap: 0.5rem;
+            li {
+                a {
+                    color: $main-black;
+                }
+            }
+        }
+
+        .active {
+            background-color: $main-black;
+            color: $main-orange;
+        }
+    }
+}

@@ -1,7 +1,7 @@
 import "./header.scss";
 
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { query, collection, getDocs, where } from "firebase/firestore";
 import { useNavigate } from "react-router-dom";
@@ -15,42 +15,42 @@ const Header = ({ currentUser }) => {
 
     return (
         <header>
-            <Link to="/">
-                <div className="header-title">
-                    <h1>
-                        Re<span>Act</span>
-                        <span>Clothes</span>
-                    </h1>
-                </div>
-            </Link>
+            <h1>
+                <Link to="/">ReactClothes</Link>
+            </h1>
+
             <nav>
                 <ul>
                     <li>
-                        <Link className="option" to="/shop">
+                        <NavLink className="link-button" to="/">
+                            Home
+                        </NavLink>
+                    </li>
+                    <li>
+                        <NavLink className="link-button" to="/shop">
                             Shop
-                        </Link>
+                        </NavLink>
                     </li>
                     <li>
                         {user ? (
-                            <Link className="option" to="/userpage">
-                                Home
-                            </Link>
+                            <NavLink className="link-button" to="/cart">
+                                Cart
+                            </NavLink>
                         ) : null}
                     </li>
                     <li>
                         {user ? (
-                            <button className="option" onClick={logout}>
-                                LOG OUT
+                            <button className="link-button" onClick={logout}>
+                                log out
                             </button>
                         ) : (
-                            <Link className="option" to="/login">
-                                LOG IN
-                            </Link>
+                            <NavLink className="link-button" to="/login">
+                                log in
+                            </NavLink>
                         )}
                     </li>
                 </ul>
             </nav>
-            <div className="options"></div>
         </header>
     );
 };
