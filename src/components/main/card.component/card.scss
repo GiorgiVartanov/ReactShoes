@@ -1,0 +1,14 @@
+@import "../../../scss-variables.scss";
+
+.card {
+    width: 200px;
+    display: block;
+    .card-image {
+        width: 100%;
+        box-shadow: 0 0 10px 2px $main-shadow;
+    }
+    .card-name {
+        text-align: center;
+        color: $main-black;
+    }
+}

@@ -103,18 +103,27 @@ export const addToReadingList = async (user, section, itemId) => {
     });
 };
 
-export const getReadingList = async (user) => {
-    // const q = query(collection(db, "users"), where("uid", "==", user.uid));
-    // const docs = await getDocs(q);
+export const getShopPageContent = async () => {
+    const q = query(collection(db, "products"));
 
-    const docRef = doc(db, "users", user.uid);
-    const docSnap = await getDoc(docRef);
+    const querySnapshot = await getDocs(q);
 
-    if (docSnap.exists()) {
-        return docSnap.data().readingList;
-    }
-    return null;
+    return querySnapshot;
+
+    // const allItems = await getDocs(collection(db, "products"));
+
+    // return allItems;
 };
+
+// export const getCartItems = async (user) => {
+//     const docRef = doc(db, "users", user.uid);
+//     const docSnap = await getDoc(docRef);
+
+//     if (docSnap.exists()) {
+//         return docSnap.data().readingList;
+//     }
+//     return null;
+// };
 
 export const removeFromReadingList = async (user, itemId) => {
     await updateDoc(doc(db, "users", user.uid), {
