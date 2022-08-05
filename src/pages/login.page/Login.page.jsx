@@ -18,16 +18,16 @@ const LogIn = () => {
         if (loading) {
             return;
         }
-        if (user) navigate("/userpage");
+        if (user) navigate("/");
     }, [user, loading]);
 
     if (loading) return <p>Loading...</p>;
     if (error) return <p>Something Went Wrong</p>;
 
     return (
-        <div className="sign-in-page">
+        <main className="sign-in-page">
             <Button onClick={signInWithGoogle} text={"Log In With Google"} />
-        </div>
+        </main>
     );
 };
 
