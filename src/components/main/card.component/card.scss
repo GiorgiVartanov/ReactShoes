@@ -7,8 +7,18 @@
         width: 100%;
         box-shadow: 0 0 10px 2px $main-shadow;
     }
-    .card-name {
-        text-align: center;
-        color: $main-black;
+    .card-text {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0 3px 3px 3px;
+        font-size: 0.8rem;
+
+        .card-name {
+            color: $main-black;
+        }
+        .card-price {
+            color: $main-black-dimmed;
+        }
     }
 }

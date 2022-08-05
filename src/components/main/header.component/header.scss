@@ -6,8 +6,13 @@ header {
     padding: 0.5rem 1rem;
     background-color: $main-orange;
     box-shadow: 0 0 10px 2px $main-shadow;
-    position: relative;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    transition: 0.2s ease-in;
     z-index: 2;
+    animation: slide-from-top 0.2s ease-out;
+
     h1 {
         font-size: 1.5rem;
         a {
@@ -17,7 +22,9 @@ header {
     nav {
         ul {
             display: flex;
+            height: 100%;
             gap: 0.5rem;
+            align-items: center;
             li {
                 a {
                     color: $main-black;
@@ -29,5 +36,32 @@ header {
             background-color: $main-black;
             color: $main-orange;
         }
+    }
+}
+
+button.link-button {
+    margin-right: 20px;
+}
+
+.header-scrolled {
+    background-color: $orange-transparent;
+    padding: 0.25rem;
+
+    ul {
+        li {
+            a {
+                padding: 0.25rem 1rem;
+                border-radius: 0;
+            }
+        }
+    }
+}
+
+@keyframes slide-from-top {
+    0% {
+        transform: translateY(-100%);
+    }
+    100% {
+        transform: translateY(0%);
     }
 }

@@ -25,9 +25,9 @@ const Cart = () => {
 
     if (!user) navigate("/");
 
-    console.log(items);
+    // console.log(items);
 
-    return <h1>shop</h1>;
+    return <h1>cart</h1>;
 };
 
 export default Cart;

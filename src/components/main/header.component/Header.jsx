@@ -9,12 +9,23 @@ import { auth, db, logout } from "../../../firebase";
 
 const Header = ({ currentUser }) => {
     const [user, loading, error] = useAuthState(auth);
+    const [scrolled, setScrolled] = useState(false);
     const [name, setName] = useState("");
 
     const navigate = useNavigate();
 
+    const detectStroll = () => {
+        if (window.scrollY >= 20) {
+            setScrolled(true);
+        } else {
+            setScrolled(false);
+        }
+    };
+
+    window.addEventListener("scroll", detectStroll);
+
     return (
-        <header>
+        <header className={scrolled ? "header-scrolled " : ""}>
             <h1>
                 <Link to="/">ReactClothes</Link>
             </h1>
