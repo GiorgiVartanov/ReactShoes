@@ -39,14 +39,18 @@ const ItemPage = () => {
                 <div className="item-text">
                     <h2 className="item-name">{item?.name}</h2>
                     <p className="item-price">{item?.price}$</p>
-                    <button
-                        className="add-to-cart"
-                        onClick={() => {
-                            addToCart(item?.id, user);
-                        }}
-                    >
-                        <BsCartPlus />
-                    </button>
+                    {user !== null ? (
+                        <button
+                            className="add-to-cart"
+                            onClick={() => {
+                                addToCart(item?.id, user);
+                            }}
+                        >
+                            <BsCartPlus />
+                        </button>
+                    ) : (
+                        ""
+                    )}
                 </div>
             </div>
             {item?.id ? <Comments productId={item?.id} user={user} /> : ""}

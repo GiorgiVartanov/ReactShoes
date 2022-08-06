@@ -25,21 +25,13 @@ const Shop = () => {
     return (
         <main>
             <div className="card-holder">
-                {items._snapshot?.docChanges.map((item) => (
+                {items.map((item) => (
                     <Card
-                        key={item.doc.data.value.mapValue.fields.id.stringValue}
-                        id={item.doc.data.value.mapValue.fields.id.stringValue}
-                        name={
-                            item.doc.data.value.mapValue.fields.name.stringValue
-                        }
-                        image={
-                            item.doc.data.value.mapValue.fields.imageUrl
-                                .stringValue
-                        }
-                        price={
-                            item.doc.data.value.mapValue.fields.price
-                                .doubleValue
-                        }
+                        key={item.id}
+                        id={item.id}
+                        name={item.name}
+                        image={item.imageUrl}
+                        price={item.price}
                     />
                 ))}
             </div>

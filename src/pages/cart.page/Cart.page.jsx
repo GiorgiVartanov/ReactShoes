@@ -4,30 +4,49 @@ import { useState, useEffect } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useNavigate } from "react-router-dom";
 
-import { auth, getShopPageContent } from "../../firebase";
+import { auth, getCart } from "../../firebase";
 
 const Cart = () => {
     const navigate = useNavigate();
 
     const [user] = useAuthState(auth);
     const [name, setName] = useState("");
-    const [items, setItems] = useState([]);
+
+    const [cart, setCart] = useState();
+    const [error, setError] = useState();
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         if (user) {
-            getShopPageContent(user)
-                .then((res) => setItems(res))
-                .finally(console.log(items));
-        } else {
-            console.log("no user");
+            getCart(user)
+                .then((res) => setCart(res))
+                .catch((err) => setError(err))
+                .finally(setLoading(false));
         }
     }, [user]);
 
     if (!user) navigate("/");
 
-    // console.log(items);
+    if (loading) return <p className="warning">Loading...</p>;
+    if (error) return <p className="warning">Something Went Wrong...</p>;
 
-    return <h1>cart</h1>;
+    return (
+        <main>
+            <div className="card-holder">
+                {cart
+                    ? cart.map((item) => (
+                          <Card
+                              key={item.id}
+                              id={item.id}
+                              name={item.name}
+                              price={item.price}
+                              image={item.imageUrl}
+                          />
+                      ))
+                    : ""}
+            </div>
+        </main>
+    );
 };
 
 export default Cart;

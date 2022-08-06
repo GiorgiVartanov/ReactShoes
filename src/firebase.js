@@ -97,22 +97,17 @@ export const logout = () => {
     signOut(auth);
 };
 
-export const addToReadingList = async (user, section, itemId) => {
-    await updateDoc(doc(db, "users", user.uid), {
-        readingList: arrayUnion(itemId),
-    });
-};
-
 export const getShopPageContent = async () => {
+    const result = [];
+
     const q = query(collection(db, "products"));
 
     const querySnapshot = await getDocs(q);
 
-    return querySnapshot;
-
-    // const allItems = await getDocs(collection(db, "products"));
-
-    // return allItems;
+    querySnapshot.forEach((doc) => {
+        result.push(doc.data());
+    });
+    return result;
 };
 
 export const getItem = async (id) => {
@@ -151,6 +146,19 @@ export const getUser = async (id) => {
     return null;
 };
 
+export const getCart = async (user) => {
+    const docRef = doc(db, "users", user.uid);
+    const docSnap = await getDoc(docRef);
+
+    if (docSnap.exists()) {
+        const result = await Promise.all(
+            docSnap.data().cart.map((id) => getItem(id))
+        );
+        return result;
+    }
+    return null;
+};
+
 export const addComment = async (text, productId, user) => {
     await addDoc(collection(db, "comments"), {
         productId: productId,
@@ -174,9 +182,3 @@ export const addToCart = async (productId, user) => {
 //     }
 //     return null;
 // };
-
-export const removeFromReadingList = async (user, itemId) => {
-    await updateDoc(doc(db, "users", user.uid), {
-        readingList: arrayRemove(itemId),
-    });
-};
