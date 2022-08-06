@@ -1,0 +1,39 @@
+@import "../../../scss-variables.scss";
+
+.comments {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+
+    .add-comment {
+        margin-top: 3rem;
+        display: flex;
+        flex-direction: column;
+
+        .add-comment-label {
+            color: $main-gray;
+        }
+
+        .add-comment-bottom-part {
+            display: flex;
+            gap: 0.5rem;
+
+            .add-comment-button {
+                margin-left: auto;
+                border: 1px solid $main-gray;
+                padding: 0 0.5rem;
+            }
+            .add-comment-input {
+                width: 100%;
+                background-color: $main-white;
+                border: 1px solid $main-gray;
+                outline: none;
+                padding: 0.5rem 1rem;
+
+                &:focus {
+                    outline: 1px solid $main-black;
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,13 @@
+@import "../../../scss-variables.scss";
+
+.comment {
+    border: 1px solid $main-gray;
+    padding: 2rem 1rem 0.5rem 1rem;
+    position: relative;
+    .comment-writer {
+        color: $main-gray;
+        position: absolute;
+        top: 2px;
+        left: 6px;
+    }
+}

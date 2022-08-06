@@ -115,7 +115,7 @@ export const getShopPageContent = async () => {
     // return allItems;
 };
 
-export const getCartItems = async (id) => {
+export const getItem = async (id) => {
     const docRef = doc(db, "products", id);
     const docSnap = await getDoc(docRef);
 
@@ -123,6 +123,41 @@ export const getCartItems = async (id) => {
         return docSnap.data();
     }
     return null;
+};
+
+export const getComments = async (productId) => {
+    const result = [];
+
+    const q = query(
+        collection(db, "comments"),
+        where("productId", "==", productId)
+    );
+
+    const querySnapshot = await getDocs(q);
+    querySnapshot.forEach((doc) => {
+        result.push(doc.data());
+    });
+
+    return result;
+};
+
+export const getUser = async (id) => {
+    const docRef = doc(db, "users", id);
+    const docSnap = await getDoc(docRef);
+
+    if (docSnap.exists()) {
+        return docSnap.data().name;
+    }
+    return null;
+};
+
+export const addComment = async (text, productId, user) => {
+    const docRef = await addDoc(collection(db, "comments"), {
+        productId: productId,
+        text: text,
+        userId: user.uid,
+    });
+    console.log("Document written with ID: ", docRef.id);
 };
 
 // export const getCartItems = async (user) => {

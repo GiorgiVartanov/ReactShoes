@@ -26,7 +26,11 @@ const Hero = () => {
                         {word}
                     </span>
                 ))}
-                <span className="author-name">{data.author}</span>
+                {data.author !== "Anonymous" ? (
+                    <span className="author-name">{data.author}</span>
+                ) : (
+                    ""
+                )}
             </h2>
         </div>
     );
