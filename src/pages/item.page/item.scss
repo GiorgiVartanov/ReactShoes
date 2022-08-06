@@ -10,8 +10,8 @@
         // display: grid;
         // grid-template-columns: 1fr 1fr;
         display: flex;
-        gap: 4rem;
-        justify-content: center;
+        gap: 2rem;
+        justify-content: left;
 
         .item-image {
             width: 40vw;
@@ -27,6 +27,34 @@
 
             .item-name {
                 font-size: 2rem;
+            }
+            .item-price {
+                margin-top: auto;
+            }
+            .add-to-cart {
+                border: 1px solid $main-gray;
+                // width: 55px;
+                // height: 35px;
+                padding: 0.5rem 1rem;
+                width: 3.5rem;
+                font-size: 1.5rem;
+                display: block;
+                outline: none;
+                border: none;
+                background-color: $main-orange;
+                transition: 0.2s ease-in;
+
+                &:hover {
+                    opacity: 0.9;
+                }
+                &:active {
+                    color: $main-orange;
+                    background-color: $main-black;
+                }
+
+                svg {
+                    display: block;
+                }
             }
         }
     }

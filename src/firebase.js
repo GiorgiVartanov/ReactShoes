@@ -152,12 +152,17 @@ export const getUser = async (id) => {
 };
 
 export const addComment = async (text, productId, user) => {
-    const docRef = await addDoc(collection(db, "comments"), {
+    await addDoc(collection(db, "comments"), {
         productId: productId,
         text: text,
         userId: user.uid,
     });
-    console.log("Document written with ID: ", docRef.id);
+};
+
+export const addToCart = async (productId, user) => {
+    await updateDoc(doc(db, "users", user.uid), {
+        cart: arrayUnion(productId),
+    });
 };
 
 // export const getCartItems = async (user) => {

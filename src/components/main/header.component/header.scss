@@ -27,6 +27,7 @@ header {
             gap: 0.5rem;
             align-items: center;
             li {
+                align-content: center;
                 a {
                     color: $main-black;
                 }
@@ -40,8 +41,11 @@ header {
     }
 }
 
-.link-button {
-    // margin-right: 20px;
+.cart-link-button {
+    font-size: 1.5rem;
+    svg {
+        display: block;
+    }
 }
 
 .header-scrolled {

@@ -6,6 +6,7 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import { query, collection, getDocs, where } from "firebase/firestore";
 import { useNavigate } from "react-router-dom";
 import { auth, db, logout } from "../../../firebase";
+import { BsCart } from "react-icons/bs";
 
 const Header = ({ currentUser }) => {
     const [user, loading, error] = useAuthState(auth);
@@ -44,8 +45,11 @@ const Header = ({ currentUser }) => {
                     </li>
                     <li>
                         {user ? (
-                            <NavLink className="link-button" to="/cart">
-                                Cart
+                            <NavLink
+                                className="link-button cart-link-button"
+                                to="/cart"
+                            >
+                                <BsCart />
                             </NavLink>
                         ) : null}
                     </li>

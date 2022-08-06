@@ -5,8 +5,9 @@ import Comments from "../../components/main/comments.component/Comments";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
+import { BsCartPlus, BsCartCheck } from "react-icons/bs";
 
-import { auth, getItem } from "../../firebase";
+import { auth, getItem, addToCart } from "../../firebase";
 
 const ItemPage = () => {
     const [user] = useAuthState(auth);
@@ -38,6 +39,14 @@ const ItemPage = () => {
                 <div className="item-text">
                     <h2 className="item-name">{item?.name}</h2>
                     <p className="item-price">{item?.price}$</p>
+                    <button
+                        className="add-to-cart"
+                        onClick={() => {
+                            addToCart(item?.id, user);
+                        }}
+                    >
+                        <BsCartPlus />
+                    </button>
                 </div>
             </div>
             {item?.id ? <Comments productId={item?.id} user={user} /> : ""}
