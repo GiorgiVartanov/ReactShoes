@@ -1,7 +1,7 @@
 <h1 align="center">React Clothes</h1>
 
 <div align="center">
-    E-commerce for my portfolio project
+    E-commerce project for my portfolio
 </div>
 
 <div align="center">
@@ -27,8 +27,10 @@
 ## Tools
 
 -   React (hooks)
--   Firebase
+-   Firebase (for database and login with google)
 -   SCSS
+-   <a href="https://www.purgomalum.com/">PurgoMalum</a> (API for checking if text contains slurs )
+-   <a href="https://api.goprogram.ai/inspiration/docs/">inspiration API</a> (API for inspirational phrases)
 
 ## Contact
 
