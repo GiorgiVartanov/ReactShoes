@@ -23,6 +23,9 @@
                 margin-left: auto;
                 border: 1px solid $main-gray;
                 padding: 0 0.5rem;
+                margin-right: auto;
+                margin-left: 0;
+                transition: 0.2s ease-in;
             }
             .add-comment-input {
                 background-color: $main-white;
@@ -30,6 +33,7 @@
                 outline: none;
                 padding: 0.5rem 1rem;
                 resize: none;
+                transition: 0.2s ease-in;
 
                 &:focus {
                     outline: 1px solid $main-black;

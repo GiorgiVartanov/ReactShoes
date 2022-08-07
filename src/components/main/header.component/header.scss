@@ -31,6 +31,9 @@ header {
                 a {
                     color: $main-black;
                 }
+                &:hover {
+                    opacity: 0.9;
+                }
             }
         }
 
@@ -109,7 +112,7 @@ header {
     }
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 650px) {
     header {
         flex-direction: column;
         justify-content: left;
@@ -126,10 +129,15 @@ header {
                 // width: 100%;
                 li {
                     width: 80vw;
-                    & > a {
+                    & > a,
+                    & > button {
                         width: 100%;
                         display: block;
                         text-align: center;
+                        svg {
+                            width: 100%;
+                            align-self: center;
+                        }
                     }
                 }
             }

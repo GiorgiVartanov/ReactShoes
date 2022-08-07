@@ -53,16 +53,6 @@ const Comments = ({ productId, user }) => {
     const handleSubmit = (e) => {
         if (newComment !== null && productId !== null && user !== null) {
             setSubmittedComment(newComment);
-            // addComment(newComment, productId, user);
-
-            // console.log(fixedNewComment);
-
-            // getComments(productId) // we are refetching api after adding new comment, it's not the best way, will change it later
-            //     .then((res) => setComments(res))
-            //     .catch((err) => setError(err))
-            //     .finally(setLoading(false));
-
-            // setNewComment("");
         }
     };
 

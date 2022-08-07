@@ -29,21 +29,27 @@ const ItemPage = () => {
     if (error) return <p>error</p>;
 
     return (
-        <main className="item-page">
-            <div className="item-description">
-                <img
-                    src={item?.imageUrl}
-                    alt={item?.name}
-                    className="item-image"
-                />
-                <div className="item-text">
-                    <h2 className="item-name">{item?.name}</h2>
-                    <p className="item-price">{item?.price}$</p>
-                    <AddToCartButton productId={id} user={user} />
-                </div>
-            </div>
-            {item?.id ? <Comments productId={item?.id} user={user} /> : ""}
-        </main>
+        <>
+            {item ? (
+                <main className="item-page">
+                    <div className="item-description">
+                        <img
+                            src={item.imageUrl}
+                            alt={item.name}
+                            className="item-image"
+                        />
+                        <div className="item-text">
+                            <h2 className="item-name">{item?.name}</h2>
+                            <p className="item-price">{item?.price}$</p>
+                            <AddToCartButton productId={id} user={user} />
+                        </div>
+                    </div>
+                    <Comments productId={item?.id} user={user} />
+                </main>
+            ) : (
+                ""
+            )}
+        </>
     );
 };
 

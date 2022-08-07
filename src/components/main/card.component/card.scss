@@ -6,7 +6,12 @@
     position: relative;
     .card-image {
         width: 100%;
-        box-shadow: 0 0 10px 2px $main-shadow;
+        box-shadow: 0 0 10px 1px $main-shadow;
+        transition: 0.2s ease-in;
+
+        &:hover {
+            box-shadow: 0 0 15px 5px $main-shadow;
+        }
     }
     .card-text {
         display: flex;

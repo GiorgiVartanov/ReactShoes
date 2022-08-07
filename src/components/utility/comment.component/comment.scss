@@ -4,10 +4,20 @@
     border: 1px solid $main-gray;
     padding: 2rem 1rem 0.5rem 1rem;
     position: relative;
+    animation: comment-appear 0.2s ease-in;
     .comment-writer {
         color: $main-gray;
         position: absolute;
         top: 2px;
         left: 6px;
+    }
+}
+
+@keyframes comment-appear {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
     }
 }

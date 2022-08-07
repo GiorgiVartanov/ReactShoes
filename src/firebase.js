@@ -52,6 +52,7 @@ export const signInWithGoogle = async () => {
             await setDoc(doc(db, "users", user.uid), {
                 uid: user.uid,
                 name: user.displayName,
+                cart: [], // check it
                 authProvider: "google",
                 email: user.email,
             });

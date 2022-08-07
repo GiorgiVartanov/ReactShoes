@@ -1,6 +1,6 @@
 import "./header.scss";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { query, collection, getDocs, where } from "firebase/firestore";
@@ -10,6 +10,8 @@ import { BsCart } from "react-icons/bs";
 import { ImMenu, ImCross } from "react-icons/im";
 
 const Header = ({ currentUser }) => {
+    const savedHeader = useRef(null);
+
     const [user, loading, error] = useAuthState(auth);
     const [scrolled, setScrolled] = useState(false);
     const [name, setName] = useState("");
@@ -26,10 +28,22 @@ const Header = ({ currentUser }) => {
         }
     };
 
+    const handleClick = (e) => {
+        // check if clicked outside of element
+        if (savedHeader.current && !savedHeader.current.contains(e.target)) {
+            setMenuOpened(false);
+        }
+    };
+
     window.addEventListener("scroll", detectStroll);
 
+    window.addEventListener("click", handleClick);
+
     return (
-        <header className={scrolled ? "header-scrolled " : ""}>
+        <header
+            ref={savedHeader}
+            className={scrolled ? "header-scrolled " : ""}
+        >
             <Link to="/">
                 <h1>ReactClothes</h1>
             </Link>
@@ -40,7 +54,19 @@ const Header = ({ currentUser }) => {
                     setMenuOpened(!menuOpened);
                 }}
             >
-                {menuOpened ? <ImCross /> : <ImMenu />}
+                {menuOpened ? (
+                    <ImCross
+                        style={{
+                            pointerEvents: "none",
+                        }}
+                    />
+                ) : (
+                    <ImMenu
+                        style={{
+                            pointerEvents: "none",
+                        }}
+                    />
+                )}
             </button>
             <nav className={menuOpened ? "nav-menu-opened" : ""}>
                 <ul>
