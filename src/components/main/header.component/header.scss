@@ -13,19 +13,19 @@ header {
     z-index: 2;
     animation: slide-from-top 0.2s ease-out;
 
-    h1 {
-        font-size: 1.5rem;
-        a {
+    a {
+        h1 {
+            font-size: 1.5rem;
             color: $main-black;
         }
     }
     nav {
-        margin-right: 20px;
         ul {
             display: flex;
             height: 100%;
             gap: 0.5rem;
             align-items: center;
+            justify-content: center;
             li {
                 align-content: center;
                 a {
@@ -62,11 +62,80 @@ header {
     }
 }
 
+.hamburger-menu-button {
+    height: 30px;
+    width: 30px;
+    position: absolute;
+    right: 10px;
+    display: none;
+    background-color: transparent;
+    outline: none;
+    border: none;
+    font-size: 2rem;
+    margin-top: 0.2rem;
+    svg {
+        height: 100%;
+        width: 100%;
+        color: $main-black;
+        display: block;
+
+        &:hover {
+            opacity: 0.9;
+        }
+
+        animation: rotate 0.2s ease-in;
+    }
+}
+
+.nav-menu-opened {
+    display: block;
+}
+
 @keyframes slide-from-top {
     0% {
         transform: translateY(-100%);
     }
     100% {
         transform: translateY(0%);
+    }
+}
+
+@keyframes rotate {
+    0% {
+        transform: rotateZ(0deg);
+    }
+    100% {
+        transform: rotateZ(180deg);
+    }
+}
+
+@media screen and (max-width: 600px) {
+    header {
+        flex-direction: column;
+        justify-content: left;
+        a {
+            width: fit-content;
+            margin-right: auto;
+        }
+        nav {
+            display: none;
+            padding: 1rem 0;
+            ul {
+                padding-top: 10px;
+                flex-direction: column;
+                // width: 100%;
+                li {
+                    width: 80vw;
+                    & > a {
+                        width: 100%;
+                        display: block;
+                        text-align: center;
+                    }
+                }
+            }
+        }
+    }
+    .hamburger-menu-button {
+        display: block;
     }
 }

@@ -6,7 +6,7 @@
 
 <div align="center">
   <h3>
-    <a href="">
+    <a href="https://reactclothes.netlify.app/">
       Demo
     </a>
     <span> | </span>
@@ -23,6 +23,12 @@
 -   [Contact](#contact)
 
 ## Overview
+
+<a align="center" href="https://reactclothes.netlify.app/">
+    <img src="https://screenshot-proxy.netlify.app/f_avif,w_336/https://d33wubrfki0l68.cloudfront.net/62efbb2d657d69175957acac/screenshot_2022-08-07-13-17-21-0000.png">
+</a>
+
+simple E-commerce website where you can log in with google, add items from the shop page to cart page, remove them from cart page and write comments on item pages (it removes slurs)
 
 ## Tools
 

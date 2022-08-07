@@ -7,11 +7,14 @@ import { query, collection, getDocs, where } from "firebase/firestore";
 import { useNavigate } from "react-router-dom";
 import { auth, db, logout } from "../../../firebase";
 import { BsCart } from "react-icons/bs";
+import { ImMenu, ImCross } from "react-icons/im";
 
 const Header = ({ currentUser }) => {
     const [user, loading, error] = useAuthState(auth);
     const [scrolled, setScrolled] = useState(false);
     const [name, setName] = useState("");
+
+    const [menuOpened, setMenuOpened] = useState(false);
 
     const navigate = useNavigate();
 
@@ -27,11 +30,19 @@ const Header = ({ currentUser }) => {
 
     return (
         <header className={scrolled ? "header-scrolled " : ""}>
-            <h1>
-                <Link to="/">ReactClothes</Link>
-            </h1>
+            <Link to="/">
+                <h1>ReactClothes</h1>
+            </Link>
 
-            <nav>
+            <button
+                className="hamburger-menu-button"
+                onClick={() => {
+                    setMenuOpened(!menuOpened);
+                }}
+            >
+                {menuOpened ? <ImCross /> : <ImMenu />}
+            </button>
+            <nav className={menuOpened ? "nav-menu-opened" : ""}>
                 <ul>
                     <li>
                         <NavLink className="link-button" to="/">
