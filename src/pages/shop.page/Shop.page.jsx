@@ -32,6 +32,7 @@ const Shop = () => {
                         name={item.name}
                         image={item.imageUrl}
                         price={item.price}
+                        author={item.authorUrl}
                     />
                 ))}
             </div>

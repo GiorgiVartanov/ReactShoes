@@ -8,6 +8,9 @@ import { getComments, addComment } from "../../../firebase";
 
 const Comments = ({ productId, user }) => {
     const [newComment, setNewComment] = useState("");
+    const [canComment, setCanComment] = useState(false); // it will be set to true if comment contains swears
+    const [submittedComment, setSubmittedComment] = useState("");
+    // const [fixedNewComment, setFixedNewComment] = useState("");
 
     const [comments, setComments] = useState();
     const [error, setError] = useState();
@@ -20,16 +23,46 @@ const Comments = ({ productId, user }) => {
             .finally(setLoading(false));
     }, []);
 
-    const handleSubmit = (e) => {
-        if (newComment !== null && productId !== null && user !== null) {
+    useEffect(() => {
+        if (submittedComment) {
+            fetch(
+                `https://www.purgomalum.com/service/containsprofanity?text=${submittedComment}`
+            )
+                .then((res) => res.json())
+                .then((res) => setCanComment(!res))
+                .catch((err) => console.log(err));
+        }
+    }, [submittedComment]);
+
+    useEffect(() => {
+        if (canComment) {
             addComment(newComment, productId, user);
 
-            getComments(productId)
+            getComments(productId) // we are refetching api after adding new comment, it's not the best way, will change it later
                 .then((res) => setComments(res))
                 .catch((err) => setError(err))
                 .finally(setLoading(false));
 
             setNewComment("");
+        } else {
+            if (newComment.length > 1) console.log("😠");
+            setNewComment("");
+        }
+    }, [canComment]);
+
+    const handleSubmit = (e) => {
+        if (newComment !== null && productId !== null && user !== null) {
+            setSubmittedComment(newComment);
+            // addComment(newComment, productId, user);
+
+            // console.log(fixedNewComment);
+
+            // getComments(productId) // we are refetching api after adding new comment, it's not the best way, will change it later
+            //     .then((res) => setComments(res))
+            //     .catch((err) => setError(err))
+            //     .finally(setLoading(false));
+
+            // setNewComment("");
         }
     };
 
@@ -58,7 +91,7 @@ const Comments = ({ productId, user }) => {
                         add comment
                     </label>
                     <div className="add-comment-bottom-part">
-                        <input
+                        <textarea
                             className="add-comment-input"
                             type="text"
                             name="add-comment"
@@ -66,7 +99,7 @@ const Comments = ({ productId, user }) => {
                             onChange={handleChange}
                             value={newComment}
                         />
-                        <button
+                        <button // not sure
                             onClick={handleSubmit}
                             className="add-comment-button"
                             type="button"

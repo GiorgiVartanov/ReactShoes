@@ -44,6 +44,11 @@ const Header = ({ currentUser }) => {
                         </NavLink>
                     </li>
                     <li>
+                        <NavLink className="link-button" to="/about">
+                            About
+                        </NavLink>
+                    </li>
+                    <li>
                         {user ? (
                             <NavLink
                                 className="link-button cart-link-button"

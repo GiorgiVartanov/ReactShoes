@@ -41,6 +41,7 @@ const Cart = () => {
                               name={item.name}
                               price={item.price}
                               image={item.imageUrl}
+                              author={item.authorUrl}
                           />
                       ))
                     : ""}

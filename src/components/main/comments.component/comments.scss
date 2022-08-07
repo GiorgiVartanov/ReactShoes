@@ -16,6 +16,7 @@
 
         .add-comment-bottom-part {
             display: flex;
+            flex-direction: column;
             gap: 0.5rem;
 
             .add-comment-button {
@@ -24,11 +25,11 @@
                 padding: 0 0.5rem;
             }
             .add-comment-input {
-                width: 100%;
                 background-color: $main-white;
                 border: 1px solid $main-gray;
                 outline: none;
                 padding: 0.5rem 1rem;
+                resize: none;
 
                 &:focus {
                     outline: 1px solid $main-black;

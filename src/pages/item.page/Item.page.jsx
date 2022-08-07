@@ -1,11 +1,11 @@
 import "./item.scss";
 
 import Comments from "../../components/main/comments.component/Comments";
+import AddToCartButton from "../../components/utility/add-to-cart-button/AddToCartButton";
 
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { BsCartPlus, BsCartCheck } from "react-icons/bs";
 
 import { auth, getItem, addToCart } from "../../firebase";
 
@@ -39,18 +39,7 @@ const ItemPage = () => {
                 <div className="item-text">
                     <h2 className="item-name">{item?.name}</h2>
                     <p className="item-price">{item?.price}$</p>
-                    {user !== null ? (
-                        <button
-                            className="add-to-cart"
-                            onClick={() => {
-                                addToCart(item?.id, user);
-                            }}
-                        >
-                            <BsCartPlus />
-                        </button>
-                    ) : (
-                        ""
-                    )}
+                    <AddToCartButton productId={id} user={user} />
                 </div>
             </div>
             {item?.id ? <Comments productId={item?.id} user={user} /> : ""}

@@ -44,7 +44,7 @@ const googleProvider = new GoogleAuthProvider();
 export const signInWithGoogle = async () => {
     try {
         const res = await signInWithPopup(auth, googleProvider);
-        console.log(res);
+        // console.log(res);
         const user = res.user;
         const q = query(collection(db, "users"), where("uid", "==", user.uid));
         const docs = await getDocs(q);
@@ -159,7 +159,10 @@ export const getCart = async (user) => {
     return null;
 };
 
+// add something to remove bad words
 export const addComment = async (text, productId, user) => {
+    console.log(text);
+
     await addDoc(collection(db, "comments"), {
         productId: productId,
         text: text,
@@ -170,6 +173,28 @@ export const addComment = async (text, productId, user) => {
 export const addToCart = async (productId, user) => {
     await updateDoc(doc(db, "users", user.uid), {
         cart: arrayUnion(productId),
+    });
+};
+
+export const checkIfUserHasThisItem = async (productId, user) => {
+    let result = false;
+
+    const q = query(
+        collection(db, "users"),
+        where("cart", "array-contains", productId),
+        where("uid", "==", user.uid)
+    );
+
+    const querySnapshot = await getDocs(q);
+    querySnapshot.forEach((doc) => {
+        if (doc.data()) result = true;
+    });
+    return result;
+};
+
+export const removeFromCart = async (productId, user) => {
+    await updateDoc(doc(db, "users", user.uid), {
+        cart: arrayRemove(productId),
     });
 };
 

@@ -3,6 +3,7 @@
 .card {
     width: 200px;
     display: block;
+    position: relative;
     .card-image {
         width: 100%;
         box-shadow: 0 0 10px 2px $main-shadow;
@@ -20,5 +21,33 @@
         .card-price {
             color: $main-black-dimmed;
         }
+    }
+
+    .card-tooltip {
+        visibility: hidden;
+        position: absolute;
+        top: -3rem;
+        border-radius: 6px;
+        padding: 1px 10px;
+        background-color: $main-black;
+        color: $main-white;
+        font-size: 0.8rem;
+        opacity: 0.8;
+        z-index: 2;
+    }
+    .card-tooltip::after {
+        content: " ";
+        position: absolute;
+        top: 100%; /* At the bottom of the tooltip */
+        left: 50%;
+        margin-left: -5px;
+        border-width: 5px;
+        border-style: solid;
+        border-color: $main-black transparent transparent transparent;
+    }
+
+    &:hover .card-tooltip,
+    &:active .card-tooltip {
+        visibility: visible;
     }
 }
