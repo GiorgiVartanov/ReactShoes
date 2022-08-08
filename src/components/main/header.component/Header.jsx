@@ -35,6 +35,10 @@ const Header = ({ currentUser }) => {
         }
     };
 
+    const handlePageSelect = () => {
+        setMenuOpened(false);
+    };
+
     window.addEventListener("scroll", detectStroll);
 
     window.addEventListener("click", handleClick);
@@ -71,23 +75,36 @@ const Header = ({ currentUser }) => {
             <nav className={menuOpened ? "nav-menu-opened" : ""}>
                 <ul>
                     <li>
-                        <NavLink className="link-button" to="/">
+                        <NavLink
+                            onClick={handlePageSelect}
+                            className="link-button"
+                            to="/"
+                        >
                             Home
                         </NavLink>
                     </li>
                     <li>
-                        <NavLink className="link-button" to="/shop">
+                        <NavLink
+                            onClick={handlePageSelect}
+                            className="link-button"
+                            to="/shop"
+                        >
                             Shop
                         </NavLink>
                     </li>
                     <li>
-                        <NavLink className="link-button" to="/about">
+                        <NavLink
+                            onClick={handlePageSelect}
+                            className="link-button"
+                            to="/about"
+                        >
                             About
                         </NavLink>
                     </li>
                     <li>
                         {user ? (
                             <NavLink
+                                onClick={handlePageSelect}
                                 className="link-button cart-link-button"
                                 to="/cart"
                             >
@@ -97,11 +114,19 @@ const Header = ({ currentUser }) => {
                     </li>
                     <li>
                         {user ? (
-                            <button className="link-button" onClick={logout}>
+                            <button
+                                onClick={handlePageSelect}
+                                className="link-button"
+                                onClick={logout}
+                            >
                                 log out
                             </button>
                         ) : (
-                            <NavLink className="link-button" to="/login">
+                            <NavLink
+                                onClick={handlePageSelect}
+                                className="link-button"
+                                to="/login"
+                            >
                                 log in
                             </NavLink>
                         )}

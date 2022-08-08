@@ -5,14 +5,14 @@ import AddToCartButton from "../../components/utility/add-to-cart-button/AddToCa
 
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, Link, useSearchParams } from "react-router-dom";
 
 import { auth, getItem, addToCart } from "../../firebase";
 
 const ItemPage = () => {
     const [user] = useAuthState(auth);
 
-    const { id } = useParams();
+    const { id } = useParams("id");
 
     const [item, setItems] = useState();
     const [error, setError] = useState();
@@ -39,8 +39,23 @@ const ItemPage = () => {
                             className="item-image"
                         />
                         <div className="item-text">
-                            <h2 className="item-name">{item?.name}</h2>
-                            <p className="item-price">{item?.price}$</p>
+                            <h2 className="item-name">{item.name}</h2>
+                            <div className="search-links">
+                                <Link
+                                    to={`../shop?type=${item.type}`}
+                                    className="item-type"
+                                >
+                                    {item.type}
+                                </Link>
+                                <Link
+                                    to={`../shop?color=${item.color}`}
+                                    className="item-color"
+                                >
+                                    {item.color}
+                                </Link>
+                            </div>
+
+                            <p className="item-price">{item.price}$</p>
                             <AddToCartButton productId={id} user={user} />
                         </div>
                     </div>

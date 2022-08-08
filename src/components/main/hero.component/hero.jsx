@@ -18,8 +18,6 @@ const Hero = () => {
     if (loading) return <p>Loading...</p>;
     if (error) return <p>Something Went Wrong</p>;
 
-    console.log(data.quote.length);
-
     return (
         <div className="hero-image">
             <h2

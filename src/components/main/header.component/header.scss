@@ -38,8 +38,8 @@ header {
         }
 
         .active {
-            background-color: $main-black;
-            color: $main-orange;
+            background-color: $main-black !important;
+            color: $main-orange !important;
         }
     }
 }
@@ -57,9 +57,12 @@ header {
 
     ul {
         li {
-            a {
+            a,
+            button {
                 padding: 0.25rem 1rem;
                 border-radius: 0;
+                color: $main-black;
+                font-weight: bold;
             }
         }
     }

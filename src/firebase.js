@@ -98,17 +98,44 @@ export const logout = () => {
     signOut(auth);
 };
 
-export const getShopPageContent = async () => {
+export const getShopPageContent = async (type, color) => {
     const result = [];
 
-    const q = query(collection(db, "products"));
+    let q;
+
+    // need to change this later
+    if (type === "Any" && color === "Any") {
+        q = query(collection(db, "products"));
+    } else if (color === "Any") {
+        q = query(collection(db, "products"), where("type", "==", type));
+    } else if (type === "Any") {
+        q = query(collection(db, "products"), where("color", "==", color));
+    } else {
+        q = query(
+            collection(db, "products"),
+            where("type", "==", type),
+            where("color", "==", color)
+        );
+    }
 
     const querySnapshot = await getDocs(q);
 
     querySnapshot.forEach((doc) => {
         result.push(doc.data());
     });
+    // console.log(result);
     return result;
+
+    // const result = [];
+
+    // const q = query(collection(db, "products"));
+
+    // const querySnapshot = await getDocs(q);
+
+    // querySnapshot.forEach((doc) => {
+    //     result.push(doc.data());
+    // });
+    // return result;
 };
 
 export const getItem = async (id) => {

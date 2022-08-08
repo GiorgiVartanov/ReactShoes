@@ -1,0 +1,21 @@
+@import "../../scss-variables.scss";
+
+.search-options {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    font-size: 0.9rem;
+    color: $main-gray;
+
+    .search-label {
+        display: flex;
+        flex-direction: column;
+        max-width: 300px;
+    }
+    .search-select {
+        background-color: $main-black;
+        color: $main-white;
+        border: none;
+        padding: 0.1rem 0.25rem;
+    }
+}
