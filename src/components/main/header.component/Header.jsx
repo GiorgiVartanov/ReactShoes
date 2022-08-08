@@ -114,11 +114,7 @@ const Header = ({ currentUser }) => {
                     </li>
                     <li>
                         {user ? (
-                            <button
-                                onClick={handlePageSelect}
-                                className="link-button"
-                                onClick={logout}
-                            >
+                            <button className="link-button" onClick={logout}>
                                 log out
                             </button>
                         ) : (
