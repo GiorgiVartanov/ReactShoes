@@ -61,8 +61,11 @@
             display: flex;
             justify-content: left;
             gap: 0.5rem;
+            margin: 1rem;
             a {
-                padding: 0.5rem;
+                padding: 0.25rem 0.75rem;
+                color: $main-black;
+                background-color: $main-orange;
             }
         }
     }

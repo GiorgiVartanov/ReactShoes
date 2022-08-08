@@ -95,16 +95,20 @@ const Shop = () => {
                 </label>
             </div>
             <div className="card-holder">
-                {items.map((item) => (
-                    <Card
-                        key={item.id}
-                        id={item.id}
-                        name={item.name}
-                        image={item.imageUrl}
-                        price={item.price}
-                        author={item.authorUrl}
-                    />
-                ))}
+                {items.length > 0 ? (
+                    items.map((item) => (
+                        <Card
+                            key={item.id}
+                            id={item.id}
+                            name={item.name}
+                            image={item.imageUrl}
+                            price={item.price}
+                            author={item.authorUrl}
+                        />
+                    ))
+                ) : (
+                    <p>There Are No Items For Such Search Orders</p>
+                )}
             </div>
         </main>
     );
