@@ -105,10 +105,20 @@ header {
 
 @keyframes rotate {
     0% {
-        transform: rotateZ(0deg);
+        background-color: $main-black;
+        opacity: 0.7;
+        border-radius: 50%;
     }
     100% {
-        transform: rotateZ(180deg);
+        background-color: transparent;
+    }
+}
+@keyframes appear {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
     }
 }
 
@@ -116,6 +126,7 @@ header {
     header {
         flex-direction: column;
         justify-content: left;
+
         a {
             width: fit-content;
             margin-right: auto;
@@ -123,6 +134,7 @@ header {
         nav {
             display: none;
             padding: 1rem 0;
+            animation: appear 0.2s ease-in;
             ul {
                 padding-top: 10px;
                 flex-direction: column;

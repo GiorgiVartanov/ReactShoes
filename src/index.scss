@@ -8,6 +8,12 @@
     font-family: "Poppins", sans-serif;
 }
 
+#root {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
 body {
     margin: 0;
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto",
@@ -19,6 +25,18 @@ body {
     color: $main-black;
 
     background-color: $main-white;
+}
+
+body::-webkit-scrollbar {
+    width: 12px; /* width of the entire scrollbar */
+}
+body::-webkit-scrollbar-track {
+    background: orange; /* color of the tracking area */
+}
+body::-webkit-scrollbar-thumb {
+    background-color: blue; /* color of the scroll thumb */
+    border-radius: 20px; /* roundness of the scroll thumb */
+    border: 3px solid orange; /* creates padding around scroll thumb */
 }
 
 code {

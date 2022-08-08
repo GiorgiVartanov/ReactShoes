@@ -59,3 +59,24 @@
         }
     }
 }
+
+@media screen and (max-width: 650px) {
+    .item-description {
+        flex-direction: column;
+
+        .item-image {
+            width: 100% !important;
+            margin: auto;
+        }
+        .item-text {
+            text-align: center;
+            .add-to-cart {
+                margin: 2rem auto 0;
+                width: 80% !important;
+                svg {
+                    margin: auto;
+                }
+            }
+        }
+    }
+}

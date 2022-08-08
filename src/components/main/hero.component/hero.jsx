@@ -18,9 +18,15 @@ const Hero = () => {
     if (loading) return <p>Loading...</p>;
     if (error) return <p>Something Went Wrong</p>;
 
+    console.log(data.quote.length);
+
     return (
         <div className="hero-image">
-            <h2 className="hero-text">
+            <h2
+                className={`hero-text ${
+                    data.quote.length > 40 ? "smaller-letters" : ""
+                }`}
+            >
                 {data.quote.split(" ").map((word, index) => (
                     <span key={word + index} className="quote">
                         {word}

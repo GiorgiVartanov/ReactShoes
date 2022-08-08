@@ -7,6 +7,7 @@ import ItemPage from "./pages/item.page/Item.page";
 import NotFound from "./pages/not-found.page/NotFound";
 import LogIn from "./pages/login.page/Login.page";
 import SignUp from "./pages/signup.page/Signup.page";
+import Footer from "./components/main/footer.component/Footer";
 
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
@@ -24,6 +25,7 @@ function App() {
                 <Route path="/signup" element={<SignUp />} />
                 <Route path="/*" element={<NotFound />} />
             </Routes>
+            <Footer />
         </Router>
     );
 }

@@ -3,6 +3,7 @@
     border-bottom: 2px solid $main-orange;
     width: 100%;
     height: 70vh;
+    min-height: 400px;
     position: relative;
     background-image: url("../../../assets/hero-bg.jpg");
 
@@ -14,12 +15,9 @@
         font-size: 1.5rem;
         display: flex;
         flex-direction: row;
-        // white-space: wrap;
         flex-wrap: wrap;
         gap: 0.5rem;
         max-width: 300px;
-        // display: grid;
-        // grid-template-columns: repeat(2, 1fr);
 
         .quote {
             background-color: $main-orange;
@@ -27,6 +25,7 @@
             width: fit-content;
             padding: 0 1rem;
         }
+
         .author-name {
             font-size: 0.75rem;
             position: absolute;
@@ -36,5 +35,8 @@
             background-color: $main-orange;
             padding: 0 2px;
         }
+    }
+    .smaller-letters {
+        width: 300px;
     }
 }

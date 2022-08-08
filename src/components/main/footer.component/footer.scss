@@ -1,0 +1,19 @@
+@import "../../../scss-variables.scss";
+footer {
+    height: 120px;
+    min-height: 120px;
+    background-color: $main-orange;
+    margin-top: auto;
+    box-shadow: 0 0 10px 2px $main-shadow;
+    position: relative;
+    animation: slide-in-from-bottom 0.2s ease-in;
+}
+
+@keyframes slide-in-from-bottom {
+    0% {
+        bottom: -60px;
+    }
+    100% {
+        bottom: 0;
+    }
+}

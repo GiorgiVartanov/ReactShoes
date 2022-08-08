@@ -1,6 +1,8 @@
+import "./cart.scss";
+
 import Card from "../../components/main/card.component/Card";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useNavigate } from "react-router-dom";
 
@@ -16,6 +18,8 @@ const Cart = () => {
     const [error, setError] = useState();
     const [loading, setLoading] = useState(true);
 
+    const [total, setTotal] = useState(0);
+
     useEffect(() => {
         if (user) {
             getCart(user)
@@ -24,6 +28,14 @@ const Cart = () => {
                 .finally(setLoading(false));
         }
     }, [user]);
+
+    useEffect(() => {
+        if (cart !== undefined) {
+            let totalPrice = 0;
+            cart.map((item) => (totalPrice += item.price));
+            setTotal(Math.round(totalPrice * 100) / 100);
+        }
+    }, [cart]);
 
     if (!user) navigate("/");
 
@@ -34,18 +46,21 @@ const Cart = () => {
         <main>
             <div className="card-holder">
                 {cart
-                    ? cart.map((item) => (
-                          <Card
-                              key={item.id}
-                              id={item.id}
-                              name={item.name}
-                              price={item.price}
-                              image={item.imageUrl}
-                              author={item.authorUrl}
-                          />
-                      ))
+                    ? cart.map((item) => {
+                          return (
+                              <Card
+                                  key={item.id}
+                                  id={item.id}
+                                  name={item.name}
+                                  price={item.price}
+                                  image={item.imageUrl}
+                                  author={item.authorUrl}
+                              />
+                          );
+                      })
                     : ""}
             </div>
+            <div className="total">Total : {total}$</div>
         </main>
     );
 };
