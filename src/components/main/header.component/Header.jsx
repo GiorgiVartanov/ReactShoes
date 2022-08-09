@@ -54,6 +54,7 @@ const Header = ({ currentUser }) => {
 
             <button
                 className="hamburger-menu-button"
+                name="hamburger-menu-button"
                 onClick={() => {
                     setMenuOpened(!menuOpened);
                 }}
