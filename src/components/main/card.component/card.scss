@@ -56,3 +56,9 @@
         visibility: visible;
     }
 }
+
+@media screen and (max-width: 450px) {
+    .card {
+        width: calc(100% - 2rem);
+    }
+}

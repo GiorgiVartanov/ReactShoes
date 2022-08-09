@@ -25,18 +25,7 @@ body {
     color: $main-black;
 
     background-color: $main-white;
-}
-
-body::-webkit-scrollbar {
-    width: 12px; /* width of the entire scrollbar */
-}
-body::-webkit-scrollbar-track {
-    background: orange; /* color of the tracking area */
-}
-body::-webkit-scrollbar-thumb {
-    background-color: blue; /* color of the scroll thumb */
-    border-radius: 20px; /* roundness of the scroll thumb */
-    border: 3px solid orange; /* creates padding around scroll thumb */
+    overflow-x: hidden;
 }
 
 code {
@@ -53,7 +42,7 @@ a {
 
 main {
     width: 80%;
-    margin: 9rem auto;
+    margin: 7rem auto;
 }
 
 .link-button {
@@ -76,7 +65,7 @@ main {
     }
 }
 .card-holder {
-    margin-top: 5rem;
+    margin-top: 3rem;
     display: flex;
     flex-wrap: wrap;
     gap: 1.5rem;

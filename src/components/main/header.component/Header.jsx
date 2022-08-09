@@ -46,7 +46,7 @@ const Header = ({ currentUser }) => {
     return (
         <header
             ref={savedHeader}
-            className={scrolled ? "header-scrolled " : ""}
+            className={scrolled && !menuOpened ? "header-scrolled " : ""}
         >
             <Link to="/">
                 <h1>ReactClothes</h1>

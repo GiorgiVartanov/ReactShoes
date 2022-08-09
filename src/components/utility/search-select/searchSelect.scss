@@ -1,0 +1,34 @@
+@import "../../../scss-variables.scss";
+
+.search-label {
+    display: flex;
+    flex-direction: column;
+    // width: 300px;
+}
+.search-select {
+    background-color: $main-black;
+    color: $main-white;
+    border: none;
+    padding: 0.1rem 0.25rem;
+    box-shadow: 0 0 10px 2px $main-shadow;
+    transition: 0.2s ease-in;
+
+    &:hover,
+    &:active {
+        box-shadow: 0 0 15px 5px $main-shadow;
+    }
+}
+
+@media screen and (max-width: 650px) {
+    .search-label {
+        width: 300px;
+    }
+}
+@media screen and (max-width: 480px) {
+    .search-label {
+        width: 100%;
+    }
+    .search-select {
+        width: 100%;
+    }
+}

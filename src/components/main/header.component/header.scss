@@ -10,7 +10,7 @@ header {
     width: 100%;
     top: 0;
     transition: 0.2s ease-in;
-    z-index: 2;
+    z-index: 4;
     animation: slide-from-top 0.2s ease-out;
 
     a {
@@ -78,7 +78,7 @@ header {
     outline: none;
     border: none;
     font-size: 2rem;
-    margin-top: 0.2rem;
+    margin-top: 2px;
     svg {
         height: 100%;
         width: 100%;

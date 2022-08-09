@@ -6,31 +6,18 @@
     gap: 1rem;
     font-size: 0.9rem;
     color: $main-gray;
-
-    .search-label {
-        display: flex;
-        flex-direction: column;
-        max-width: 300px;
-    }
-    .search-select {
-        background-color: $main-black;
-        color: $main-white;
-        border: none;
-        padding: 0.1rem 0.25rem;
-    }
 }
 
 @media screen and (max-width: 650px) {
     .search-options {
         flex-direction: column;
         align-items: center;
-        // width: 100%;
-        .search-label {
-            width: 110%;
-        }
-        .search-select {
-            max-width: 400px;
-            padding: 0.25rem 0.75rem;
-        }
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .search-options {
+        margin: auto;
+        width: calc(100% - 2rem);
     }
 }

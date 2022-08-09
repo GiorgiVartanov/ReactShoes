@@ -1,11 +1,13 @@
 import "./shop.scss";
 
 import Card from "../../components/main/card.component/Card";
+import SearchSelect from "../../components/utility/search-select/SearchSelect";
 
 import { useState, useEffect } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
 
 import { getShopPageContent } from "../../firebase";
+import { types, colors } from "../../searchOptions";
 
 const Shop = () => {
     const [searchParams, setSearchParams] = useSearchParams({
@@ -61,38 +63,16 @@ const Shop = () => {
     return (
         <main>
             <div className="search-options">
-                <label htmlFor="type-select" className="search-label">
-                    type
-                    <select
-                        name="type-select"
-                        id="type-select"
-                        className="search-select"
-                        onChange={handleTypeSelect}
-                    >
-                        <option value="Any">Any</option>
-                        <option value="hat">hat</option>
-                        <option value="cap">cap</option>
-                    </select>
-                </label>
-                <label htmlFor="color-select" className="search-label">
-                    color
-                    <select
-                        name="color-select"
-                        id="color-select"
-                        className="search-select"
-                        onChange={handleColorSelect}
-                    >
-                        <option value="Any">Any</option>
-                        <option value="white">white</option>
-                        <option value="black">black</option>
-                        <option value="grey">grey</option>
-                        <option value="red">red</option>
-                        <option value="green">green</option>
-                        <option value="blue">blue</option>
-                        <option value="pink">pink</option>
-                        <option value="orange">orange</option>
-                    </select>
-                </label>
+                <SearchSelect
+                    name="type"
+                    values={types}
+                    onSelect={handleTypeSelect}
+                />
+                <SearchSelect
+                    name="color"
+                    values={colors}
+                    onSelect={handleColorSelect}
+                />
             </div>
             <div className="card-holder">
                 {items.length > 0 ? (
