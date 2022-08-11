@@ -22,10 +22,18 @@
             .add-comment-button {
                 margin-left: auto;
                 border: 1px solid $main-gray;
+                background-color: $main-white;
                 padding: 0 0.5rem;
                 margin-right: auto;
                 margin-left: 0;
                 transition: 0.2s ease-in;
+
+                &:hover,
+                &:active {
+                    opacity: 0.9;
+                    color: gray;
+                    // background-color: $main-gray;
+                }
             }
             .add-comment-input {
                 background-color: $main-white;
@@ -40,5 +48,13 @@
                 }
             }
         }
+    }
+}
+
+@media screen and (max-width: 650px) {
+    .add-comment-button {
+        width: 100%;
+        margin-top: 0.5rem;
+        height: 3rem;
     }
 }

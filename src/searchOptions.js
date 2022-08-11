@@ -10,4 +10,4 @@ export const colors = [
     "orange",
 ];
 
-export const types = ["hat", "cap"];
+export const types = ["Any", "hat", "cap"];

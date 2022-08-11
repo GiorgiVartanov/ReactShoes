@@ -199,9 +199,12 @@ export const addComment = async (text, productId, user) => {
 };
 
 export const addToCart = async (productId, user) => {
+    // it will only add unique products to array
     await updateDoc(doc(db, "users", user.uid), {
         cart: arrayUnion(productId),
     });
+
+    // const cart = await getCart(user);
 };
 
 export const checkIfUserHasThisItem = async (productId, user) => {
