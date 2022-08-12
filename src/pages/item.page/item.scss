@@ -7,16 +7,13 @@
     gap: 2rem;
 
     .item-description {
-        // display: grid;
-        // grid-template-columns: 1fr 1fr;
         display: flex;
         gap: 2rem;
         justify-content: left;
 
         .item-image {
-            width: 40vw;
-            max-width: 420px;
-            min-width: 240px;
+            width: 300px;
+            height: auto;
             box-shadow: 0 0 10px 2px $main-shadow;
         }
 
@@ -26,15 +23,14 @@
             justify-content: space-between;
 
             .item-name {
-                font-size: 2rem;
+                white-space: nowrap;
+                font-size: 1.2rem;
             }
             .item-price {
                 margin-top: auto;
             }
             .add-to-cart {
                 border: 1px solid $main-gray;
-                // width: 55px;
-                // height: 35px;
                 padding: 0.5rem 1rem;
                 width: 3.5rem;
                 font-size: 1.5rem;

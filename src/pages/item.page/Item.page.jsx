@@ -2,12 +2,20 @@ import "./item.scss";
 
 import Comments from "../../components/main/comments.component/Comments";
 import AddToCartButton from "../../components/utility/add-to-cart-button/AddToCartButton";
+import ProductPopularityPanel from "../../components/main/product-popularity-panel.component/ProductpopulatiryPanel";
 
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useState, useEffect } from "react";
 import { useParams, Link, useSearchParams } from "react-router-dom";
 
-import { auth, getItem, addToCart } from "../../firebase";
+import {
+    auth,
+    getItem,
+    getViews,
+    getLikes,
+    addView,
+    addLike,
+} from "../../firebase";
 
 const ItemPage = () => {
     const [user] = useAuthState(auth);
@@ -38,8 +46,13 @@ const ItemPage = () => {
                             alt={item.name}
                             className="item-image"
                         />
+
                         <div className="item-text">
                             <h2 className="item-name">{item.name}</h2>
+                            <ProductPopularityPanel
+                                user={user}
+                                productId={item.id}
+                            />
                             <div className="search-links">
                                 <Link
                                     to={`../shop?type=${item.type}`}
@@ -59,7 +72,7 @@ const ItemPage = () => {
                             <AddToCartButton productId={id} user={user} />
                         </div>
                     </div>
-                    <Comments productId={item?.id} user={user} />
+                    <Comments productId={item.id} user={user} />
                 </main>
             ) : (
                 ""

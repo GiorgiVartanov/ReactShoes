@@ -52,7 +52,9 @@ export const signInWithGoogle = async () => {
             await setDoc(doc(db, "users", user.uid), {
                 uid: user.uid,
                 name: user.displayName,
-                cart: [], // check it
+                cart: [],
+                liked: [],
+                viewed: [],
                 authProvider: "google",
                 email: user.email,
             });
@@ -187,10 +189,28 @@ export const getCart = async (user) => {
     return null;
 };
 
-// add something to remove bad words
-export const addComment = async (text, productId, user) => {
-    console.log(text);
+export const getLikes = async (productId) => {
+    const docRef = doc(db, "products", productId);
+    const docSnap = await getDoc(docRef);
 
+    if (docSnap.exists()) {
+        return docSnap.data().likes;
+    }
+    return null;
+};
+export const getViews = async (productId) => {
+    // check later
+
+    const docRef = doc(db, "products", productId);
+    const docSnap = await getDoc(docRef);
+
+    if (docSnap.exists()) {
+        return docSnap.data().views;
+    }
+    return null;
+};
+
+export const addComment = async (text, productId, user) => {
     await addDoc(collection(db, "comments"), {
         productId: productId,
         text: text,
@@ -205,6 +225,73 @@ export const addToCart = async (productId, user) => {
     });
 
     // const cart = await getCart(user);
+};
+
+export const addView = async (productId, user) => {
+    const views = getViews(productId);
+
+    const docRef = doc(db, "users", user.uid);
+    const docSnap = await getDoc(docRef);
+
+    if (!docSnap.data().viewed.includes(productId)) {
+        updateDoc(doc(db, "users", user.uid), {
+            viewed: arrayUnion(productId),
+        });
+
+        views.then((res) => {
+            updateDoc(doc(db, "products", productId), {
+                views: res + 1,
+            });
+        });
+    }
+};
+
+export const addLike = async (productId, user) => {
+    const likes = getLikes(productId);
+
+    const docRef = doc(db, "users", user.uid);
+    const docSnap = await getDoc(docRef);
+
+    if (!docSnap.data().liked.includes(productId)) {
+        updateDoc(doc(db, "users", user.uid), {
+            liked: arrayUnion(productId),
+        });
+
+        likes.then((res) => {
+            updateDoc(doc(db, "products", productId), {
+                likes: res + 1,
+            });
+        });
+    }
+};
+
+export const removeLike = async (productId, user) => {
+    const likes = getLikes(productId);
+
+    const docRef = doc(db, "users", user.uid);
+    const docSnap = await getDoc(docRef);
+
+    if (docSnap.data().liked.includes(productId)) {
+        const newArr = docSnap.data().liked;
+        newArr.splice(newArr.indexOf(productId), 1);
+
+        updateDoc(doc(db, "users", user.uid), {
+            liked: newArr,
+        });
+
+        likes.then((res) => {
+            updateDoc(doc(db, "products", productId), {
+                likes: res - 1,
+            });
+        });
+    }
+};
+
+export const checkIfUserHasLiked = async (productId, user) => {
+    const docRef = doc(db, "users", user.uid);
+    const docSnap = await getDoc(docRef);
+
+    return docSnap.data().liked.includes(productId);
 };
 
 export const checkIfUserHasThisItem = async (productId, user) => {
