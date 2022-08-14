@@ -29,6 +29,7 @@ header {
             justify-content: center;
             li {
                 align-content: center;
+                transition: 0.2s ease-in;
                 a {
                     color: $main-black;
                 }

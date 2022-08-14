@@ -21,6 +21,13 @@ const LogIn = () => {
     const [user, loading, error] = useAuthState(auth);
     const navigate = useNavigate();
 
+    const handleSubmit = (event) => {
+        event.preventDefault(); // prevent from default submit action
+
+        setUsername("");
+        setPassword("");
+    };
+
     const handleChange = (e) => {
         // destructuring e.target to get this 2 values
         const { value, name } = e.target;
@@ -38,9 +45,7 @@ const LogIn = () => {
     const login = () => {};
 
     useEffect(() => {
-        if (loading) {
-            return;
-        }
+        if (loading) return;
         if (user) navigate("/");
     }, [user, loading]);
 
@@ -49,7 +54,7 @@ const LogIn = () => {
 
     return (
         <main className="sign-in-page">
-            <form action="" className="login-form">
+            <form onSubmit={handleSubmit} className="login-form">
                 <h3>Login</h3>
                 <FormInput
                     name={"username"}

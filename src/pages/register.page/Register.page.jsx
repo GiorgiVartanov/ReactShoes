@@ -129,7 +129,7 @@ const Register = () => {
 
     useEffect(() => {
         if (loading) return;
-        if (user) navigate("/userpage");
+        if (user) navigate("/");
     }, [user, loading]);
 
     return (
