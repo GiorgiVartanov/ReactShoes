@@ -20,7 +20,8 @@ header {
         }
     }
     nav {
-        ul {
+        .nav-link-list {
+            list-style: none;
             display: flex;
             height: 100%;
             gap: 0.5rem;
@@ -55,7 +56,7 @@ header {
     background-color: $orange-transparent;
     padding: 0.25rem;
 
-    ul {
+    .nav-link-list {
         li {
             a,
             button {
@@ -138,7 +139,7 @@ header {
             display: none;
             padding: 1rem 0;
             animation: appear 0.2s ease-in;
-            ul {
+            .nav-link-list {
                 padding-top: 10px;
                 flex-direction: column;
                 // width: 100%;

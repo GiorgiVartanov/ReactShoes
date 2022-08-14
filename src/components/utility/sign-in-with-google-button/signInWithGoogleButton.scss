@@ -1,0 +1,21 @@
+@import "../../../scss-variables.scss";
+
+.sign-in-with-google-button {
+    width: 100%;
+    padding: 0.5rem 0;
+    border: 1px solid $main-black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    background-color: $main-orange;
+    transition: 0.2s ease-in;
+    svg {
+        font-size: 1.1rem;
+    }
+    &:hover,
+    &:active {
+        background-color: $main-black;
+        color: $main-orange;
+    }
+}

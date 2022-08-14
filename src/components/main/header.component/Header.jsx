@@ -74,7 +74,7 @@ const Header = ({ currentUser }) => {
                 )}
             </button>
             <nav className={menuOpened ? "nav-menu-opened" : ""}>
-                <ul>
+                <ul className="nav-link-list">
                     <li>
                         <NavLink
                             onClick={handlePageSelect}

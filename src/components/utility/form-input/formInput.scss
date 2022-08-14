@@ -1,0 +1,74 @@
+@import "../../../scss-variables.scss";
+
+label {
+    position: relative;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    white-space: nowrap;
+    transition: 0.2s ease-in;
+
+    .label-text {
+        position: absolute;
+        color: $main-gray;
+        font-size: 0.8rem;
+        top: 50%;
+        transform: translateY(-50%);
+        left: 0.5rem;
+        transition: 0.1s ease-out;
+        user-select: none;
+        cursor: text;
+    }
+    .hidden-label-text {
+        top: -0.7rem;
+        left: 0;
+        cursor: default;
+        opacity: 1;
+    }
+    input {
+        width: 100%;
+        padding: 0.25rem 0.5rem;
+        outline: none;
+        border: 1px solid $main-black;
+        box-shadow: 0 0 10px 2px $main-shadow;
+
+        &:hover,
+        &:active {
+            box-shadow: 0 0 15px 3px $main-shadow;
+        }
+
+        &:focus {
+            // outline: 1px solid $main-gray;
+        }
+    }
+
+    &:focus-within {
+        .label-text {
+            top: -0.7rem;
+            left: 0;
+            cursor: default;
+            color: $main-black;
+            opacity: 1;
+        }
+    }
+}
+.input-error {
+    input {
+        border: 1px solid $error-color;
+    }
+    .label-text {
+        color: $error-color;
+        opacity: 0.7;
+    }
+}
+
+.error-list {
+    width: 100%;
+    margin-top: -1rem;
+    margin-left: 2rem;
+    font-size: 0.75rem;
+    display: flex;
+    flex-direction: column;
+    color: $error-color;
+    align-items: left;
+}

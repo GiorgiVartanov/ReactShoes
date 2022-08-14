@@ -6,7 +6,7 @@ import About from "./pages/about.page/About";
 import ItemPage from "./pages/item.page/Item.page";
 import NotFound from "./pages/not-found.page/NotFound";
 import LogIn from "./pages/login.page/Login.page";
-import SignUp from "./pages/signup.page/Signup.page";
+import Register from "./pages/register.page/Register.page";
 import Footer from "./components/main/footer.component/Footer";
 
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
@@ -22,7 +22,7 @@ function App() {
                 <Route path="/cart" element={<Cart />} />
                 <Route path="/about" element={<About />} />
                 <Route path="/login" element={<LogIn />} />
-                <Route path="/signup" element={<SignUp />} />
+                <Route path="/register" element={<Register />} />
                 <Route path="/*" element={<NotFound />} />
             </Routes>
             <Footer />
