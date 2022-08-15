@@ -5,7 +5,9 @@ const FormInput = ({ name, type, value, errors, onChange }) => {
         <>
             <label
                 htmlFor={name}
-                className={`${errors.length > 0 ? "input-error" : ""}`}
+                className={`register-input-label ${
+                    errors.length > 0 ? "input-error" : ""
+                }`}
             >
                 <p
                     className={`label-text ${

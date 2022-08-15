@@ -1,10 +1,9 @@
 import "./header.scss";
 
 import { useState, useEffect, useRef } from "react";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { query, collection, getDocs, where } from "firebase/firestore";
-import { useNavigate } from "react-router-dom";
 import { auth, db, logout } from "../../../firebase";
 import { BsCart } from "react-icons/bs";
 import { ImMenu, ImCross } from "react-icons/im";
@@ -115,7 +114,14 @@ const Header = ({ currentUser }) => {
                     </li>
                     <li>
                         {user ? (
-                            <button className="link-button" onClick={logout}>
+                            <button
+                                className="link-button"
+                                onClick={() => {
+                                    logout();
+                                    console.log("navigating");
+                                    navigate("/login");
+                                }}
+                            >
                                 log out
                             </button>
                         ) : (

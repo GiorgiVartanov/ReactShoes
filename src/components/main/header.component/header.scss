@@ -30,7 +30,8 @@ header {
             li {
                 align-content: center;
                 transition: 0.2s ease-in;
-                a {
+                a,
+                button {
                     color: $main-black;
                 }
                 &:hover {
@@ -151,7 +152,6 @@ header {
                         width: 100%;
                         display: block;
                         text-align: center;
-                        color: $main-black;
                         svg {
                             width: 100%;
                             align-self: center;

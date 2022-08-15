@@ -30,7 +30,7 @@ const Cart = () => {
     }, [user]);
 
     useEffect(() => {
-        if (cart !== undefined) {
+        if (cart) {
             let totalPrice = 0;
             cart.map((item) => (totalPrice += item.price));
             setTotal(Math.round(totalPrice * 100) / 100);

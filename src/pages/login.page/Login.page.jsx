@@ -13,10 +13,10 @@ import {
 } from "../../firebase";
 
 const LogIn = () => {
-    const [usernameErrors, setUsernameErrors] = useState([]);
+    const [emailErrors, setEmailErrors] = useState([]);
     const [passwordErrors, setPasswordErrors] = useState([]);
 
-    const [username, setUsername] = useState("");
+    const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [user, loading, error] = useAuthState(auth);
     const navigate = useNavigate();
@@ -24,7 +24,7 @@ const LogIn = () => {
     const handleSubmit = (event) => {
         event.preventDefault(); // prevent from default submit action
 
-        setUsername("");
+        setEmail("");
         setPassword("");
     };
 
@@ -33,8 +33,8 @@ const LogIn = () => {
         const { value, name } = e.target;
 
         switch (name) {
-            case "username":
-                setUsername(value);
+            case "email":
+                setEmail(value);
                 break;
             case "password":
                 setPassword(value);
@@ -42,7 +42,19 @@ const LogIn = () => {
         }
     };
 
-    const login = () => {};
+    const login = () => {
+        const emailErrorArr = [];
+        const passwordErrorArr = [];
+
+        if (email === "") emailErrorArr("please enter email");
+        if (password === "") passwordErrorArr("please enter password");
+
+        setEmailErrors(emailErrorArr);
+        setPasswordErrors(passwordErrorArr);
+
+        if (emailErrorArr.length === 0 || passwordErrorArr.length === 0)
+            logInWithEmailAndPassword(email, password);
+    };
 
     useEffect(() => {
         if (loading) return;
@@ -57,10 +69,10 @@ const LogIn = () => {
             <form onSubmit={handleSubmit} className="login-form">
                 <h3>Login</h3>
                 <FormInput
-                    name={"username"}
-                    value={username}
-                    errors={usernameErrors}
-                    type={"text"}
+                    name={"email"}
+                    value={email}
+                    errors={emailErrors}
+                    type={"email"}
                     onChange={handleChange}
                 />
                 <FormInput
@@ -70,7 +82,9 @@ const LogIn = () => {
                     type={"password"}
                     onChange={handleChange}
                 />
-                <button className="form-button">log in</button>
+                <button className="form-button" onClick={login}>
+                    log in
+                </button>
                 <SignInWithGoogleButton />
                 <Link to="/register">
                     Don't have an account yet? Create one
