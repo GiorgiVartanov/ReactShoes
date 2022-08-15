@@ -10,6 +10,14 @@
         position: absolute;
         top: 2px;
         left: 6px;
+        font-size: 0.8rem;
+    }
+    .comment-time {
+        color: $main-gray;
+        position: absolute;
+        top: 2px;
+        right: 6px;
+        font-size: 0.7rem;
     }
 }
 

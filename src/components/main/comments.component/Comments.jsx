@@ -60,6 +60,10 @@ const Comments = ({ productId, user }) => {
         setNewComment(e.target.value);
     };
 
+    useEffect(() => {
+        console.log(error);
+    }, [error]);
+
     if (loading) return <p>Loading...</p>;
     if (error) return <p>error</p>;
 
@@ -71,6 +75,7 @@ const Comments = ({ productId, user }) => {
                       <Comment
                           key={index}
                           text={item.text}
+                          time={new Date() - new Date(item.date)} // it was posted this time age
                           userId={item.userId}
                       />
                   ))

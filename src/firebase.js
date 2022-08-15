@@ -22,6 +22,7 @@ import {
     arrayUnion,
     arrayRemove,
     getDoc,
+    orderBy,
 } from "firebase/firestore";
 
 const config = {
@@ -171,6 +172,7 @@ export const getComments = async (productId) => {
 
     const q = query(
         collection(db, "comments"),
+        orderBy("date"),
         where("productId", "==", productId)
     );
 
@@ -231,6 +233,8 @@ export const addComment = async (text, productId, user) => {
         productId: productId,
         text: text,
         userId: user.uid,
+        date: new Date().getTime(),
+        //new Date(1660573873833).toUTCString()
     });
 };
 

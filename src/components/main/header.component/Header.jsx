@@ -83,7 +83,7 @@ const Header = ({ currentUser }) => {
                             Home
                         </NavLink>
                     </li>
-                    <li>
+                    {/* <li>
                         <NavLink
                             onClick={handlePageSelect}
                             className="link-button"
@@ -91,7 +91,7 @@ const Header = ({ currentUser }) => {
                         >
                             Shop
                         </NavLink>
-                    </li>
+                    </li> */}
                     <li>
                         <NavLink
                             onClick={handlePageSelect}
@@ -118,8 +118,7 @@ const Header = ({ currentUser }) => {
                                 className="link-button"
                                 onClick={() => {
                                     logout();
-                                    console.log("navigating");
-                                    navigate("/login");
+                                    navigate("/");
                                 }}
                             >
                                 log out
