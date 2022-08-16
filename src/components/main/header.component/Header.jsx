@@ -51,7 +51,12 @@ const Header = () => {
                 <h1>ReactClothes</h1>
             </Link>
 
-            <HamburgerButton />
+            <HamburgerButton
+                onClick={() => {
+                    setMenuOpened(!menuOpened);
+                }}
+                shown={menuOpened}
+            />
 
             {/* <button
                 className="hamburger-menu-button"
