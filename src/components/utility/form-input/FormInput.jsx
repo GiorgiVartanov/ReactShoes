@@ -1,6 +1,16 @@
 import "./formInput.scss";
 
+import { useState } from "react";
+import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
+
 const FormInput = ({ name, type, value, errors, onChange }) => {
+    const [shown, setShown] = useState(false);
+
+    const handleClick = (e) => {
+        console.log(value);
+        setShown(!shown);
+    };
+
     return (
         <>
             <label
@@ -17,12 +27,23 @@ const FormInput = ({ name, type, value, errors, onChange }) => {
                     {name}
                 </p>
                 <input
-                    type={type}
+                    type={shown ? "text" : type}
                     name={name}
                     id={name}
                     value={value}
                     onChange={onChange}
                 />
+                {type === "password" && value ? (
+                    <button
+                        className="show-password"
+                        type="button" // so it won't think that it is a submit button
+                        onClick={handleClick}
+                    >
+                        {shown ? <AiOutlineEye /> : <AiOutlineEyeInvisible />}
+                    </button>
+                ) : (
+                    ""
+                )}
             </label>
             {errors.length > 0 ? (
                 <ul className="error-list">

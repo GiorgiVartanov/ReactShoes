@@ -1,6 +1,5 @@
 import Header from "./components/main/header.component/Header";
 import Home from "./pages/home.page/home.page";
-import Shop from "./pages/shop.page/Shop.page";
 import Cart from "./pages/cart.page/Cart.page";
 import About from "./pages/about.page/About";
 import ItemPage from "./pages/item.page/Item.page";
@@ -17,7 +16,7 @@ function App() {
             <Header />
             <Routes>
                 <Route path="/" element={<Home />} />
-                <Route path="/shop" element={<Shop />} />
+                <Route path="/shop" element={<Home />} />
                 <Route path="/shop/:id" element={<ItemPage />} />
                 <Route path="/cart" element={<Cart />} />
                 <Route path="/about" element={<About />} />

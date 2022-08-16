@@ -51,6 +51,24 @@
             opacity: 1;
         }
     }
+    .show-password {
+        align-items: center;
+        font-size: 1.5rem;
+        line-height: 1rem;
+        position: absolute;
+        padding: 0 0.5rem;
+        right: 2px;
+        top: 50%;
+        transform: translateY(-50%);
+        background-color: transparent;
+        outline: none;
+        border: none;
+        color: $main-gray;
+        cursor: pointer;
+        svg {
+            // user-select: none;
+        }
+    }
 }
 .input-error {
     input {

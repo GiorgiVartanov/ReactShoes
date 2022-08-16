@@ -1,19 +1,17 @@
 import "./header.scss";
 
-import { useState, useEffect, useRef } from "react";
+import { useState, useRef } from "react";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import { useAuthState } from "react-firebase-hooks/auth";
-import { query, collection, getDocs, where } from "firebase/firestore";
-import { auth, db, logout } from "../../../firebase";
+import { auth, logout } from "../../../firebase";
 import { BsCart } from "react-icons/bs";
 import { ImMenu, ImCross } from "react-icons/im";
 
-const Header = ({ currentUser }) => {
+const Header = () => {
     const savedHeader = useRef(null);
 
     const [user, loading, error] = useAuthState(auth);
     const [scrolled, setScrolled] = useState(false);
-    const [name, setName] = useState("");
 
     const [menuOpened, setMenuOpened] = useState(false);
 
@@ -28,7 +26,7 @@ const Header = ({ currentUser }) => {
     };
 
     const handleClick = (e) => {
-        // check if clicked outside of element
+        // check if clicked outside of header, if so hide dropdowned navbar
         if (savedHeader.current && !savedHeader.current.contains(e.target)) {
             setMenuOpened(false);
         }
@@ -80,18 +78,9 @@ const Header = ({ currentUser }) => {
                             className="link-button"
                             to="/"
                         >
-                            Home
-                        </NavLink>
-                    </li>
-                    {/* <li>
-                        <NavLink
-                            onClick={handlePageSelect}
-                            className="link-button"
-                            to="/shop"
-                        >
                             Shop
                         </NavLink>
-                    </li> */}
+                    </li>
                     <li>
                         <NavLink
                             onClick={handlePageSelect}

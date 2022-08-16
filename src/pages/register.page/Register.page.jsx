@@ -44,9 +44,10 @@ const Register = () => {
     const handleSubmit = (event) => {
         event.preventDefault(); // prevent from default submit action
 
-        setUsername("");
-        setPassword("");
-        setConfirmPassword("");
+        if (usernameErrors) setUsername("");
+        if (emailErrors) setEmail("");
+        if (passwordErrors) setPassword("");
+        if (confirmPasswordErrors) setConfirmPassword("");
     };
 
     const handleChange = (e) => {
@@ -78,12 +79,16 @@ const Register = () => {
         // username errors
 
         // checking if username contains special symbol (if contains it's an error)
-        if (specialSymbols.some((item) => username.includes(item)))
-            usernameErrorArr.push("username contains forbidden symbol");
+        if (username === "") {
+            usernameErrorArr.push("please enter a username");
+        } else {
+            if (specialSymbols.some((item) => username.includes(item)))
+                usernameErrorArr.push("username contains forbidden symbol");
+        }
 
         // email errors
 
-        if (email === "") emailErrorArr.push("please enter email");
+        if (email === "") emailErrorArr.push("please enter an email");
         else {
             if (!email.includes("@") || !email.includes("."))
                 emailErrorArr.push("incorrect email");
@@ -91,7 +96,7 @@ const Register = () => {
 
         //password errors
 
-        if (password === "") passwordErrorArr.push("please enter password");
+        if (password === "") passwordErrorArr.push("please enter a password");
         else {
             if (password.length < 6)
                 passwordErrorArr.push("password is too short");
@@ -131,9 +136,7 @@ const Register = () => {
         setPasswordErrors(passwordErrorArr);
         setConfirmPasswordErrors(confirmPasswordErrorArr);
 
-        // register
-
-        // if we don't have ant errors
+        // register if we don't have ant errors
         if (
             usernameErrorArr.length === 0 &&
             emailErrorArr.length === 0 &&
@@ -167,7 +170,7 @@ const Register = () => {
                     name={"email"}
                     value={email}
                     errors={emailErrors}
-                    type={"email"}
+                    type={"text"}
                     onChange={handleChange}
                 />
                 <FormInput

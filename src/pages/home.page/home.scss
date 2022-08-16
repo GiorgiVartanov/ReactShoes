@@ -1,0 +1,23 @@
+@import "../../scss-variables.scss";
+
+.search-options {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    font-size: 0.9rem;
+    color: $main-gray;
+}
+
+@media screen and (max-width: 650px) {
+    .search-options {
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
+@media screen and (max-width: 550px) {
+    .search-options {
+        margin: auto;
+        width: calc(100% - 2rem);
+    }
+}

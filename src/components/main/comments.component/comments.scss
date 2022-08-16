@@ -21,27 +21,29 @@
 
             .add-comment-button {
                 margin-left: auto;
-                border: 1px solid $main-gray;
+                border: 1px solid $main-black;
                 background-color: $main-white;
                 padding: 0 0.5rem;
                 margin-right: auto;
                 margin-left: 0;
                 transition: 0.2s ease-in;
+                // font-weight: bold;
+                letter-spacing: 0.1rem;
 
                 &:hover,
                 &:active {
                     opacity: 0.9;
-                    // color: gray;
-                    // background-color: $main-gray;
+                    background-color: $main-black;
+                    color: $main-white;
                 }
             }
             .add-comment-input {
-                background-color: $main-white;
                 border: 1px solid $main-gray;
                 outline: none;
                 padding: 0.5rem 1rem;
                 resize: none;
                 transition: 0.2s ease-in;
+                background-color: white;
 
                 &:focus {
                     outline: 1px solid $main-black;
