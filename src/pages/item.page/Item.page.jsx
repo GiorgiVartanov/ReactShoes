@@ -27,6 +27,7 @@ const ItemPage = () => {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
+        console.log("1");
         getItem(id)
             .then((res) => setItems(res))
             .catch((err) => setError(err))
