@@ -123,7 +123,7 @@ const Register = () => {
         // password confirmation errors
 
         if (confirmPassword === "")
-            confirmPasswordErrorArr("please confirm your password");
+            confirmPasswordErrorArr.push("please confirm your password");
         else {
             if (password !== confirmPassword) {
                 passwordErrorArr.push("passwords do not match");
@@ -132,6 +132,7 @@ const Register = () => {
         }
 
         // updating states with this errors
+        setUsernameErrors(usernameErrorArr);
         setEmailErrors(emailErrorArr);
         setPasswordErrors(passwordErrorArr);
         setConfirmPasswordErrors(confirmPasswordErrorArr);

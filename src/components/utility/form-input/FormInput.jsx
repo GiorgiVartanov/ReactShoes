@@ -6,8 +6,7 @@ import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 const FormInput = ({ name, type, value, errors, onChange }) => {
     const [shown, setShown] = useState(false);
 
-    const handleClick = (e) => {
-        console.log(value);
+    const handleClick = () => {
         setShown(!shown);
     };
 

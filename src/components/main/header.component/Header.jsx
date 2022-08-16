@@ -1,5 +1,7 @@
 import "./header.scss";
 
+import HamburgerButton from "../../utility/hamburger-button/HamburgerButton";
+
 import { useState, useRef } from "react";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import { useAuthState } from "react-firebase-hooks/auth";
@@ -49,7 +51,9 @@ const Header = () => {
                 <h1>ReactClothes</h1>
             </Link>
 
-            <button
+            <HamburgerButton />
+
+            {/* <button
                 className="hamburger-menu-button"
                 name="hamburger-menu-button"
                 onClick={() => {
@@ -69,7 +73,7 @@ const Header = () => {
                         }}
                     />
                 )}
-            </button>
+            </button> */}
             <nav className={menuOpened ? "nav-menu-opened" : ""}>
                 <ul className="nav-link-list">
                     <li>
