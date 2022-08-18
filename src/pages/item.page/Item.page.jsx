@@ -56,13 +56,13 @@ const ItemPage = () => {
                             />
                             <div className="search-links">
                                 <Link
-                                    to={`../shop?type=${item.type}`}
+                                    to={`/?type=${item.type}`}
                                     className="item-type"
                                 >
                                     {item.type}
                                 </Link>
                                 <Link
-                                    to={`../shop?color=${item.color}`}
+                                    to={`/?color=${item.color}`}
                                     className="item-color"
                                 >
                                     {item.color}

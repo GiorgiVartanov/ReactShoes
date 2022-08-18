@@ -1,6 +1,6 @@
 import "./searchSelect.scss";
 
-const SearchSelect = ({ name, values, onSelect }) => {
+const SearchSelect = ({ name, values, names, onSelect }) => {
     return (
         <label htmlFor={name} className="search-label">
             {name}
@@ -10,9 +10,9 @@ const SearchSelect = ({ name, values, onSelect }) => {
                 className="search-select"
                 onChange={onSelect}
             >
-                {values.map((value) => (
+                {values.map((value, index) => (
                     <option key={value} value={value}>
-                        {value}
+                        {names[index]}
                     </option>
                 ))}
             </select>

@@ -23,6 +23,7 @@ import {
     arrayRemove,
     getDoc,
     orderBy,
+    Query,
 } from "firebase/firestore";
 
 const config = {
@@ -117,44 +118,20 @@ export const logout = () => {
     signOut(auth);
 };
 
-export const getShopPageContent = async (type, color) => {
+export const getShopPageContent = async (type, color, price) => {
     const result = [];
 
-    let q;
+    let q = query(collection(db, "products"));
 
-    // need to change this later
-    if (type === "Any" && color === "Any") {
-        q = query(collection(db, "products"));
-    } else if (color === "Any") {
-        q = query(collection(db, "products"), where("type", "==", type));
-    } else if (type === "Any") {
-        q = query(collection(db, "products"), where("color", "==", color));
-    } else {
-        q = query(
-            collection(db, "products"),
-            where("type", "==", type),
-            where("color", "==", color)
-        );
-    }
+    if (type !== "Any") q = query(q, where("type", "==", type));
+    if (color !== "Any") q = query(q, where("color", "==", color));
+    if (price !== "Any") q = query(q, where("price", "<", parseInt(price)));
 
     const querySnapshot = await getDocs(q);
-
     querySnapshot.forEach((doc) => {
         result.push(doc.data());
     });
-    // console.log(result);
     return result;
-
-    // const result = [];
-
-    // const q = query(collection(db, "products"));
-
-    // const querySnapshot = await getDocs(q);
-
-    // querySnapshot.forEach((doc) => {
-    //     result.push(doc.data());
-    // });
-    // return result;
 };
 
 export const getItem = async (id) => {

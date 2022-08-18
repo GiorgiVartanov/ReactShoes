@@ -7,7 +7,6 @@ import { Link, NavLink, useNavigate } from "react-router-dom";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth, logout } from "../../../firebase";
 import { BsCart } from "react-icons/bs";
-import { ImMenu, ImCross } from "react-icons/im";
 
 const Header = () => {
     const savedHeader = useRef(null);
@@ -56,29 +55,8 @@ const Header = () => {
                     setMenuOpened(!menuOpened);
                 }}
                 shown={menuOpened}
+                scrolled={scrolled}
             />
-
-            {/* <button
-                className="hamburger-menu-button"
-                name="hamburger-menu-button"
-                onClick={() => {
-                    setMenuOpened(!menuOpened);
-                }}
-            >
-                {menuOpened ? (
-                    <ImCross
-                        style={{
-                            pointerEvents: "none",
-                        }}
-                    />
-                ) : (
-                    <ImMenu
-                        style={{
-                            pointerEvents: "none",
-                        }}
-                    />
-                )}
-            </button> */}
             <nav className={menuOpened ? "nav-menu-opened" : ""}>
                 <ul className="nav-link-list">
                     <li>

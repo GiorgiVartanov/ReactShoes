@@ -8,17 +8,19 @@ import { useState, useEffect } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
 
 import { getShopPageContent } from "../../firebase";
-import { types, colors } from "../../searchOptions";
+import { types, colors, prices, priceNames } from "../../searchOptions";
 
 const Home = () => {
     const [searchParams, setSearchParams] = useSearchParams({
         type: "Any",
         color: "Any",
+        price: "Any",
     });
 
     const id = searchParams.get("id");
     const type = searchParams.get("type");
     const color = searchParams.get("color");
+    const price = searchParams.get("price");
 
     const navigate = useNavigate();
 
@@ -27,11 +29,11 @@ const Home = () => {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        getShopPageContent(type, color)
+        getShopPageContent(type, color, price)
             .then((res) => setItems(res))
             .catch((err) => setError(err))
             .finally(setLoading(false));
-    }, [type, color]);
+    }, [type, color, price]);
 
     useEffect(() => {
         if (id !== null) {
@@ -49,17 +51,29 @@ const Home = () => {
         setSearchParams({
             type: e.target.children[e.target.selectedIndex].value,
             color: color,
+            price: price,
         });
     };
     const handleColorSelect = (e) => {
         setSearchParams({
             type: type,
             color: e.target.children[e.target.selectedIndex].value,
+            price: price,
+        });
+    };
+    const handlePriceSelect = (e) => {
+        setSearchParams({
+            type: type,
+            color: color,
+            price: e.target.children[e.target.selectedIndex].value,
         });
     };
 
-    if (loading) return <p>Loading...</p>;
-    if (error) return <p>Something Went Wrong...</p>;
+    if (loading) return <p className="warning">Loading...</p>;
+    if (error)
+        return (
+            <p className="warning">Something Went Wrong... {error.message}</p>
+        );
 
     return (
         <>
@@ -69,12 +83,20 @@ const Home = () => {
                     <SearchSelect
                         name="type"
                         values={types}
+                        names={types}
                         onSelect={handleTypeSelect}
                     />
                     <SearchSelect
                         name="color"
                         values={colors}
+                        names={colors}
                         onSelect={handleColorSelect}
+                    />
+                    <SearchSelect
+                        name="price"
+                        values={prices}
+                        names={priceNames}
+                        onSelect={handlePriceSelect}
                     />
                 </div>
                 <div className="card-holder">
