@@ -54,6 +54,7 @@ export const signInWithGoogle = async () => {
             await setDoc(doc(db, "users", user.uid), {
                 uid: user.uid,
                 name: user.displayName,
+                status: "user",
                 cart: [],
                 liked: [],
                 viewed: [],
@@ -90,6 +91,7 @@ export const registerWithEmailAndPassword = async (
                 uid: user.uid,
                 name: username,
                 authProvider: "local",
+                status: "user",
                 email: email,
                 cart: [],
                 liked: [],
@@ -307,10 +309,40 @@ export const checkIfUserHasThisItem = async (productId, user) => {
     return result;
 };
 
+export const checkStatus = async (user) => {
+    const docRef = doc(db, "users", user.uid);
+    const docSnap = await getDoc(docRef);
+    if (docSnap.exists()) return docSnap.data().status;
+};
+
 export const removeFromCart = async (productId, user) => {
     await updateDoc(doc(db, "users", user.uid), {
         cart: arrayRemove(productId),
     });
+};
+
+export const getAllUsers = async () => {
+    const result = [];
+    const q = query(collection(db, "users"));
+
+    const querySnapshot = await getDocs(q);
+    querySnapshot.forEach((doc) => {
+        result.push(doc.data());
+    });
+
+    return result;
+};
+
+export const getAllProducts = async () => {
+    const result = [];
+    const q = query(collection(db, "products"));
+
+    const querySnapshot = await getDocs(q);
+    querySnapshot.forEach((doc) => {
+        result.push(doc.data());
+    });
+
+    return result;
 };
 
 // export const getCartItems = async (user) => {

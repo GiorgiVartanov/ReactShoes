@@ -2,10 +2,10 @@ import "./header.scss";
 
 import HamburgerButton from "../../utility/hamburger-button/HamburgerButton";
 
-import { useState, useRef } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import { useAuthState } from "react-firebase-hooks/auth";
-import { auth, logout } from "../../../firebase";
+import { auth, logout, checkStatus } from "../../../firebase";
 import { BsCart } from "react-icons/bs";
 
 const Header = () => {
@@ -13,6 +13,7 @@ const Header = () => {
 
     const [user, loading, error] = useAuthState(auth);
     const [scrolled, setScrolled] = useState(false);
+    const [status, setStatus] = useState();
 
     const [menuOpened, setMenuOpened] = useState(false);
 
@@ -32,6 +33,10 @@ const Header = () => {
             setMenuOpened(false);
         }
     };
+
+    useEffect(() => {
+        if (user) checkStatus(user).then((res) => setStatus(res));
+    }, [user]);
 
     const handlePageSelect = () => {
         setMenuOpened(false);
@@ -77,8 +82,8 @@ const Header = () => {
                             About
                         </NavLink>
                     </li>
-                    <li>
-                        {user ? (
+                    {user ? (
+                        <li>
                             <NavLink
                                 onClick={handlePageSelect}
                                 className="link-button cart-link-button"
@@ -86,8 +91,19 @@ const Header = () => {
                             >
                                 <BsCart />
                             </NavLink>
-                        ) : null}
-                    </li>
+                        </li>
+                    ) : null}
+                    {status === "admin" && user ? (
+                        <li>
+                            <NavLink
+                                onClick={handlePageSelect}
+                                className="link-button"
+                                to="/addproduct"
+                            >
+                                Add Product
+                            </NavLink>
+                        </li>
+                    ) : null}
                     <li>
                         {user ? (
                             <button
