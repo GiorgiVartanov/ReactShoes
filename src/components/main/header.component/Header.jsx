@@ -98,9 +98,9 @@ const Header = () => {
                             <NavLink
                                 onClick={handlePageSelect}
                                 className="link-button"
-                                to="/addproduct"
+                                to="/adminpanel"
                             >
-                                Add Product
+                                Admin Panel
                             </NavLink>
                         </li>
                     ) : null}

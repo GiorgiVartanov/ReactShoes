@@ -1,4 +1,4 @@
-import "./addProductPage.scss";
+import "./adminPanel.scss";
 
 import AddNewProduct from "../../components/main/add-new-product/AddNewProduct";
 import UserList from "../../components/main/user-list/UserList";
@@ -11,7 +11,7 @@ import { useNavigate } from "react-router-dom";
 
 import { checkStatus, auth } from "../../firebase";
 
-const AddProduct = () => {
+const AdminPanel = () => {
     const [user] = useAuthState(auth);
 
     const navigate = useNavigate();
@@ -55,4 +55,4 @@ const AddProduct = () => {
     );
 };
 
-export default AddProduct;
+export default AdminPanel;

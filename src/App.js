@@ -6,7 +6,7 @@ import ItemPage from "./pages/item.page/Item.page";
 import NotFound from "./pages/not-found.page/NotFound";
 import LogIn from "./pages/login.page/Login.page";
 import Register from "./pages/register.page/Register.page";
-import AddProduct from "./pages/add-product.page/AddProduct.page";
+import AdminPanel from "./pages/admin-panel.page/AdminPanel.page";
 import Footer from "./components/main/footer.component/Footer";
 
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
@@ -22,7 +22,7 @@ function App() {
                 <Route path="/about" element={<About />} />
                 <Route path="/login" element={<LogIn />} />
                 <Route path="/register" element={<Register />} />
-                <Route path="/addproduct" element={<AddProduct />} />
+                <Route path="/adminpanel" element={<AdminPanel />} />
                 <Route path="/*" element={<NotFound />} />
             </Routes>
             <Footer />
