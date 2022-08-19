@@ -182,8 +182,10 @@ export const getCart = async (user) => {
         const result = await Promise.all(
             docSnap.data().cart.map((id) => getItem(id))
         );
-        return result;
+        // if something from cart was deleted by admin
+        return result.filter((item) => item !== null);
     }
+
     return null;
 };
 
@@ -361,7 +363,7 @@ export const banUser = async (uid) => {
 export const editProduct = async (id, items) => {
     await updateDoc(doc(db, "products", id), {
         name: items[0],
-        price: items[1],
+        price: parseFloat(items[1]),
     });
 };
 
