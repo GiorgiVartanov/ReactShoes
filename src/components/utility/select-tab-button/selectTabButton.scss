@@ -1,20 +1,43 @@
 @import "../../../scss-variables.scss";
 
 .select-tab-button {
-    border: 1px solid $main-black;
-    padding: 0 0.25rem;
-    background-color: $main-white;
+    // border: 1px solid $main-black;
+    position: relative;
+    z-index: 3;
+    padding: 0.5rem 1.25rem;
+
     margin-right: -1px;
     transition: 0.2s ease-in;
+    border: none;
+    outline: none;
+    box-shadow: 0 0 10px 2px $main-shadow;
+    background-color: $main-black-dimmed;
+    color: $main-white;
 
-    &:hover {
-        border: 1px solid $main-gray !important;
-        color: $main-black-dimmed;
+    &:first-of-type {
+        border-radius: 0.75rem 0 0 0;
+    }
+    &:last-of-type {
+        border-radius: 0 0.75rem 0 0;
+    }
+
+    &::after {
+        content: "";
+        position: absolute;
+        height: 11px;
+        width: 100%;
+        background-color: $main-white;
+        bottom: -10px;
+        left: 0;
+    }
+
+    &:last-of-type::after {
+        width: calc(100% + 10px);
     }
 }
 
 .selected-select-tab-button {
-    padding: 0 0.5rem;
-    background-color: $main-black-dimmed;
-    color: $main-white !important;
+    // padding: 0 0.5rem;
+    background-color: $main-white;
+    color: $main-black !important;
 }

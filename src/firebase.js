@@ -24,6 +24,7 @@ import {
     getDoc,
     orderBy,
     Query,
+    deleteDoc,
 } from "firebase/firestore";
 
 const config = {
@@ -345,12 +346,25 @@ export const getAllProducts = async () => {
     return result;
 };
 
-// export const getCartItems = async (user) => {
-//     const docRef = doc(db, "users", user.uid);
-//     const docSnap = await getDoc(docRef);
+export const editUser = async (uid, items) => {
+    await updateDoc(doc(db, "users", uid), {
+        name: items[0],
+        email: items[1],
+        status: items[2],
+    });
+};
 
-//     if (docSnap.exists()) {
-//         return docSnap.data().readingList;
-//     }
-//     return null;
-// };
+export const banUser = async (uid) => {
+    console.log(`banning user with id ${uid}`);
+    // add later
+};
+export const editProduct = async (id, items) => {
+    await updateDoc(doc(db, "products", id), {
+        name: items[0],
+        price: items[1],
+    });
+};
+
+export const deleteProduct = async (id) => {
+    await deleteDoc(doc(db, "products", id));
+};

@@ -1,8 +1,9 @@
 import UserListItem from "../user-list-item/UserListItem";
+import AdminPageItem from "../../utility/admin-page-item/AdminPageItem";
 
 import { useState, useEffect } from "react";
 
-import { getAllUsers } from "../../../firebase";
+import { getAllUsers, editUser, banUser } from "../../../firebase";
 
 const UserList = () => {
     const [users, setUsers] = useState([]);
@@ -17,19 +18,20 @@ const UserList = () => {
                 <thead>
                     <tr>
                         <th>name</th>
-                        <th>uid</th>
                         <th>email</th>
+                        <th>status</th>
                         <th>actions</th>
                     </tr>
                 </thead>
                 <tbody>
                     {users &&
                         users.map((item) => (
-                            <UserListItem
+                            <AdminPageItem
                                 key={item.uid}
-                                name={item.name}
-                                uid={item.uid}
-                                email={item.email}
+                                id={item.uid}
+                                items={[item.name, item.email, item.status]}
+                                deleteItem={banUser}
+                                updateItem={editUser}
                             />
                         ))}
                 </tbody>

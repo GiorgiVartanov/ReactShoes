@@ -1,19 +1,33 @@
 @import "../../scss-variables.scss";
 
 .add-product-page {
+    // font-size: 10px;
     .select-tab-buttons {
         margin-bottom: -1px;
     }
-    table {
-        border-collapse: collapse;
-        border: 1px solid $main-black;
-        width: 100%;
-        tr {
-            border-bottom: 1px solid $main-black;
-
-            td {
-                padding: 0 0.5rem;
-                border-right: 1px solid $main-black;
+    .product-list,
+    .user-list {
+        box-shadow: 0 0 10px 2px $main-shadow;
+        padding: 0.5em 1rem;
+        border-radius: 0 0.75em 0.75em 0.75em;
+        position: relative;
+        z-index: 2;
+        table {
+            thead {
+                margin-bottom: 0.5em;
+                border-bottom: 1px solid $main-black;
+            }
+            border-collapse: collapse;
+            // border: 1px solid $main-black-dimmed;
+            width: 100%;
+            tr {
+                th {
+                    padding: 0 0.5em 0.5em 0.5em;
+                    text-align: left;
+                    &:last-of-type {
+                        text-align: right;
+                    }
+                }
             }
         }
     }

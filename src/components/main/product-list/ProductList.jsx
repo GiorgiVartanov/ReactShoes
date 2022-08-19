@@ -1,8 +1,8 @@
-import ProductListItem from "../product-list-item/ProductListItem";
+import AdminPageItem from "../../utility/admin-page-item/AdminPageItem";
 
 import { useState, useEffect } from "react";
 
-import { getAllProducts } from "../../../firebase";
+import { getAllProducts, editProduct, deleteProduct } from "../../../firebase";
 
 const ProductList = () => {
     const [products, setProducts] = useState([]);
@@ -17,7 +17,6 @@ const ProductList = () => {
                 <thead>
                     <tr>
                         <th>name</th>
-                        <th>id</th>
                         <th>price</th>
                         <th>actions</th>
                     </tr>
@@ -25,11 +24,12 @@ const ProductList = () => {
                 <tbody>
                     {products &&
                         products.map((item) => (
-                            <ProductListItem
+                            <AdminPageItem
                                 key={item.id}
-                                name={item.name}
                                 id={item.id}
-                                price={item.price}
+                                items={[item.name, item.price]}
+                                deleteItem={deleteProduct}
+                                updateItem={editProduct}
                             />
                         ))}
                 </tbody>
