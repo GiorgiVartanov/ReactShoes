@@ -4,6 +4,8 @@
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
+    // box-shadow: 0 0 10px 2px $main-shadow;
+    // padding: 0.5rem;
 
     .add-comment {
         margin-top: 3rem;
@@ -19,26 +21,11 @@
             flex-direction: column;
             gap: 0.5rem;
 
-            .add-comment-button {
-                margin-left: auto;
-                border: 1px solid $main-black;
-                background-color: $main-white;
-                padding: 0 0.5rem;
-                margin-right: auto;
-                margin-left: 0;
-                transition: 0.2s ease-in;
-                // font-weight: bold;
-                letter-spacing: 0.1rem;
-
-                &:hover,
-                &:active {
-                    opacity: 0.9;
-                    background-color: $main-black;
-                    color: $main-white;
-                }
-            }
             .add-comment-input {
-                border: 1px solid $main-gray;
+                // border: 1px solid $main-gray;
+                border: none;
+                border-radius: 0.5rem;
+                box-shadow: 0 0 5px 2px $main-shadow;
                 outline: none;
                 padding: 0.5rem 1rem;
                 resize: none;
@@ -46,7 +33,29 @@
                 background-color: white;
 
                 &:focus {
-                    outline: 1px solid $main-black;
+                    // outline: 1px solid $main-black;
+                    box-shadow: 0 0 15px 4px $main-shadow;
+                }
+            }
+            .add-comment-button {
+                margin-left: auto;
+                // border: 1px solid $main-black;
+                // background-color: $main-white;
+                padding: 0 0.5rem;
+                margin-right: auto;
+                margin-left: 0;
+                transition: 0.2s ease-in;
+                // font-weight: bold;
+                letter-spacing: 0.1rem;
+                border: none;
+                box-shadow: 0 0 5px 2px $main-shadow;
+                border-radius: 0.5rem;
+
+                &:hover,
+                &:active {
+                    opacity: 0.9;
+                    background-color: $main-black;
+                    color: $main-white;
                 }
             }
         }

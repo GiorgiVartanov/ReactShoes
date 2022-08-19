@@ -99,11 +99,20 @@ main {
     }
 }
 .card-holder {
-    margin-top: 3rem;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1.5rem;
+    margin: 2.5rem auto;
+    // display: flex;
+    // flex-wrap: wrap;
+    // gap: 1.5rem;
+    // justify-content: center;
+    width: auto;
+    display: grid;
     justify-content: center;
+    gap: 1.5rem;
+    grid-template-columns: repeat(4, 200px);
+    // box-shadow: 0 0 10px 2px $main-shadow;
+    // padding: 1rem 1rem 1rem 1rem;
+    border-radius: 0.5rem;
+    width: fit-content;
 }
 
 .warning {
@@ -113,6 +122,16 @@ main {
     transform: translateX(50%) translateY(50%);
 }
 
+@media screen and (max-width: 900px) {
+    .card-holder {
+        grid-template-columns: repeat(3, 200px);
+    }
+}
+@media screen and (max-width: 700px) {
+    .card-holder {
+        grid-template-columns: repeat(2, 200px);
+    }
+}
 @media screen and (max-width: 500px) {
     main {
         width: 95%;
@@ -121,6 +140,14 @@ main {
             max-width: 100%;
             margin: 0;
             gap: 2rem;
+        }
+    }
+}
+@media screen and (max-width: 450px) {
+    main {
+        .card-holder {
+            gap: 0.75rem;
+            grid-template-columns: repeat(2, 140px);
         }
     }
 }
