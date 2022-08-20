@@ -36,7 +36,10 @@ const AdminPageProductItem = ({ id, name, price, discount }) => {
         setProductName(e.target.value);
     };
     const handlePriceChange = (e) => {
-        if (e.target.value > 0) setProductPrice(e.target.value);
+        console.log(e.target.value);
+
+        if (e.target.value > 0 || e.target.value === "")
+            setProductPrice(e.target.value);
 
         // if the first char of string is zero
         if (e.target.value[0] == 0)
@@ -70,29 +73,23 @@ const AdminPageProductItem = ({ id, name, price, discount }) => {
                 <>
                     <td>
                         <input
-                            name={productName}
+                            name={"name"}
                             value={productName}
                             onChange={handleNameChange}
                         />
                     </td>
                     <td>
                         <input
-                            name={productPrice}
+                            name={"price"}
                             value={productPrice}
-                            className={`${
-                                priceError ? "edit-input-error" : ""
-                            }`}
                             placeholder={0}
                             onChange={handlePriceChange}
                         />
                     </td>
                     <td>
                         <input
-                            name={productDiscount}
+                            name={"discount"}
                             value={productDiscount}
-                            className={`${
-                                discountError ? "edit-input-error" : ""
-                            }`}
                             placeholder={0}
                             onChange={handleDiscountChange}
                         />
