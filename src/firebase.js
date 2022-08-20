@@ -361,7 +361,7 @@ export const banUser = async (uid) => {
     // add later
 };
 export const editProduct = async (id, name, price, discount) => {
-    if ((discount >= 0) & (discount < 100) && price > 0)
+    if ((discount >= 0) & (discount < 100) && price >= 0)
         await updateDoc(doc(db, "products", id), {
             name: name,
             price: parseFloat(price),
