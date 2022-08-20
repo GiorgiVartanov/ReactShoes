@@ -68,7 +68,32 @@ const ItemPage = () => {
                                 </Link>
                             </div>
 
-                            <p className="item-price">{item.price}$</p>
+                            <div className="item-price-holder">
+                                {item.discount > 0 ? (
+                                    <p className="item-old-price">
+                                        {item.price}$
+                                    </p>
+                                ) : (
+                                    ""
+                                )}
+                                <p className="item-price">
+                                    {item.discount
+                                        ? item.price -
+                                          Math.floor(
+                                              (item.price * item.discount) / 100
+                                          )
+                                        : item.price}
+                                    $
+                                </p>
+                                {item.discount > 0 ? (
+                                    <p className="item-discount">
+                                        {item.discount}% off
+                                    </p>
+                                ) : (
+                                    ""
+                                )}
+                            </div>
+
                             <AddToCartButton productId={id} user={user} />
                         </div>
                     </div>

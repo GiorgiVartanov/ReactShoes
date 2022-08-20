@@ -18,6 +18,7 @@ const ProductList = () => {
                     <tr>
                         <th>name</th>
                         <th>price</th>
+                        <th>discount</th>
                         <th>actions</th>
                     </tr>
                 </thead>
@@ -27,7 +28,7 @@ const ProductList = () => {
                             <AdminPageItem
                                 key={item.id}
                                 id={item.id}
-                                items={[item.name, item.price]}
+                                items={[item.name, item.price, item.discount]}
                                 deleteItem={deleteProduct}
                                 updateItem={editProduct}
                             />

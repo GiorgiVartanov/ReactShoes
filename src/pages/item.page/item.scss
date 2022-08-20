@@ -26,9 +26,29 @@
                 white-space: nowrap;
                 font-size: 1.2rem;
             }
-            .item-price {
-                margin-top: auto;
+            .item-price-holder {
+                position: relative;
+                display: flex;
+                gap: 1rem;
+                padding: 0 0.25rem;
+                .item-price {
+                    margin-top: auto;
+                }
+                .item-old-price {
+                    position: absolute;
+                    padding: 0 0.25rem;
+                    top: -0.75rem;
+                    left: -0.75rem;
+                    font-size: 0.75rem;
+                    color: $main-gray;
+                    text-decoration: line-through;
+                    text-decoration-color: $main-orange;
+                }
+                .item-discount {
+                    color: $main-orange;
+                }
             }
+
             .add-to-cart {
                 border: 1px solid $main-gray;
                 padding: 0.5rem 1rem;
@@ -87,6 +107,14 @@
                 width: 80% !important;
                 svg {
                     margin: auto;
+                }
+            }
+            .item-price-holder {
+                justify-content: space-between;
+                width: fit-content;
+                margin: auto;
+                .item-old-price {
+                    left: -0.75rem !important;
                 }
             }
             .search-links {

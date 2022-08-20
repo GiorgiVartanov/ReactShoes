@@ -2,7 +2,7 @@ import "./card.scss";
 
 import { Link } from "react-router-dom";
 
-const Card = ({ id, image, name, price, author }) => {
+const Card = ({ id, image, name, price, author, discount }) => {
     return (
         <Link to={`/?id=${id}`} className="card">
             <div className="card-tooltip">{author}</div>

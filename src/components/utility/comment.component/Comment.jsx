@@ -27,13 +27,19 @@ const Comment = ({ userId, text, time }) => {
 
     return (
         <div className="comment">
-            <p className="comment-time">
-                {/* it will show value only if it is more that zero, so it won't show something like 0days 0hours 10minutes ago */}
-                {days > 0 ? days + "d " : ""}
-                {hours > 0 ? hours + "h " : ""}
-                {minutes > 0 ? minutes + "m " : ""}
-                {seconds > 0 ? seconds + "s " : ""}
-            </p>
+            {minutes > 0 || hours > 0 || days > 0 ? (
+                <p className="comment-time">
+                    {/* it will show value only if it is more that zero, 
+                so it won't show something like 0 days 0hours 10 minutes ago.
+                also it won't show seconds if time from creating of post is
+                more than hour*/}
+                    {days > 0 ? days + "d " : ""}
+                    {hours > 0 ? hours + "h " : ""}
+                    {minutes > 0 && days === 0 ? minutes + "m " : ""}
+                </p>
+            ) : (
+                <p className="comment-time">now</p>
+            )}
             {userName !== null ? (
                 <p className="comment-writer">{userName}</p>
             ) : (

@@ -361,10 +361,12 @@ export const banUser = async (uid) => {
     // add later
 };
 export const editProduct = async (id, items) => {
-    await updateDoc(doc(db, "products", id), {
-        name: items[0],
-        price: parseFloat(items[1]),
-    });
+    if ((items[2] < 99) & (items[2] > 0))
+        await updateDoc(doc(db, "products", id), {
+            name: items[0],
+            price: parseFloat(items[1]),
+            discount: parseFloat(items[2]),
+        });
 };
 
 export const deleteProduct = async (id) => {

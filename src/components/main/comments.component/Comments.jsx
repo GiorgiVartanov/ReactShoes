@@ -24,6 +24,7 @@ const Comments = ({ productId, user }) => {
     }, []);
 
     useEffect(() => {
+        // checking if comment contains slurs
         if (submittedComment) {
             fetch(
                 `https://www.purgomalum.com/service/containsprofanity?text=${submittedComment}`
@@ -35,6 +36,7 @@ const Comments = ({ productId, user }) => {
     }, [submittedComment]);
 
     useEffect(() => {
+        // it will be false if user's text contains slurs
         if (canComment) {
             addComment(newComment, productId, user);
 
@@ -43,9 +45,11 @@ const Comments = ({ productId, user }) => {
                 .catch((err) => setError(err))
                 .finally(setLoading(false));
 
+            setSubmittedComment("");
             setNewComment("");
         } else {
             if (newComment.length > 1) console.log("😠");
+            setSubmittedComment("");
             setNewComment("");
         }
     }, [canComment]);
@@ -59,10 +63,6 @@ const Comments = ({ productId, user }) => {
     const handleChange = (e) => {
         setNewComment(e.target.value);
     };
-
-    useEffect(() => {
-        console.log(error);
-    }, [error]);
 
     if (loading) return <p>Loading...</p>;
     if (error) return <p>error</p>;
