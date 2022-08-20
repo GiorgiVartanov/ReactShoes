@@ -348,11 +348,11 @@ export const getAllProducts = async () => {
     return result;
 };
 
-export const editUser = async (uid, items) => {
+export const editUser = async (uid, name, email, status) => {
     await updateDoc(doc(db, "users", uid), {
-        name: items[0],
-        email: items[1],
-        status: items[2],
+        name: name,
+        email: email,
+        status: status,
     });
 };
 
@@ -360,12 +360,12 @@ export const banUser = async (uid) => {
     console.log(`banning user with id ${uid}`);
     // add later
 };
-export const editProduct = async (id, items) => {
-    if ((items[2] < 99) & (items[2] > 0))
+export const editProduct = async (id, name, price, discount) => {
+    if ((discount >= 0) & (discount < 100) && price > 0)
         await updateDoc(doc(db, "products", id), {
-            name: items[0],
-            price: parseFloat(items[1]),
-            discount: parseFloat(items[2]),
+            name: name,
+            price: parseFloat(price),
+            discount: parseFloat(discount),
         });
 };
 

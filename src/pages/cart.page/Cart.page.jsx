@@ -32,7 +32,11 @@ const Cart = () => {
     useEffect(() => {
         if (cart) {
             let totalPrice = 0;
-            cart.map((item) => (totalPrice += item.price));
+            cart.map(
+                (item) =>
+                    (totalPrice +=
+                        item.price - (item.price * item.discount) / 100)
+            );
             setTotal(Math.round(totalPrice * 100) / 100);
         }
     }, [cart]);
@@ -55,6 +59,7 @@ const Cart = () => {
                                   price={item.price}
                                   image={item.imageUrl}
                                   author={item.authorUrl}
+                                  discount={item.discount}
                               />
                           );
                       })

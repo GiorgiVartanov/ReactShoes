@@ -7,6 +7,7 @@
     }
     .product-list,
     .user-list {
+        background-color: $main-white-2;
         box-shadow: 0 0 10px 2px $main-shadow;
         padding: 0.5em 1rem;
         border-radius: 0 0.75em 0.75em 0.75em;

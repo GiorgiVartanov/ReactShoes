@@ -1,4 +1,4 @@
-import AdminPageItem from "../../utility/admin-page-item/AdminPageItem";
+import AdminPageProductItem from "../../utility/admin-page-product-item/AdminPageProductItem";
 
 import { useState, useEffect } from "react";
 
@@ -25,10 +25,12 @@ const ProductList = () => {
                 <tbody>
                     {products &&
                         products.map((item) => (
-                            <AdminPageItem
+                            <AdminPageProductItem
                                 key={item.id}
                                 id={item.id}
-                                items={[item.name, item.price, item.discount]}
+                                name={item.name}
+                                price={item.price}
+                                discount={item.discount}
                                 deleteItem={deleteProduct}
                                 updateItem={editProduct}
                             />

@@ -21,6 +21,19 @@
         font-size: 0.75rem;
         font-weight: normal;
 
+        .discounted-card-price {
+            position: relative;
+            .old-price {
+                font-size: 0.65rem;
+                text-decoration: line-through;
+                color: $main-gray;
+                opacity: 0.5;
+            }
+            .new-price {
+                color: $main-gray;
+            }
+        }
+
         .card-name {
             color: $main-black;
         }

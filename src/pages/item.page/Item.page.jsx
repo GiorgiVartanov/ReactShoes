@@ -78,10 +78,12 @@ const ItemPage = () => {
                                 )}
                                 <p className="item-price">
                                     {item.discount
-                                        ? item.price -
-                                          Math.floor(
-                                              (item.price * item.discount) / 100
-                                          )
+                                        ? Math.floor(
+                                              (item.price -
+                                                  (item.price * item.discount) /
+                                                      100) *
+                                                  100
+                                          ) / 100
                                         : item.price}
                                     $
                                 </p>

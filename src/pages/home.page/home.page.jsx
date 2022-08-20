@@ -109,6 +109,7 @@ const Home = () => {
                                 image={item.imageUrl}
                                 price={item.price}
                                 author={item.authorUrl}
+                                discount={item.discount}
                             />
                         ))
                     ) : (

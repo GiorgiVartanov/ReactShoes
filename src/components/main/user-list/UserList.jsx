@@ -1,5 +1,4 @@
-import UserListItem from "../user-list-item/UserListItem";
-import AdminPageItem from "../../utility/admin-page-item/AdminPageItem";
+import AdminPageUserItem from "../../utility/admin-page-user-item/AdminPageUserItem";
 
 import { useState, useEffect } from "react";
 
@@ -26,12 +25,12 @@ const UserList = () => {
                 <tbody>
                     {users &&
                         users.map((item) => (
-                            <AdminPageItem
+                            <AdminPageUserItem
                                 key={item.uid}
                                 id={item.uid}
-                                items={[item.name, item.email, item.status]}
-                                deleteItem={banUser}
-                                updateItem={editUser}
+                                name={item.name}
+                                email={item.email}
+                                status={item.status}
                             />
                         ))}
                 </tbody>
