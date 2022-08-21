@@ -1,4 +1,3 @@
-import Button from "../../components/utility/button.component/Button";
 import SignInWithGoogleButton from "../../components/utility/sign-in-with-google-button/SignInWithGoogleButton";
 import FormInput from "../../components/utility/form-input/FormInput";
 
@@ -6,11 +5,7 @@ import { useState, useEffect } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useNavigate, Link } from "react-router-dom";
 
-import {
-    auth,
-    logInWithEmailAndPassword,
-    signInWithGoogle,
-} from "../../firebase";
+import { auth, logInWithEmailAndPassword } from "../../firebase";
 
 const LogIn = () => {
     const [emailErrors, setEmailErrors] = useState([]);
@@ -46,13 +41,19 @@ const LogIn = () => {
         const emailErrorArr = [];
         const passwordErrorArr = [];
 
-        if (email === "") emailErrorArr("please enter email");
-        if (password === "") passwordErrorArr("please enter password");
+        if (email === "") emailErrorArr.push("please enter email");
+        if (email === "") emailErrorArr.push("please enter an email");
+        else {
+            if (!email.includes("@") || !email.includes("."))
+                emailErrorArr.push("please enter valid email");
+        }
+
+        if (password === "") passwordErrorArr.push("please enter password");
 
         setEmailErrors(emailErrorArr);
         setPasswordErrors(passwordErrorArr);
 
-        if (emailErrorArr.length === 0 || passwordErrorArr.length === 0)
+        if (emailErrorArr.length === 0 && passwordErrorArr.length === 0)
             logInWithEmailAndPassword(email, password);
     };
 

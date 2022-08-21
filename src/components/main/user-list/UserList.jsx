@@ -12,7 +12,7 @@ const UserList = () => {
     }, []);
 
     return (
-        <section className="user-list">
+        <section className="item-list">
             <table>
                 <thead>
                     <tr>

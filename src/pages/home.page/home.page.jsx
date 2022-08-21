@@ -8,7 +8,7 @@ import { useState, useEffect } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
 
 import { getShopPageContent } from "../../firebase";
-import { types, colors, prices, priceNames } from "../../searchOptions";
+import { types, colors, prices } from "../../searchOptions";
 
 const Home = () => {
     const [searchParams, setSearchParams] = useSearchParams({
@@ -83,20 +83,20 @@ const Home = () => {
                     <SearchSelect
                         name="type"
                         values={types}
-                        names={types}
                         onSelect={handleTypeSelect}
+                        selected={type}
                     />
                     <SearchSelect
                         name="color"
                         values={colors}
-                        names={colors}
                         onSelect={handleColorSelect}
+                        selected={color}
                     />
                     <SearchSelect
                         name="price"
                         values={prices}
-                        names={priceNames}
                         onSelect={handlePriceSelect}
+                        selected={price}
                     />
                 </div>
                 <div className="card-holder">

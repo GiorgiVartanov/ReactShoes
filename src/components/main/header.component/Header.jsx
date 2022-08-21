@@ -46,6 +46,9 @@ const Header = () => {
 
     window.addEventListener("click", handleClick);
 
+    if (loading) return <p className="warning">Loading...</p>;
+    if (error) return <p className="warning">Something Went Wrong</p>;
+
     return (
         <header
             ref={savedHeader}
@@ -123,6 +126,19 @@ const Header = () => {
                             >
                                 log in
                             </NavLink>
+                        )}
+                    </li>
+                    <li>
+                        {!user ? (
+                            <NavLink
+                                onClick={handlePageSelect}
+                                className="link-button"
+                                to="/register"
+                            >
+                                register
+                            </NavLink>
+                        ) : (
+                            ""
                         )}
                     </li>
                 </ul>

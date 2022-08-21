@@ -54,6 +54,7 @@ const ProductPopularityPanel = ({ user, productId }) => {
                 }`}
             >
                 <button
+                    name="like-button"
                     onMouseEnter={() => {
                         setIsHovered(true);
                     }}

@@ -1,7 +1,15 @@
 import "./footer.scss";
 
+import { AiFillGithub } from "react-icons/ai";
+
 const Footer = () => {
-    return <footer></footer>;
+    return (
+        <footer>
+            <a href="https://github.com/PhYell/ReactClothes">
+                <AiFillGithub />
+            </a>
+        </footer>
+    );
 };
 
 export default Footer;

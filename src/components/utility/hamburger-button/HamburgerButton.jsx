@@ -3,6 +3,7 @@ import "./hamburgerButton.scss";
 const HamburgerButton = ({ onClick, shown, scrolled }) => {
     return (
         <button
+            name="hamburger-menu-button"
             className={`hamburger-button ${shown ? "menu-shown" : ""} ${
                 scrolled ? "menu-scrolled" : ""
             }`}

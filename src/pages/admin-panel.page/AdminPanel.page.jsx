@@ -1,10 +1,8 @@
 import "./adminPanel.scss";
 
-import AddNewProduct from "../../components/main/add-new-product/AddNewProduct";
 import UserList from "../../components/main/user-list/UserList";
 import ProductList from "../../components/main/product-list/ProductList";
 import SelectTabButton from "../../components/utility/select-tab-button/SelectTabButton";
-import AdminPageUserItem from "../../components/utility/admin-page-user-item/AdminPageUserItem";
 
 import { useState, useEffect } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
@@ -36,8 +34,7 @@ const AdminPanel = () => {
     if (!user) navigate("/");
 
     return (
-        <main className="add-product-page">
-            <AddNewProduct />
+        <main className="admin-panel-page">
             <div className="select-tab-buttons">
                 <SelectTabButton
                     tab="users"

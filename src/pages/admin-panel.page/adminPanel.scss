@@ -1,12 +1,11 @@
 @import "../../scss-variables.scss";
 
-.add-product-page {
-    // font-size: 10px;
+.admin-panel-page {
+    font-size: 14px;
     .select-tab-buttons {
         margin-bottom: -1px;
     }
-    .product-list,
-    .user-list {
+    .item-list {
         background-color: $main-white-2;
         box-shadow: 0 0 10px 2px $main-shadow;
         padding: 0.5em 1rem;
@@ -19,7 +18,6 @@
                 border-bottom: 1px solid $main-black;
             }
             border-collapse: collapse;
-            // border: 1px solid $main-black-dimmed;
             width: 100%;
             tr {
                 th {
@@ -31,5 +29,12 @@
                 }
             }
         }
+    }
+}
+
+@media screen and (max-width: 700px) {
+    .admin-panel-page {
+        width: 95%;
+        font-size: 13px;
     }
 }

@@ -13,6 +13,8 @@
     box-shadow: 0 0 10px 2px $main-shadow;
     transition: 0.2s ease-in;
 
+    font-family: "Poppins", sans-serif;
+
     &:hover,
     &:active {
         box-shadow: 0 0 15px 5px $main-shadow;

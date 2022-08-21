@@ -8,9 +8,8 @@ import { getComments, addComment } from "../../../firebase";
 
 const Comments = ({ productId, user }) => {
     const [newComment, setNewComment] = useState("");
-    const [canComment, setCanComment] = useState(false); // it will be set to true if comment contains swears
+    const [canComment, setCanComment] = useState(false); // it will be set to true if comment contains bad words
     const [submittedComment, setSubmittedComment] = useState("");
-    // const [fixedNewComment, setFixedNewComment] = useState("");
 
     const [comments, setComments] = useState();
     const [error, setError] = useState();
@@ -36,7 +35,6 @@ const Comments = ({ productId, user }) => {
     }, [submittedComment]);
 
     useEffect(() => {
-        // it will be false if user's text contains slurs
         if (canComment) {
             addComment(newComment, productId, user);
 
@@ -47,6 +45,7 @@ const Comments = ({ productId, user }) => {
 
             setSubmittedComment("");
             setNewComment("");
+            setCanComment(false);
         } else {
             if (newComment.length > 1) console.log("😠");
             setSubmittedComment("");

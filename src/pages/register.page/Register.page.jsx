@@ -7,11 +7,7 @@ import { useEffect, useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { Link, useNavigate } from "react-router-dom";
 
-import {
-    auth,
-    registerWithEmailAndPassword,
-    signInWithGoogle,
-} from "../../firebase";
+import { auth, registerWithEmailAndPassword } from "../../firebase";
 
 const Register = () => {
     const specialSymbols = [
@@ -51,7 +47,6 @@ const Register = () => {
     };
 
     const handleChange = (e) => {
-        // destructuring e.target to get this 2 values
         const { value, name } = e.target;
 
         switch (name) {
@@ -91,7 +86,7 @@ const Register = () => {
         if (email === "") emailErrorArr.push("please enter an email");
         else {
             if (!email.includes("@") || !email.includes("."))
-                emailErrorArr.push("incorrect email");
+                emailErrorArr.push("please enter valid email");
         }
 
         //password errors
@@ -155,6 +150,8 @@ const Register = () => {
         if (loading) return;
         if (user) navigate("/");
     }, [user, loading]);
+
+    if (error) return <p className="warning">Something Went Wrong</p>;
 
     return (
         <main className="register-page">

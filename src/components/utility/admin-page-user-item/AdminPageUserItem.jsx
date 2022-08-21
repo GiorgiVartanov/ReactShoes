@@ -1,6 +1,6 @@
 import "./adminPageUserItem.scss";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { editUser, banUser } from "../../../firebase";
 
 import { FaTrash, FaEdit, FaCheck } from "react-icons/fa";

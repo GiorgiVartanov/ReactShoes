@@ -1,12 +1,20 @@
 @import "../../../scss-variables.scss";
 footer {
     height: 60px;
-    min-height: 60px;
     background-color: $main-orange;
     margin-top: auto;
     box-shadow: 0 0 10px 2px $main-shadow;
     position: relative;
-    // animation: slide-in-from-bottom 0.2s ease-in;
+    display: flex;
+    padding: 0.5rem 0;
+    justify-content: center;
+    transition: 0.2s ease-in;
+    width: 100%;
+
+    a {
+        color: $main-black;
+        font-size: 2rem;
+    }
 }
 
 @keyframes slide-in-from-bottom {

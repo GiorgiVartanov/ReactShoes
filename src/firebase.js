@@ -17,13 +17,11 @@ import {
     addDoc,
     setDoc,
     doc,
-    setData,
     updateDoc,
     arrayUnion,
     arrayRemove,
     getDoc,
     orderBy,
-    Query,
     deleteDoc,
 } from "firebase/firestore";
 
@@ -37,8 +35,6 @@ const config = {
     measurementId: "G-ERYDF4RSVY",
 };
 
-let currentUserId;
-
 const app = initializeApp(config);
 export const auth = getAuth(app);
 export const db = getFirestore(app);
@@ -47,7 +43,6 @@ const googleProvider = new GoogleAuthProvider();
 export const signInWithGoogle = async () => {
     try {
         const res = await signInWithPopup(auth, googleProvider);
-        // console.log(res);
         const user = res.user;
         const q = query(collection(db, "users"), where("uid", "==", user.uid));
         const docs = await getDocs(q);
@@ -72,7 +67,6 @@ export const logInWithEmailAndPassword = async (email, password) => {
     try {
         await signInWithEmailAndPassword(auth, email, password);
     } catch (err) {
-        console.error(err);
         alert(err.message);
     }
 };
@@ -216,7 +210,6 @@ export const addComment = async (text, productId, user) => {
         text: text,
         userId: user.uid,
         date: new Date().getTime(),
-        //new Date(1660573873833).toUTCString()
     });
 };
 
@@ -225,8 +218,6 @@ export const addToCart = async (productId, user) => {
     await updateDoc(doc(db, "users", user.uid), {
         cart: arrayUnion(productId),
     });
-
-    // const cart = await getCart(user);
 };
 
 export const addView = async (productId, user) => {

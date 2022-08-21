@@ -12,7 +12,7 @@ const ProductList = () => {
     }, []);
 
     return (
-        <section className="product-list">
+        <section className="item-list">
             <table>
                 <thead>
                     <tr>
