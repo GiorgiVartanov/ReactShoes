@@ -9,7 +9,7 @@ import {
     checkIfUserHasThisItem,
 } from "../../../firebase";
 
-const AddToCartButton = ({ productId, user }) => {
+const AddToCartButton = ({ productId, user, closeModal }) => {
     const [userHas, setUserHas] = useState(false);
 
     useEffect(() => {
@@ -34,6 +34,7 @@ const AddToCartButton = ({ productId, user }) => {
         <>
             {user !== null ? (
                 !userHas ? (
+                    // change it to closeModal later
                     <button className="add-to-cart" onClick={handleAddToCart}>
                         <BsCartPlus />
                     </button>

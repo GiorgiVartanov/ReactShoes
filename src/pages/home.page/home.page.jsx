@@ -5,7 +5,7 @@ import SearchSelect from "../../components/utility/search-select/SearchSelect";
 import Hero from "../../components/main/hero.component/hero";
 
 import { useState, useEffect } from "react";
-import { useNavigate, useSearchParams } from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
 
 import { getShopPageContent } from "../../firebase";
 import { types, colors, prices } from "../../searchOptions";
@@ -17,12 +17,9 @@ const Home = () => {
         price: "Any",
     });
 
-    const id = searchParams.get("id");
     const type = searchParams.get("type");
     const color = searchParams.get("color");
     const price = searchParams.get("price");
-
-    const navigate = useNavigate();
 
     const [items, setItems] = useState([]);
     const [error, setError] = useState();
@@ -34,18 +31,6 @@ const Home = () => {
             .catch((err) => setError(err))
             .finally(setLoading(false));
     }, [type, color, price]);
-
-    useEffect(() => {
-        if (id !== null) {
-            navigate(`../${id}`, { replace: true });
-            // because of {replace : true} when we press on go back
-            // arrow we are not redirected to the same page
-        }
-    }, [id]);
-
-    // useEffect(() => {
-    //     console.log(type, color);
-    // }, [type, color]);
 
     const handleTypeSelect = (e) => {
         setSearchParams({

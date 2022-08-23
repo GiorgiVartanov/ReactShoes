@@ -3,6 +3,7 @@ import "./item.scss";
 import Comments from "../../components/main/comments.component/Comments";
 import AddToCartButton from "../../components/utility/add-to-cart-button/AddToCartButton";
 import ProductPopularityPanel from "../../components/main/product-popularity-panel.component/ProductpopulatiryPanel";
+import SelectModal from "../../components/main/SelectModal/SelectModal";
 
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useState, useEffect } from "react";
@@ -26,6 +27,15 @@ const ItemPage = () => {
     const [error, setError] = useState();
     const [loading, setLoading] = useState(true);
 
+    const [modalIsOpened, setModalIsOpened] = useState(false);
+
+    const openModal = () => {
+        setModalIsOpened(true);
+    };
+    const closeModal = () => {
+        setModalIsOpened(false);
+    };
+
     useEffect(() => {
         getItem(id)
             .then((res) => setItems(res))
@@ -40,6 +50,7 @@ const ItemPage = () => {
         <>
             {item ? (
                 <main className="item-page">
+                    <SelectModal opened={false} onClick={openModal} />
                     <div className="item-description">
                         <img
                             src={item.imageUrl}
@@ -96,7 +107,11 @@ const ItemPage = () => {
                                 )}
                             </div>
 
-                            <AddToCartButton productId={id} user={user} />
+                            <AddToCartButton
+                                productId={id}
+                                user={user}
+                                closeModal={closeModal}
+                            />
                         </div>
                     </div>
                     <Comments productId={item.id} user={user} />

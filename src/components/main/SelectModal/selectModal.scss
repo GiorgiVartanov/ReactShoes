@@ -1,0 +1,61 @@
+@import "../../../scss-variables.scss";
+
+.select-modal-holder {
+    width: 100vw;
+    height: 100%;
+    background-color: $main-shadow;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 3;
+    .select-modal {
+        position: absolute;
+        top: 20%;
+        right: 50%;
+        transform: translateX(50%) translateY(50%);
+        width: 80%;
+        max-width: 400px;
+        height: 200px;
+        background-color: $main-white-2;
+        box-shadow: 0 0 10px 4px $main-shadow;
+        z-index: 2;
+        border-radius: 0.5rem;
+
+        form {
+            display: flex;
+            justify-content: center;
+            margin-top: 80px;
+            gap: 0.5rem;
+
+            input {
+                width: 3rem;
+                height: 2rem;
+                border: 2px solid $main-black;
+                text-align: center;
+                font-size: 1.1rem;
+                border-radius: 0.25rem;
+                outline: none;
+                transition: 0.2s ease-in;
+
+                &:focus {
+                    border: 2px solid $main-black-dimmed;
+                }
+            }
+            button {
+                height: 2rem;
+                width: 2rem;
+                border: 1px solid $main-black;
+                border-radius: 0.25rem;
+                background-color: $main-black;
+                color: $main-white;
+                transition: 0.2s ease-in;
+                font-weight: bold;
+
+                &:hover {
+                    background-color: $main-white;
+                    color: $main-black;
+                }
+            }
+        }
+    }
+}
