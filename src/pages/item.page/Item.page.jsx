@@ -50,7 +50,14 @@ const ItemPage = () => {
         <>
             {item ? (
                 <main className="item-page">
-                    <SelectModal opened={false} onClick={openModal} />
+                    <SelectModal
+                        opened={modalIsOpened}
+                        closeModal={closeModal}
+                        name={item.name}
+                        productId={item.id}
+                        price={item.price}
+                        user={user}
+                    />
                     <div className="item-description">
                         <img
                             src={item.imageUrl}
@@ -110,7 +117,7 @@ const ItemPage = () => {
                             <AddToCartButton
                                 productId={id}
                                 user={user}
-                                closeModal={closeModal}
+                                openModal={openModal}
                             />
                         </div>
                     </div>

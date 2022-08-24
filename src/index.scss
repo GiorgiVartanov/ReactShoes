@@ -11,7 +11,7 @@
 #root {
     display: flex;
     flex-direction: column;
-    height: 100vh;
+    min-height: 100vh;
 
     // overflow-x: hidden;
 }
@@ -26,9 +26,7 @@ body {
 
     color: $main-black;
     background-color: $main-white;
-}
 
-body {
     overflow-x: hidden;
 }
 

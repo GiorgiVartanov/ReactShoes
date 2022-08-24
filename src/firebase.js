@@ -174,7 +174,7 @@ export const getCart = async (user) => {
 
     if (docSnap.exists()) {
         const result = await Promise.all(
-            docSnap.data().cart.map((id) => getItem(id))
+            docSnap.data().cart.map((item) => getItem(item.id))
         );
         // if something from cart was deleted by admin
         return result.filter((item) => item !== null);
@@ -213,10 +213,19 @@ export const addComment = async (text, productId, user) => {
     });
 };
 
-export const addToCart = async (productId, user) => {
-    // it will only add unique products to array
+export const addToCart = async (product, user) => {
+    const cart = await getCart(user);
+    const newCart = [];
+
+    if (cart.length > 0)
+        cart.map((item) => {
+            if (item.id === product.id) newCart.push(product);
+            else newCart.push(item);
+        });
+    else newCart.push(product);
+
     await updateDoc(doc(db, "users", user.uid), {
-        cart: arrayUnion(productId),
+        cart: newCart,
     });
 };
 
@@ -288,19 +297,24 @@ export const checkIfUserHasLiked = async (productId, user) => {
 };
 
 export const checkIfUserHasThisItem = async (productId, user) => {
+    const cart = await getCart(user);
     let result = false;
-
-    const q = query(
-        collection(db, "users"),
-        where("cart", "array-contains", productId),
-        where("uid", "==", user.uid)
-    );
-
-    const querySnapshot = await getDocs(q);
-    querySnapshot.forEach((doc) => {
-        if (doc.data()) result = true;
+    cart.map((item) => {
+        if (item.id === productId) result = true;
     });
     return result;
+
+    // const q = query(
+    //     collection(db, "users"),
+    //     where("cart", "array-contains", productId),
+    //     where("uid", "==", user.uid)
+    // );
+
+    // const querySnapshot = await getDocs(q);
+    // querySnapshot.forEach((doc) => {
+    //     if (doc.data()) result = true;
+    // });
+    // return result;
 };
 
 export const checkStatus = async (user) => {
@@ -310,8 +324,12 @@ export const checkStatus = async (user) => {
 };
 
 export const removeFromCart = async (productId, user) => {
+    const oldCart = await getCart(user);
+    const newCart = oldCart.filter((item) => item.id !== productId);
+
     await updateDoc(doc(db, "users", user.uid), {
-        cart: arrayRemove(productId),
+        cart: newCart,
+        // cart: arrayRemove(productId),
     });
 };
 
