@@ -1,13 +1,11 @@
 import "./adminPageUserItem.scss";
 
 import { useState } from "react";
-import { editUser, banUser } from "../../../firebase";
+import { editUser } from "../../../firebase";
 
-import { FaTrash, FaEdit, FaCheck } from "react-icons/fa";
+import { FaEdit, FaCheck } from "react-icons/fa";
 
 const AdminPageUserItem = ({ id, name, email, status }) => {
-    const [deleting, setDeleting] = useState(false);
-
     const [editingData, setEditingData] = useState(false);
 
     const [userName, setUserName] = useState(name);
@@ -27,11 +25,6 @@ const AdminPageUserItem = ({ id, name, email, status }) => {
     };
     const handleStatusChange = (e) => {
         setUserStatus(e.target.value);
-    };
-
-    const handleDataDelete = () => {
-        banUser(id);
-        setDeleting(false);
     };
 
     return (
@@ -69,23 +62,6 @@ const AdminPageUserItem = ({ id, name, email, status }) => {
             )}
 
             <td>
-                {deleting ? (
-                    <button
-                        className="confirm-delete-item"
-                        onClick={handleDataDelete}
-                    >
-                        <FaCheck />
-                    </button>
-                ) : (
-                    <button
-                        className="delete-item"
-                        onClick={() => {
-                            setDeleting(true);
-                        }}
-                    >
-                        <FaTrash />
-                    </button>
-                )}
                 {editingData ? (
                     <button
                         className="confirm-item-update"

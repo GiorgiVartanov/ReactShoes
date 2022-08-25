@@ -50,7 +50,7 @@ const Cart = () => {
     if (error) return <p className="warning">Something Went Wrong...</p>;
 
     return (
-        <main>
+        <main className="cart-page">
             <div className="card-holder">
                 {cart
                     ? cart.map((item) => {
