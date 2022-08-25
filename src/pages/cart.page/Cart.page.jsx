@@ -6,6 +6,7 @@ import { useState, useEffect, useRef } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useNavigate } from "react-router-dom";
 
+import { calculatePrice } from "../../functions";
 import { auth, getCart } from "../../firebase";
 
 const Cart = () => {
@@ -34,8 +35,10 @@ const Cart = () => {
             let totalPrice = 0;
             cart.map(
                 (item) =>
-                    (totalPrice +=
-                        item.price - (item.price * item.discount) / 100)
+                    (totalPrice += calculatePrice(
+                        item.item.price * item.amount,
+                        item.item.discount
+                    ))
             );
             setTotal(Math.round(totalPrice * 100) / 100);
         }
@@ -53,13 +56,14 @@ const Cart = () => {
                     ? cart.map((item) => {
                           return (
                               <Card
-                                  key={item.id}
-                                  id={item.id}
-                                  name={item.name}
-                                  price={item.price}
-                                  image={item.imageUrl}
-                                  author={item.authorUrl}
-                                  discount={item.discount}
+                                  key={item.item.id}
+                                  id={item.item.id}
+                                  name={item.item.name}
+                                  price={item.item.price}
+                                  image={item.item.imageUrl}
+                                  author={item.item.authorUrl}
+                                  discount={item.item.discount}
+                                  amount={item.amount}
                               />
                           );
                       })

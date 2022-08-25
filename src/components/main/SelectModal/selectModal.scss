@@ -14,6 +14,7 @@
         right: 50%;
         transform: translateX(50%) translateY(50%);
         width: 80%;
+        min-width: 280px;
         max-width: 400px;
         height: 200px;
         background-color: $main-white-2;
@@ -23,6 +24,28 @@
         display: flex;
         flex-direction: column;
         justify-content: space-around;
+
+        .close-modal-button {
+            position: absolute;
+            width: 1.5rem;
+            height: 1.5rem;
+            top: 0.25rem;
+            right: 0.25rem;
+            font-size: 1.25rem;
+            line-height: 1rem;
+            border: none;
+            background-color: $main-white-2;
+            transition: 0.2s ease-in;
+
+            &:hover {
+                color: $main-black-dimmed;
+            }
+        }
+
+        .item-price-holder {
+            width: fit-content;
+            margin: 0.5rem auto 0;
+        }
 
         h3 {
             text-align: center;
@@ -65,10 +88,14 @@
                     color: $main-white;
                     transition: 0.2s ease-in;
                     font-weight: bold;
+                    transition: 0.2s ease-in;
 
                     &:hover {
-                        background-color: $main-white;
-                        color: $main-black;
+                        opacity: 0.8;
+                    }
+
+                    &:active {
+                        opacity: 0.6;
                     }
                 }
             }

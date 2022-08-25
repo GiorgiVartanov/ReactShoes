@@ -31,8 +31,6 @@ const ConfirmAddToCartButton = ({ productId, amount, user }) => {
             }
     };
 
-    const handleRemoveFromCart = () => {};
-
     return (
         <>
             {user !== null ? (

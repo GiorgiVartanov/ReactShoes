@@ -1,10 +1,22 @@
 import "./selectModal.scss";
 
 import ConfirmAddToCartButton from "../../utility/confirm-add-to-cart-button/ConfirmAddToCartButton";
+import Price from "../../utility/price/Price";
 
 import { useState } from "react";
+import { ImCross } from "react-icons/im";
 
-const SelectModal = ({ opened, closeModal, name, price, productId, user }) => {
+import { calculatePrice } from "../../../functions";
+
+const SelectModal = ({
+    opened,
+    closeModal,
+    name,
+    price,
+    productId,
+    discount,
+    user,
+}) => {
     const [amount, setAmount] = useState(1);
 
     return opened ? (
@@ -15,6 +27,9 @@ const SelectModal = ({ opened, closeModal, name, price, productId, user }) => {
             }}
         >
             <div className="select-modal">
+                <button className="close-modal-button" onClick={closeModal}>
+                    <ImCross />
+                </button>
                 <h3>{name}</h3>
                 <form
                     onSubmit={(e) => {
@@ -67,9 +82,7 @@ const SelectModal = ({ opened, closeModal, name, price, productId, user }) => {
                         user={user}
                     />
                 </form>
-                <p className="price-text">
-                    {Math.floor(price * amount * 100) / 100} $
-                </p>
+                <Price price={price * amount} discount={discount} />
             </div>
         </div>
     ) : (

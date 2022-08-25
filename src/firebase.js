@@ -172,16 +172,27 @@ export const getCart = async (user) => {
     const docRef = doc(db, "users", user.uid);
     const docSnap = await getDoc(docRef);
 
+    const result = [];
+
     if (docSnap.exists()) {
-        const result = await Promise.all(
+        const items = await Promise.all(
             docSnap.data().cart.map((item) => getItem(item.id))
         );
+        const amounts = await Promise.all(
+            docSnap.data().cart.map((item) => item.amount)
+        );
+
+        items.map((item, index) => {
+            result.push({ item: item, amount: amounts[index] });
+        });
+
         // if something from cart was deleted by admin
         return result.filter((item) => item !== null);
     }
 
     return null;
 };
+
 export const getCartIds = async (user) => {
     const docRef = doc(db, "users", user.uid);
     const docSnap = await getDoc(docRef);
@@ -222,24 +233,8 @@ export const addComment = async (text, productId, user) => {
 
 export const addToCart = async (product, user) => {
     const cart = await getCartIds(user);
-    // const newCart = [];
-
-    // console.log(cart);
-
-    // if (cart.length > 0)
-    //     cart.map((item) => {
-    //         if (item.id === product.id) newCart.push(product);
-    //         else newCart.push(item);
-    //         console.log(item);
-    //     });
-    // else newCart.push(product);
-
     const newCart = cart.filter((item) => item.id !== product.id);
     newCart.push(product);
-
-    // console.log(
-    //     `adding item : ${product.id}; amount : ${product.amount} to user with id ${user.uid}`
-    // );
     await updateDoc(doc(db, "users", user.uid), {
         cart: newCart,
     });
@@ -340,7 +335,7 @@ export const checkStatus = async (user) => {
 };
 
 export const removeFromCart = async (productId, user) => {
-    const oldCart = await getCart(user);
+    const oldCart = await getCartIds(user);
     const newCart = oldCart.filter((item) => item.id !== productId);
 
     await updateDoc(doc(db, "users", user.uid), {

@@ -5,11 +5,20 @@
     line-height: 1rem;
     width: 8rem;
     height: 2rem;
-    margin: 0.75rem auto -1rem;
+    margin: 0.5rem auto -1rem;
     display: block;
     border: 2px solid $main-black;
     background-color: $main-black;
     color: $main-white;
     border-radius: 0.25rem;
     box-shadow: 0 0 10px 4px $main-shadow;
+    transition: 0.2s ease-in;
+
+    &:hover {
+        opacity: 0.8;
+    }
+
+    &:active {
+        opacity: 0.1;
+    }
 }

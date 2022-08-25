@@ -1,0 +1,24 @@
+@import "../../../scss-variables.scss";
+
+.item-price-holder {
+    position: relative;
+    display: flex;
+    gap: 1rem;
+    padding: 0 0.25rem;
+    .item-price {
+        margin-top: auto;
+    }
+    .item-old-price {
+        position: absolute;
+        padding: 0 0.25rem;
+        top: -0.75rem;
+        left: -0.75rem;
+        font-size: 0.75rem;
+        color: $main-gray;
+        text-decoration: line-through;
+        // text-decoration-color: $main-orange;
+    }
+    .item-discount {
+        color: $main-orange;
+    }
+}

@@ -4,11 +4,13 @@ import Comments from "../../components/main/comments.component/Comments";
 import AddToCartButton from "../../components/utility/add-to-cart-button/AddToCartButton";
 import ProductPopularityPanel from "../../components/main/product-popularity-panel.component/ProductpopulatiryPanel";
 import SelectModal from "../../components/main/SelectModal/SelectModal";
+import Price from "../../components/utility/price/Price";
 
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useState, useEffect } from "react";
 import { useParams, Link, useSearchParams } from "react-router-dom";
 
+import { calculatePrice } from "../../functions";
 import {
     auth,
     getItem,
@@ -56,6 +58,7 @@ const ItemPage = () => {
                         name={item.name}
                         productId={item.id}
                         price={item.price}
+                        discount={item.discount}
                         user={user}
                     />
                     <div className="item-description">
@@ -86,33 +89,10 @@ const ItemPage = () => {
                                 </Link>
                             </div>
 
-                            <div className="item-price-holder">
-                                {item.discount > 0 ? (
-                                    <p className="item-old-price">
-                                        {item.price}$
-                                    </p>
-                                ) : (
-                                    ""
-                                )}
-                                <p className="item-price">
-                                    {item.discount
-                                        ? Math.floor(
-                                              (item.price -
-                                                  (item.price * item.discount) /
-                                                      100) *
-                                                  100
-                                          ) / 100
-                                        : item.price}
-                                    $
-                                </p>
-                                {item.discount > 0 ? (
-                                    <p className="item-discount">
-                                        {item.discount}% off
-                                    </p>
-                                ) : (
-                                    ""
-                                )}
-                            </div>
+                            <Price
+                                price={item.price}
+                                discount={item.discount}
+                            />
 
                             <AddToCartButton
                                 productId={id}

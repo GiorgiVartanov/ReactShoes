@@ -13,6 +13,17 @@
             box-shadow: 0 0 15px 5px $main-shadow;
         }
     }
+    .item-amount {
+        position: absolute;
+        // top: 1px;
+        // left: 5px;
+        background-color: $main-gray;
+        color: $main-white;
+        width: 2rem;
+        text-align: center;
+        opacity: 0.75;
+        box-shadow: 0 0 10px 2px $main-shadow;
+    }
     .card-text {
         display: flex;
         justify-content: space-between;
