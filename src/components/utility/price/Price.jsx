@@ -13,7 +13,10 @@ const Price = ({ price, discount }) => {
                 ""
             )}
             <p className="item-price">
-                {discount ? calculatePrice(price, discount) : price}$
+                {discount
+                    ? calculatePrice(price, discount)
+                    : Math.floor(price * 100) / 100}
+                $
             </p>
             {discount > 0 ? (
                 <p className="item-discount">{discount}% off</p>
