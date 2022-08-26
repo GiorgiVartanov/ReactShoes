@@ -5,8 +5,10 @@ import HamburgerButton from "../../utility/hamburger-button/HamburgerButton";
 import { useState, useEffect, useRef } from "react";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import { useAuthState } from "react-firebase-hooks/auth";
-import { auth, logout, checkStatus } from "../../../firebase";
+import { auth, logout, checkStatus } from "../../../firebase/firebase";
 import { BsCart } from "react-icons/bs";
+
+import { getFullAmountOfItemsInCart } from "../../../firebase/firebase";
 
 const Header = () => {
     const savedHeader = useRef(null);
@@ -15,6 +17,7 @@ const Header = () => {
     const [scrolled, setScrolled] = useState(false);
     const [status, setStatus] = useState();
 
+    const [amount, setAmount] = useState(0);
     const [menuOpened, setMenuOpened] = useState(false);
 
     const navigate = useNavigate();
@@ -35,7 +38,10 @@ const Header = () => {
     };
 
     useEffect(() => {
-        if (user) checkStatus(user).then((res) => setStatus(res));
+        if (user) {
+            checkStatus(user).then((res) => setStatus(res));
+            getFullAmountOfItemsInCart(user).then((res) => setAmount(res));
+        }
     }, [user]);
 
     const handlePageSelect = () => {
@@ -92,6 +98,9 @@ const Header = () => {
                                 className="link-button cart-link-button"
                                 to="/cart"
                             >
+                                <span className="amount-of-items-in-cart">
+                                    {amount}
+                                </span>
                                 <BsCart />
                             </NavLink>
                         </li>

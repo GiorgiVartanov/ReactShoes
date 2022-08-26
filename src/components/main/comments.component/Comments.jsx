@@ -4,7 +4,7 @@ import Comment from "../../utility/comment.component/Comment";
 
 import { useState, useEffect } from "react";
 
-import { getComments, addComment } from "../../../firebase";
+import { getComments, addComment } from "../../../firebase/firebase";
 
 const Comments = ({ productId, user }) => {
     const [newComment, setNewComment] = useState("");

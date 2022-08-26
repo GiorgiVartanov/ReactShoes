@@ -2,7 +2,7 @@ import AdminPageUserItem from "../../utility/admin-page-user-item/AdminPageUserI
 
 import { useState, useEffect } from "react";
 
-import { getAllUsers, editUser, banUser } from "../../../firebase";
+import { getAllUsers, editUser, banUser } from "../../../firebase/firebase";
 
 const UserList = () => {
     const [users, setUsers] = useState([]);

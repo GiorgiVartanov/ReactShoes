@@ -2,7 +2,7 @@ import "./signInWithGoogleButton.scss";
 
 import { FaGoogle } from "react-icons/fa";
 
-import { signInWithGoogle } from "../../../firebase";
+import { signInWithGoogle } from "../../../firebase/firebase";
 
 const SignInWithGoogleButton = () => {
     return (

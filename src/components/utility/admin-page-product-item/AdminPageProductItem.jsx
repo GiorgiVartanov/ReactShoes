@@ -1,7 +1,7 @@
 import "./adminPageProductItem.scss";
 
 import { useState } from "react";
-import { editProduct, deleteProduct } from "../../../firebase";
+import { editProduct, deleteProduct } from "../../../firebase/firebase";
 
 import { FaTrash, FaEdit, FaCheck } from "react-icons/fa";
 

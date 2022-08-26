@@ -29,14 +29,28 @@ header {
             gap: 0.5rem;
             align-items: center;
             justify-content: center;
-            opacity: 0;
-            animation: appear 0.1s 0.2s ease-in forwards;
+            // opacity: 0;
+            position: relative;
+            animation: appear 0.2s ease-in forwards;
             li {
                 align-content: center;
                 transition: 0.2s ease-in;
                 a,
                 button {
                     color: $main-black;
+                    position: relative;
+                    svg {
+                        font-size: 2rem;
+                    }
+                    .amount-of-items-in-cart {
+                        text-align: center;
+                        width: 2rem;
+                        position: absolute;
+                        font-size: 0.75rem;
+                        top: 48%;
+                        left: 50%;
+                        transform: translateX(-50%) translateY(-50%);
+                    }
                 }
                 &:hover {
                     opacity: 0.9;
@@ -111,7 +125,6 @@ header {
     header {
         flex-direction: column;
         justify-content: left;
-
         a {
             width: fit-content;
             margin-right: auto;
@@ -130,9 +143,12 @@ header {
                         width: 100%;
                         display: block;
                         text-align: center;
+                        position: relative;
+
                         svg {
                             width: 100%;
                             align-self: center;
+                            position: relative;
                         }
                     }
                 }

@@ -7,7 +7,7 @@ import {
     addToCart,
     removeFromCart,
     checkIfUserHasThisItem,
-} from "../../../firebase";
+} from "../../../firebase/firebase";
 
 const ConfirmAddToCartButton = ({ productId, amount, user }) => {
     const [userHas, setUserHas] = useState(false);

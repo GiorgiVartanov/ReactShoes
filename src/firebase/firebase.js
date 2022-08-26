@@ -35,7 +35,7 @@ const config = {
     measurementId: "G-ERYDF4RSVY",
 };
 
-const app = initializeApp(config);
+export const app = initializeApp(config);
 export const auth = getAuth(app);
 export const db = getFirestore(app);
 
@@ -201,6 +201,20 @@ export const getCartIds = async (user) => {
     return null;
 };
 
+export const getAmountOfItemInCart = async (productId, user) => {
+    const docRef = doc(db, "users", user.uid);
+    const docSnap = await getDoc(docRef);
+
+    try {
+        if (docSnap.exists())
+            return docSnap
+                .data()
+                .cart.filter((item) => item.id === productId)[0].amount;
+        return 0;
+    } catch {
+        return 0;
+    }
+};
 export const getLikes = async (productId) => {
     const docRef = doc(db, "products", productId);
     const docSnap = await getDoc(docRef);
@@ -210,6 +224,19 @@ export const getLikes = async (productId) => {
     }
     return null;
 };
+
+export const getFullAmountOfItemsInCart = async (user) => {
+    const docRef = doc(db, "users", user.uid);
+    const docSnap = await getDoc(docRef);
+
+    try {
+        if (docSnap.exists()) return docSnap.data().cart.length;
+        return 0;
+    } catch {
+        return 0;
+    }
+};
+
 export const getViews = async (productId) => {
     // check later
 
@@ -376,10 +403,6 @@ export const editUser = async (uid, name, email, status) => {
     });
 };
 
-export const banUser = async (uid) => {
-    console.log(`banning user with id ${uid}`);
-    // add later
-};
 export const editProduct = async (id, name, price, discount) => {
     if ((discount >= 0) & (discount < 100) && price >= 0)
         await updateDoc(doc(db, "products", id), {

@@ -7,7 +7,7 @@ import {
     addToCart,
     removeFromCart,
     checkIfUserHasThisItem,
-} from "../../../firebase";
+} from "../../../firebase/firebase";
 
 const AddToCartButton = ({ productId, user, openModal }) => {
     const [userHas, setUserHas] = useState(false);

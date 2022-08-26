@@ -11,7 +11,7 @@ import {
     addLike,
     checkIfUserHasLiked,
     removeLike,
-} from "../../../firebase";
+} from "../../../firebase/firebase";
 
 const ProductPopularityPanel = ({ user, productId }) => {
     const [hasLiked, setHasLiked] = useState(false);

@@ -5,7 +5,7 @@ import { useState, useEffect } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useNavigate, Link } from "react-router-dom";
 
-import { auth, logInWithEmailAndPassword } from "../../firebase";
+import { auth, logInWithEmailAndPassword } from "../../firebase/firebase";
 
 const LogIn = () => {
     const [emailErrors, setEmailErrors] = useState([]);

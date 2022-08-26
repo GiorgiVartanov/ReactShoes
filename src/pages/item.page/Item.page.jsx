@@ -18,7 +18,7 @@ import {
     getLikes,
     addView,
     addLike,
-} from "../../firebase";
+} from "../../firebase/firebase";
 
 const ItemPage = () => {
     const [user] = useAuthState(auth);

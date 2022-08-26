@@ -3,10 +3,11 @@ import "./selectModal.scss";
 import ConfirmAddToCartButton from "../../utility/confirm-add-to-cart-button/ConfirmAddToCartButton";
 import Price from "../../utility/price/Price";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { ImCross } from "react-icons/im";
 
 import { calculatePrice } from "../../../functions";
+import { getAmountOfItemInCart } from "../../../firebase/firebase";
 
 const SelectModal = ({
     opened,
@@ -18,6 +19,11 @@ const SelectModal = ({
     user,
 }) => {
     const [amount, setAmount] = useState(1);
+
+    useEffect(() => {
+        // getting and setting amount to amount from database
+        getAmountOfItemInCart(productId, user).then((res) => setAmount(res));
+    }, []);
 
     return opened ? (
         <div

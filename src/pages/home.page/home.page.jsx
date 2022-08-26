@@ -7,7 +7,7 @@ import Hero from "../../components/main/hero.component/hero";
 import { useState, useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
 
-import { getShopPageContent } from "../../firebase";
+import { getShopPageContent } from "../../firebase/firebase";
 import { types, colors, prices } from "../../searchOptions";
 
 const Home = () => {

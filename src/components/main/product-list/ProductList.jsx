@@ -2,7 +2,11 @@ import AdminPageProductItem from "../../utility/admin-page-product-item/AdminPag
 
 import { useState, useEffect } from "react";
 
-import { getAllProducts, editProduct, deleteProduct } from "../../../firebase";
+import {
+    getAllProducts,
+    editProduct,
+    deleteProduct,
+} from "../../../firebase/firebase";
 
 const ProductList = () => {
     const [products, setProducts] = useState([]);

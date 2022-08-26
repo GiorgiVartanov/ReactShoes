@@ -7,7 +7,7 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import { useNavigate } from "react-router-dom";
 
 import { calculatePrice } from "../../functions";
-import { auth, getCart } from "../../firebase";
+import { auth, getCart } from "../../firebase/firebase";
 
 const Cart = () => {
     const navigate = useNavigate();

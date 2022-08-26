@@ -1,7 +1,7 @@
 import "./adminPageUserItem.scss";
 
 import { useState } from "react";
-import { editUser } from "../../../firebase";
+import { editUser } from "../../../firebase/firebase";
 
 import { FaEdit, FaCheck } from "react-icons/fa";
 

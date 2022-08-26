@@ -3,12 +3,13 @@ import "./adminPanel.scss";
 import UserList from "../../components/main/user-list/UserList";
 import ProductList from "../../components/main/product-list/ProductList";
 import SelectTabButton from "../../components/utility/select-tab-button/SelectTabButton";
+import AddNewProduct from "../../components/main/add-new-product/AddNewProduct";
 
 import { useState, useEffect } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useNavigate } from "react-router-dom";
 
-import { checkStatus, auth } from "../../firebase";
+import { checkStatus, auth } from "../../firebase/firebase";
 
 const AdminPanel = () => {
     const [user] = useAuthState(auth);
@@ -46,9 +47,15 @@ const AdminPanel = () => {
                     selectedTab={tab}
                     handleTabSelect={handleTabSelect}
                 />
+                <SelectTabButton
+                    tab="add product"
+                    selectedTab={tab}
+                    handleTabSelect={handleTabSelect}
+                />
             </div>
             {tab === "users" ? <UserList /> : ""}
             {tab === "products" ? <ProductList /> : ""}
+            {tab === "add product" ? <AddNewProduct /> : ""}
         </main>
     );
 };

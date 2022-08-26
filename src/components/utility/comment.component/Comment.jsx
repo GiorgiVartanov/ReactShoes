@@ -2,7 +2,7 @@ import "./comment.scss";
 
 import { useState, useEffect } from "react";
 
-import { getUser } from "../../../firebase";
+import { getUser } from "../../../firebase/firebase";
 
 const Comment = ({ userId, text, time }) => {
     const [userName, setUserName] = useState();
