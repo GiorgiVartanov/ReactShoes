@@ -1,17 +1,19 @@
 import "./addNewProduct.scss";
 
 import FormInput from "../../utility/form-input/FormInput";
-import AddToStorage from "../../utility/add-to-storage/AddToStorage";
+import UploadImage from "../../utility/upload-image/UploadImage";
 
 import { useState } from "react";
+
+import { encodeImageFile } from "../../../functions";
 
 const AddNewProduct = () => {
     const [name, setName] = useState("");
     const [price, setPrice] = useState("");
     const [type, setType] = useState("");
     const [color, setColor] = useState("");
-    const [image, setImage] = useState("");
     const [imageAuthor, setImageAuthor] = useState("");
+    const [image, setImage] = useState("");
 
     const changeName = (e) => {
         setName(e.target.value);
@@ -25,11 +27,11 @@ const AddNewProduct = () => {
     const changeColor = (e) => {
         setColor(e.target.value);
     };
-    const changeImage = (e) => {
-        setImage(e.target.value);
-    };
     const changeImageAuthor = (e) => {
         setImageAuthor(e.target.value);
+    };
+    const changeImage = (e) => {
+        encodeImageFile(e.target.files).then((res) => setImage(res));
     };
 
     return (
@@ -64,18 +66,20 @@ const AddNewProduct = () => {
                     onChange={changeColor}
                 />
                 <FormInput
-                    name="image"
+                    name="image author"
                     type="text"
-                    value={image}
+                    value={imageAuthor}
                     errors={[]}
-                    onChange={changeImage}
+                    onChange={changeImageAuthor}
                 />
-                <AddToStorage
-                // name="author of image"
-                // type="text"
-                // value={imageAuthor}
-                // errors={[]}
-                // onChange={changeImageAuthor}
+                <UploadImage
+                    changeImage={changeImage}
+                    image={image}
+                    // name="author of image"
+                    // type="text"
+                    // value={imageAuthor}
+                    // errors={[]}
+                    // onChange={changeImageAuthor}
                 />
             </form>
         </section>

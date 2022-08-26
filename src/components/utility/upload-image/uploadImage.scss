@@ -1,0 +1,32 @@
+@import "../../../scss-variables.scss";
+
+.upload-image-label-holder {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    .upload-image-label {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        border: 1px solid $main-black;
+        max-height: 2rem;
+        padding: 0rem 1rem;
+        box-shadow: 0 0 10px 2px $main-shadow;
+        transition: 0.2s ease-in;
+
+        &:hover {
+            box-shadow: 0 0 10px 4px $main-shadow;
+        }
+        .upload-image-text {
+            text-align: center;
+            font-size: 1.25rem;
+        }
+        .image-select-input {
+            display: none;
+        }
+    }
+    .uploaded-image {
+        max-height: 130px;
+        height: auto;
+    }
+}

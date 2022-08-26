@@ -1,9 +1,10 @@
 @import "../../../scss-variables.scss";
 
 .add-new-item-form {
-    margin-top: 2rem;
-    margin-bottom: 0.75rem;
     display: flex;
     flex-direction: column;
     gap: 1.5rem;
+
+    max-width: 400px;
+    margin: 2rem auto 1rem;
 }
