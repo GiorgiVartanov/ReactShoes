@@ -20,7 +20,15 @@ const AddNewProduct = () => {
         setName(e.target.value);
     };
     const changePrice = (e) => {
-        setPrice(e.target.value);
+        const value = e.target.value;
+        // only numbers will be written
+        if (
+            /^[0-9]*\.?[0-9]*$/.test(value[value.length - 1]) ||
+            value === "" ||
+            value === "."
+        )
+            if (value === "" || value === ".") setPrice("");
+            else setPrice(parseInt(value));
     };
     const changeType = (e) => {
         setType(e.target.value);
@@ -38,14 +46,24 @@ const AddNewProduct = () => {
     const submitProduct = (e) => {
         e.preventDefault();
         if (
-            name !== null &&
+            name !== "" &&
             price !== null &&
-            type !== null &&
-            color !== null &&
-            imageAuthor !== null &&
-            image !== null
+            type !== "" &&
+            color !== "" &&
+            imageAuthor !== "" &&
+            image !== ""
         )
-            addNewProduct(name, price, type, color, imageAuthor, image);
+            addNewProduct(
+                name,
+                parseInt(price),
+                type,
+                color,
+                imageAuthor,
+                image
+            );
+        else {
+            alert("please, fill all required fields");
+        }
     };
 
     return (
@@ -86,15 +104,7 @@ const AddNewProduct = () => {
                     errors={[]}
                     onChange={changeImageAuthor}
                 />
-                <UploadImage
-                    changeImage={changeImage}
-                    image={image}
-                    // name="author of image"
-                    // type="text"
-                    // value={imageAuthor}
-                    // errors={[]}
-                    // onChange={changeImageAuthor}
-                />
+                <UploadImage changeImage={changeImage} image={image} />
                 <button type="submit">submit</button>
             </form>
         </section>

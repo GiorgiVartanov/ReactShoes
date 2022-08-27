@@ -20,7 +20,7 @@ const FormInput = ({ name, type, value, errors, onChange }) => {
             >
                 <p
                     className={`label-text ${
-                        value.length > 0 ? "hidden-label-text" : ""
+                        value.length > 0 || value > 0 ? "hidden-label-text" : ""
                     }`}
                 >
                     {name}
@@ -35,7 +35,7 @@ const FormInput = ({ name, type, value, errors, onChange }) => {
                 {type === "password" && value ? (
                     <button
                         className="show-password"
-                        type="button" // so it won't think that it is a submit button
+                        type="button" // by default it would be submit button
                         onClick={handleClick}
                     >
                         {shown ? <AiOutlineEye /> : <AiOutlineEyeInvisible />}

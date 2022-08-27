@@ -72,7 +72,6 @@ const Comments = ({ productId, user }) => {
 
         const rows = Math.ceil(height / rowHeight);
 
-        console.log(height, rowHeight, rows, textAreaHeight);
         if (rows > textAreaHeight) {
             setTextAreaHeight(rows);
         }
