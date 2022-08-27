@@ -15,6 +15,8 @@ const Comments = ({ productId, user }) => {
     const [error, setError] = useState();
     const [loading, setLoading] = useState(true);
 
+    const [textAreaHeight, setTextAreaHeight] = useState(1);
+
     useEffect(() => {
         getComments(productId)
             .then((res) => setComments(res))
@@ -61,6 +63,19 @@ const Comments = ({ productId, user }) => {
 
     const handleChange = (e) => {
         setNewComment(e.target.value);
+
+        // if text in textArea takes height, that is more than textArea's height
+        // we will change textArea's height
+
+        const rowHeight = 24;
+        const height = e.target.scrollHeight - rowHeight - 16; // subtracting padding
+
+        const rows = Math.ceil(height / rowHeight);
+
+        console.log(height, rowHeight, rows, textAreaHeight);
+        if (rows > textAreaHeight) {
+            setTextAreaHeight(rows);
+        }
     };
 
     if (loading) return <p>Loading...</p>;
@@ -68,11 +83,10 @@ const Comments = ({ productId, user }) => {
 
     return (
         <section className="comments">
-            {/*need to change key to something else */}
             {comments
-                ? comments.map((item, index) => (
+                ? comments.map((item) => (
                       <Comment
-                          key={index}
+                          key={item.id}
                           text={item.text}
                           time={new Date() - new Date(item.date)} // it was posted this time age
                           userId={item.userId}
@@ -92,6 +106,7 @@ const Comments = ({ productId, user }) => {
                             autoComplete="off"
                             onChange={handleChange}
                             value={newComment}
+                            rows={textAreaHeight}
                         />
                         <button // not sure
                             onClick={handleSubmit}

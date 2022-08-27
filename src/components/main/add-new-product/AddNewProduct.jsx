@@ -6,6 +6,7 @@ import UploadImage from "../../utility/upload-image/UploadImage";
 import { useState } from "react";
 
 import { encodeImageFile } from "../../../functions";
+import { addNewProduct } from "../../../firebase/firebase";
 
 const AddNewProduct = () => {
     const [name, setName] = useState("");
@@ -34,9 +35,22 @@ const AddNewProduct = () => {
         encodeImageFile(e.target.files).then((res) => setImage(res));
     };
 
+    const submitProduct = (e) => {
+        e.preventDefault();
+        if (
+            name !== null &&
+            price !== null &&
+            type !== null &&
+            color !== null &&
+            imageAuthor !== null &&
+            image !== null
+        )
+            addNewProduct(name, price, type, color, imageAuthor, image);
+    };
+
     return (
         <section className="item-list">
-            <form className="add-new-item-form">
+            <form onSubmit={submitProduct} className="add-new-item-form">
                 <FormInput
                     name="product name"
                     type="text"
@@ -81,6 +95,7 @@ const AddNewProduct = () => {
                     // errors={[]}
                     // onChange={changeImageAuthor}
                 />
+                <button type="submit">submit</button>
             </form>
         </section>
     );

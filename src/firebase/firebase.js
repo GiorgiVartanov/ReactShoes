@@ -93,15 +93,44 @@ export const registerWithEmailAndPassword = async (
                 viewed: [],
             });
         }
-
-        // await updateDoc(doc(db, "users", id), {
-        //     uid: "id",
-        // });
     } catch (err) {
         console.error(err);
         alert(err.message);
     }
 };
+export const addNewProduct = async (
+    name,
+    price,
+    type,
+    color,
+    imageAuthor,
+    image
+) => {
+    const newProduct = doc(collection(db, "products"));
+    await setDoc(newProduct, {
+        authorUrl: imageAuthor,
+        color: color,
+        discount: 0,
+        imageUrl: image,
+        likes: 0,
+        name: name,
+        price: parseInt(price),
+        type: type,
+        views: 0,
+        id: newProduct.id,
+    });
+};
+export const addComment = async (text, productId, user) => {
+    const newComment = doc(collection(db, "comments"));
+    await setDoc(newComment, {
+        productId: productId,
+        text: text,
+        userId: user.uid,
+        date: new Date().getTime(),
+        id: newComment.id,
+    });
+};
+
 export const sendPasswordReset = async (email) => {
     try {
         await sendPasswordResetEmail(auth, email);
@@ -247,15 +276,6 @@ export const getViews = async (productId) => {
         return docSnap.data().views;
     }
     return null;
-};
-
-export const addComment = async (text, productId, user) => {
-    await addDoc(collection(db, "comments"), {
-        productId: productId,
-        text: text,
-        userId: user.uid,
-        date: new Date().getTime(),
-    });
 };
 
 export const addToCart = async (product, user) => {
