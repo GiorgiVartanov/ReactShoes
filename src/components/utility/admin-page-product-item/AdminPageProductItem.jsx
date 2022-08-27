@@ -1,18 +1,27 @@
 import "./adminPageProductItem.scss";
 
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { editProduct, deleteProduct } from "../../../firebase/firebase";
 
 import { FaTrash, FaEdit, FaCheck } from "react-icons/fa";
 
+import { useDetectClickOutside } from "../../../hooks";
+
 const AdminPageProductItem = ({ id, name, price, discount }) => {
+    const curRef = useRef(null);
+
     const [deleting, setDeleting] = useState(false);
+    const [deleted, setDeleted] = useState(false);
 
     const [editingData, setEditingData] = useState(false);
 
     const [productName, setProductName] = useState(name);
     const [productPrice, setProductPrice] = useState(price);
     const [productDiscount, setProductDiscount] = useState(discount);
+
+    useDetectClickOutside(curRef, () => {
+        setDeleting(false);
+    });
 
     const [priceError, setPriceError] = useState(false);
     const [discountError, setDiscountError] = useState(false);
@@ -36,18 +45,12 @@ const AdminPageProductItem = ({ id, name, price, discount }) => {
         setProductName(e.target.value);
     };
     const handlePriceChange = (e) => {
-        console.log(e.target.value);
+        const value = e.target.value;
 
-        if (e.target.value > 0 || e.target.value === "")
-            setProductPrice(e.target.value);
-
-        // if the first char of string is zero
-        if (e.target.value[0] == 0)
-            setProductPrice(e.target.value.substring(1));
-
-        // if it contains any letters
-        if (/[a-zA-Z]/g.test(e.target.value))
-            setProductPrice(e.target.value.slice(0, -1));
+        if (/^\d+(\.\d{0,2})?$/.test(value) || value === "") {
+            if (value === "") setProductPrice("");
+            else setProductPrice(value);
+        }
     };
     const handleDiscountChange = (e) => {
         if (e.target.value >= 0 && e.target.value < 100)
@@ -65,10 +68,16 @@ const AdminPageProductItem = ({ id, name, price, discount }) => {
     const handleDataDelete = () => {
         deleteProduct(id);
         setDeleting(false);
+        setDeleted(true);
+        console.log("deleted");
     };
 
     return (
-        <tr className="table-row">
+        <tr
+            className={`table-row ${deleted ? "deleted-row" : ""} ${
+                deleting ? "almost-deleted-row" : ""
+            }`}
+        >
             {editingData ? (
                 <>
                     <td>
@@ -108,6 +117,7 @@ const AdminPageProductItem = ({ id, name, price, discount }) => {
                     <button
                         className="confirm-delete-item"
                         onClick={handleDataDelete}
+                        ref={curRef}
                     >
                         <FaCheck />
                     </button>

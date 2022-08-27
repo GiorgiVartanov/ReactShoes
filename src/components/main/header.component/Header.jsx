@@ -61,7 +61,7 @@ const Header = () => {
             className={scrolled && !menuOpened ? "header-scrolled " : ""}
         >
             <Link to="/">
-                <h1>ReactClothes</h1>
+                <h1>ReactShoes</h1>
             </Link>
 
             <HamburgerButton

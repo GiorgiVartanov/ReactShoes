@@ -21,14 +21,10 @@ const AddNewProduct = () => {
     };
     const changePrice = (e) => {
         const value = e.target.value;
-        // only numbers will be written
-        if (
-            /^[0-9]*\.?[0-9]*$/.test(value[value.length - 1]) ||
-            value === "" ||
-            value === "."
-        )
-            if (value === "" || value === ".") setPrice("");
-            else setPrice(parseInt(value));
+        // only numbers and one dot (only 2 dots after number) will be written
+        if (/^\d+(\.\d{0,2})?$/.test(value) || value === "")
+            if (value === "") setPrice("");
+            else setPrice(value);
     };
     const changeType = (e) => {
         setType(e.target.value);
@@ -52,7 +48,7 @@ const AddNewProduct = () => {
             color !== "" &&
             imageAuthor !== "" &&
             image !== ""
-        )
+        ) {
             addNewProduct(
                 name,
                 parseInt(price),
@@ -61,9 +57,14 @@ const AddNewProduct = () => {
                 imageAuthor,
                 image
             );
-        else {
-            alert("please, fill all required fields");
-        }
+
+            setName("");
+            setPrice("");
+            setType("");
+            setColor("");
+            setImageAuthor("");
+            setImage("");
+        } else alert("please, fill all required fields");
     };
 
     return (

@@ -19,6 +19,12 @@
         gap: 0.5rem;
         max-width: 300px;
 
+        quotes: none;
+
+        &::before {
+            margin-left: -0.5rem;
+        }
+
         .quote {
             background-color: $main-orange;
             box-shadow: 0 0 10px 2px $main-shadow;

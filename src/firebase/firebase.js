@@ -114,7 +114,7 @@ export const addNewProduct = async (
         imageUrl: image,
         likes: 0,
         name: name,
-        price: price,
+        price: parseFloat(price),
         type: type,
         views: 0,
         id: newProduct.id,

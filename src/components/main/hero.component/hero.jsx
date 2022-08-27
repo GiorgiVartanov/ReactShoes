@@ -21,25 +21,27 @@ const Hero = () => {
 
     return (
         <div className="hero-image">
-            <h2
+            <q
                 // font will be smaller if the text is too long
                 className={`hero-text ${
                     data.quote.length > 40 ? "smaller-letters" : ""
                 }`}
             >
                 {/* every word will be in different span */}
+
                 {data.quote.split(" ").map((word, index) => (
                     <span key={word + index} className="quote">
                         {word}
                     </span>
                 ))}
+
                 {/* we won't display author name if this quote is anonymous*/}
                 {data.author !== "Anonymous" ? (
                     <span className="author-name">{data.author}</span>
                 ) : (
                     ""
                 )}
-            </h2>
+            </q>
         </div>
     );
 };
