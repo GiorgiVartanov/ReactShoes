@@ -51,13 +51,12 @@ const AddNewProduct = () => {
         ) {
             addNewProduct(
                 name,
-                parseInt(price),
+                parseFloat(price),
                 type,
                 color,
                 imageAuthor,
                 image
             );
-
             setName("");
             setPrice("");
             setType("");
