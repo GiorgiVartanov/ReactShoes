@@ -5,7 +5,7 @@ import { AiFillGithub } from "react-icons/ai";
 const Footer = () => {
     return (
         <footer>
-            <a href="https://github.com/PhYell/ReactClothes">
+            <a href="https://github.com/GeorgeGeorge/ReactClothes">
                 <AiFillGithub />
             </a>
         </footer>

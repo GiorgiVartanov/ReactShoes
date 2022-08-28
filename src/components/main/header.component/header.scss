@@ -52,8 +52,10 @@ header {
                         transform: translateX(-50%) translateY(-50%);
                     }
                 }
-                &:hover {
-                    opacity: 0.9;
+                &:hover,
+                &:active {
+                    // opacity: 0.9;
+                    background-color: $transparent;
                 }
             }
         }
@@ -120,7 +122,12 @@ header {
         opacity: 1;
     }
 }
-
+@media screen and (max-width: 800px) {
+    .link-button {
+        padding: 0.25rem 0.45rem !important;
+        font-size: 0.95rem;
+    }
+}
 @media screen and (max-width: 600px) {
     header {
         flex-direction: column;
@@ -144,6 +151,7 @@ header {
                         display: block;
                         text-align: center;
                         position: relative;
+                        font-size: 1rem;
 
                         svg {
                             width: 100%;

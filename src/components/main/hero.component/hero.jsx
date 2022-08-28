@@ -36,7 +36,7 @@ const Hero = () => {
                 ))}
 
                 {/* we won't display author name if this quote is anonymous*/}
-                {data.author !== "Anonymous" ? (
+                {data.author !== "Anonymous" && data.author !== "Unknown" ? (
                     <span className="author-name">{data.author}</span>
                 ) : (
                     ""

@@ -1,16 +1,23 @@
 import "./adminPageUserItem.scss";
 
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { editUser } from "../../../firebase/firebase";
-
 import { FaEdit, FaCheck } from "react-icons/fa";
 
+import { useDetectClickOutside } from "../../../hooks";
+
 const AdminPageUserItem = ({ id, name, email, status }) => {
+    const editRef = useRef(null);
+
     const [editingData, setEditingData] = useState(false);
 
     const [userName, setUserName] = useState(name);
     const [userEmail, setUserEmail] = useState(email);
     const [userStatus, setUserStatus] = useState(status);
+
+    useDetectClickOutside(editRef, () => {
+        setEditingData(false);
+    });
 
     const handleChangeSubmit = () => {
         editUser(id, userName, userEmail, userStatus);
@@ -62,23 +69,25 @@ const AdminPageUserItem = ({ id, name, email, status }) => {
             )}
 
             <td>
-                {editingData ? (
-                    <button
-                        className="confirm-item-update"
-                        onClick={handleChangeSubmit}
-                    >
-                        <FaCheck />
-                    </button>
-                ) : (
-                    <button
-                        className="edit-item"
-                        onClick={() => {
-                            setEditingData(true);
-                        }}
-                    >
-                        <FaEdit />
-                    </button>
-                )}
+                <div className="edit-button-holder" ref={editRef}>
+                    {editingData ? (
+                        <button
+                            className="confirm-item-update"
+                            onClick={handleChangeSubmit}
+                        >
+                            <FaCheck />
+                        </button>
+                    ) : (
+                        <button
+                            className="edit-item"
+                            onClick={() => {
+                                setEditingData(true);
+                            }}
+                        >
+                            <FaEdit />
+                        </button>
+                    )}
+                </div>
             </td>
         </tr>
     );

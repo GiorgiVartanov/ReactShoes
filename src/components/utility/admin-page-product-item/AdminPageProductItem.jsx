@@ -8,7 +8,8 @@ import { FaTrash, FaEdit, FaCheck } from "react-icons/fa";
 import { useDetectClickOutside } from "../../../hooks";
 
 const AdminPageProductItem = ({ id, name, price, discount }) => {
-    const curRef = useRef(null);
+    const delRed = useRef(null);
+    const editRef = useRef(null);
 
     const [deleting, setDeleting] = useState(false);
     const [deleted, setDeleted] = useState(false);
@@ -19,12 +20,13 @@ const AdminPageProductItem = ({ id, name, price, discount }) => {
     const [productPrice, setProductPrice] = useState(price);
     const [productDiscount, setProductDiscount] = useState(discount);
 
-    useDetectClickOutside(curRef, () => {
+    useDetectClickOutside(delRed, () => {
         setDeleting(false);
     });
 
-    const [priceError, setPriceError] = useState(false);
-    const [discountError, setDiscountError] = useState(false);
+    useDetectClickOutside(editRef, () => {
+        setEditingData(false);
+    });
 
     const handleChangeSubmit = () => {
         let changedPrice = productPrice;
@@ -117,7 +119,7 @@ const AdminPageProductItem = ({ id, name, price, discount }) => {
                     <button
                         className="confirm-delete-item"
                         onClick={handleDataDelete}
-                        ref={curRef}
+                        ref={delRed}
                     >
                         <FaCheck />
                     </button>
@@ -131,23 +133,25 @@ const AdminPageProductItem = ({ id, name, price, discount }) => {
                         <FaTrash />
                     </button>
                 )}
-                {editingData ? (
-                    <button
-                        className="confirm-item-update"
-                        onClick={handleChangeSubmit}
-                    >
-                        <FaCheck />
-                    </button>
-                ) : (
-                    <button
-                        className="edit-item"
-                        onClick={() => {
-                            setEditingData(true);
-                        }}
-                    >
-                        <FaEdit />
-                    </button>
-                )}
+                <span className="edit-button-holder" ref={editRef}>
+                    {editingData ? (
+                        <button
+                            className="confirm-item-update"
+                            onClick={handleChangeSubmit}
+                        >
+                            <FaCheck />
+                        </button>
+                    ) : (
+                        <button
+                            className="edit-item"
+                            onClick={() => {
+                                setEditingData(true);
+                            }}
+                        >
+                            <FaEdit />
+                        </button>
+                    )}
+                </span>
             </td>
         </tr>
     );
