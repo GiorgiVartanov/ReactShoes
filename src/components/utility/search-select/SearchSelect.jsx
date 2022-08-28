@@ -16,9 +16,11 @@ const SearchSelect = ({ name, values, onSelect, selected }) => {
                     .filter((item) => item !== selected)
                     .map((value) => (
                         <option key={value} value={value}>
-                            {name === "price" ? "under " : ""}
+                            {name === "price" && value !== "Any"
+                                ? "under "
+                                : ""}
                             {value}
-                            {name === "price" ? "$" : ""}
+                            {name === "price" && value !== "Any" ? "$" : ""}
                         </option>
                     ))}
             </select>

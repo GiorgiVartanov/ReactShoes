@@ -10,6 +10,6 @@ export const colors = [
     "orange",
 ];
 
-export const types = ["Any", "hat", "cap"];
+export const types = ["Any", "shoes", "tennis", "sneackers"];
 
 export const prices = ["Any", 10, 30, 50, 100];
