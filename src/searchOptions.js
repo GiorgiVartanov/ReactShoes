@@ -2,6 +2,7 @@ export const colors = [
     "Any",
     "white",
     "black",
+    "brown",
     "grey",
     "red",
     "green",
@@ -10,6 +11,6 @@ export const colors = [
     "orange",
 ];
 
-export const types = ["Any", "shoes", "tennis", "sneackers"];
+export const types = ["Any", "shoes", "tennis", "sneackers", "heels"];
 
 export const prices = ["Any", 10, 30, 50, 100];

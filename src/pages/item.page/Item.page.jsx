@@ -52,15 +52,19 @@ const ItemPage = () => {
         <>
             {item ? (
                 <main className="item-page">
-                    <SelectModal
-                        opened={modalIsOpened}
-                        closeModal={closeModal}
-                        name={item.name}
-                        productId={item.id}
-                        price={item.price}
-                        discount={item.discount}
-                        user={user}
-                    />
+                    {user ? (
+                        <SelectModal
+                            opened={modalIsOpened}
+                            closeModal={closeModal}
+                            name={item.name}
+                            productId={item.id}
+                            price={item.price}
+                            discount={item.discount}
+                            user={user}
+                        />
+                    ) : (
+                        ""
+                    )}
                     <div className="item-description">
                         <img
                             src={item.imageUrl}

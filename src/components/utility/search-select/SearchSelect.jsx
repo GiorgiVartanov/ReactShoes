@@ -11,18 +11,13 @@ const SearchSelect = ({ name, values, onSelect, selected }) => {
                 onChange={onSelect}
                 defaultValue={selected}
             >
-                {selected ? <option value={selected}>{selected}</option> : ""}
-                {values
-                    .filter((item) => item !== selected)
-                    .map((value) => (
-                        <option key={value} value={value}>
-                            {name === "price" && value !== "Any"
-                                ? "under "
-                                : ""}
-                            {value}
-                            {name === "price" && value !== "Any" ? "$" : ""}
-                        </option>
-                    ))}
+                {values.map((value) => (
+                    <option key={value} value={value}>
+                        {name === "price" && value !== "Any" ? "under " : ""}
+                        {value}
+                        {name === "price" && value !== "Any" ? "$" : ""}
+                    </option>
+                ))}
             </select>
         </label>
     );
