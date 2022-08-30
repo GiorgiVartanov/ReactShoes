@@ -10,7 +10,7 @@ import AdminPanel from "./pages/admin-panel.page/AdminPanel.page";
 import Footer from "./components/main/footer.component/Footer";
 
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { createContext } from "react";
+import { createContext, useMemo } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 
 import { auth } from "./firebase/firebase";
@@ -18,10 +18,16 @@ import { auth } from "./firebase/firebase";
 export const UserContext = createContext([null, true, null]);
 
 function App() {
+    // if user is not logged in user will be null
     const [user, loading, error] = useAuthState(auth);
 
+    const providerValue = useMemo(
+        () => [user, loading, error],
+        [user, loading, error]
+    );
+
     return (
-        <UserContext.Provider value={[user, loading, error]}>
+        <UserContext.Provider value={providerValue}>
             <Router>
                 <Header />
                 <Routes>

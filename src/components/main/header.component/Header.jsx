@@ -18,7 +18,6 @@ const Header = () => {
 
     const savedHeader = useRef(null);
 
-    // const [user, loading, error] = useAuthState(auth);
     const [scrolled, setScrolled] = useState(false);
     const [status, setStatus] = useState();
 
