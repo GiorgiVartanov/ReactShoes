@@ -3,11 +3,11 @@ import "./register.scss";
 import FormInput from "../../components/utility/form-input/FormInput";
 import SignInWithGoogleButton from "../../components/utility/sign-in-with-google-button/SignInWithGoogleButton";
 
-import { useEffect, useState } from "react";
-import { useAuthState } from "react-firebase-hooks/auth";
+import { useEffect, useState, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
-import { auth, registerWithEmailAndPassword } from "../../firebase/firebase";
+import { registerWithEmailAndPassword } from "../../firebase/firebase";
+import { UserContext } from "../../App";
 
 const Register = () => {
     const specialSymbols = [
@@ -24,11 +24,12 @@ const Register = () => {
         "_",
     ];
 
+    const [user, loading, error] = useContext(UserContext);
+
     const [email, setEmail] = useState("");
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
-    const [user, loading, error] = useAuthState(auth);
 
     const [emailErrors, setEmailErrors] = useState([]);
     const [usernameErrors, setUsernameErrors] = useState([]);

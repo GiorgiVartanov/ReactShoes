@@ -1,19 +1,20 @@
 import SignInWithGoogleButton from "../../components/utility/sign-in-with-google-button/SignInWithGoogleButton";
 import FormInput from "../../components/utility/form-input/FormInput";
 
-import { useState, useEffect } from "react";
-import { useAuthState } from "react-firebase-hooks/auth";
+import { useState, useEffect, useContext } from "react";
 import { useNavigate, Link } from "react-router-dom";
 
 import { auth, logInWithEmailAndPassword } from "../../firebase/firebase";
+import { UserContext } from "../../App";
 
 const LogIn = () => {
+    const [user, loading, error] = useContext(UserContext);
+
     const [emailErrors, setEmailErrors] = useState([]);
     const [passwordErrors, setPasswordErrors] = useState([]);
 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const [user, loading, error] = useAuthState(auth);
     const navigate = useNavigate();
 
     const handleSubmit = (event) => {

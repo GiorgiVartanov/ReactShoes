@@ -10,23 +10,33 @@ import AdminPanel from "./pages/admin-panel.page/AdminPanel.page";
 import Footer from "./components/main/footer.component/Footer";
 
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { createContext } from "react";
+import { useAuthState } from "react-firebase-hooks/auth";
+
+import { auth } from "./firebase/firebase";
+
+export const UserContext = createContext([null, true, null]);
 
 function App() {
+    const [user, loading, error] = useAuthState(auth);
+
     return (
-        <Router>
-            <Header />
-            <Routes>
-                <Route path="/" element={<Home />} />
-                <Route path="/buy/:id" element={<ItemPage />} />
-                <Route path="/cart" element={<Cart />} />
-                <Route path="/about" element={<About />} />
-                <Route path="/login" element={<LogIn />} />
-                <Route path="/register" element={<Register />} />
-                <Route path="/adminpanel" element={<AdminPanel />} />
-                <Route path="/*" element={<NotFound />} />
-            </Routes>
-            <Footer />
-        </Router>
+        <UserContext.Provider value={[user, loading, error]}>
+            <Router>
+                <Header />
+                <Routes>
+                    <Route path="/" element={<Home />} />
+                    <Route path="/buy/:id" element={<ItemPage />} />
+                    <Route path="/cart" element={<Cart />} />
+                    <Route path="/about" element={<About />} />
+                    <Route path="/login" element={<LogIn />} />
+                    <Route path="/register" element={<Register />} />
+                    <Route path="/adminpanel" element={<AdminPanel />} />
+                    <Route path="/*" element={<NotFound />} />
+                </Routes>
+                <Footer />
+            </Router>
+        </UserContext.Provider>
     );
 }
 

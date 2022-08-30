@@ -1,19 +1,24 @@
 import "./header.scss";
 
 import HamburgerButton from "../../utility/hamburger-button/HamburgerButton";
+import Loading from "../../utility/loading/Loading";
 
 import { useState, useEffect, useRef } from "react";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth, logout, checkStatus } from "../../../firebase/firebase";
 import { BsCart } from "react-icons/bs";
+import { useContext } from "react";
 
 import { getFullAmountOfItemsInCart } from "../../../firebase/firebase";
+import { UserContext } from "../../../App";
 
 const Header = () => {
+    const [user, loading, error] = useContext(UserContext);
+
     const savedHeader = useRef(null);
 
-    const [user, loading, error] = useAuthState(auth);
+    // const [user, loading, error] = useAuthState(auth);
     const [scrolled, setScrolled] = useState(false);
     const [status, setStatus] = useState();
 
@@ -52,7 +57,7 @@ const Header = () => {
 
     window.addEventListener("click", handleClick);
 
-    if (loading) return <p className="warning">Loading...</p>;
+    if (loading) return <Loading />;
     if (error) return <p className="warning">Something Went Wrong</p>;
 
     return (
@@ -63,7 +68,6 @@ const Header = () => {
             <Link to="/">
                 <h1>ReactShoes</h1>
             </Link>
-
             <HamburgerButton
                 onClick={() => {
                     setMenuOpened(!menuOpened);

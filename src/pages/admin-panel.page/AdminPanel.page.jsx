@@ -4,15 +4,16 @@ import UserList from "../../components/main/user-list/UserList";
 import ProductList from "../../components/main/product-list/ProductList";
 import SelectTabButton from "../../components/utility/select-tab-button/SelectTabButton";
 import AddNewProduct from "../../components/main/add-new-product/AddNewProduct";
+import Loading from "../../components/utility/loading/Loading";
 
-import { useState, useEffect } from "react";
-import { useAuthState } from "react-firebase-hooks/auth";
+import { useState, useEffect, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 
-import { checkStatus, auth } from "../../firebase/firebase";
+import { checkStatus } from "../../firebase/firebase";
+import { UserContext } from "../../App";
 
 const AdminPanel = () => {
-    const [user] = useAuthState(auth);
+    const [user, loading, error] = useContext(UserContext);
 
     const navigate = useNavigate();
 
@@ -33,6 +34,9 @@ const AdminPanel = () => {
 
     // if user is not logged in, we will redirect
     if (!user) navigate("/");
+
+    if (loading) return <Loading />;
+    if (error) return <p className="warning">Something Went Wrong</p>;
 
     return (
         <main className="admin-panel-page">

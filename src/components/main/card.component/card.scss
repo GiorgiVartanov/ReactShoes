@@ -40,6 +40,9 @@
                 text-decoration: line-through;
                 color: $main-gray;
                 opacity: 0.5;
+                position: absolute;
+                top: -0.5rem;
+                left: -0.75rem;
             }
             .new-price {
                 color: $main-black-dimmed;
@@ -48,6 +51,7 @@
 
         .card-name {
             color: $main-black;
+            font-weight: 200;
         }
         .card-price {
             color: $main-black-dimmed;
@@ -63,7 +67,7 @@
         background-color: $main-black;
         color: $main-white;
         font-size: 0.8rem;
-        opacity: 0.8;
+        opacity: 0.75;
         z-index: 2;
     }
     .card-tooltip::after {

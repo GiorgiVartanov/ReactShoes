@@ -121,6 +121,11 @@ main {
     transform: translateX(50%) translateY(50%);
 }
 
+.centered-text {
+    margin-top: 3rem;
+    text-align: center;
+}
+
 .table-row {
     th {
         padding: 0 0.5em 0.5em 0.5em;

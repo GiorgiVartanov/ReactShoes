@@ -3,6 +3,7 @@ import "./home.scss";
 import Card from "../../components/main/card.component/Card";
 import SearchSelect from "../../components/utility/search-select/SearchSelect";
 import Hero from "../../components/main/hero.component/hero";
+import Loading from "../../components/utility/loading/Loading";
 
 import { useState, useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
@@ -21,7 +22,7 @@ const Home = () => {
     const color = searchParams.get("color");
     const price = searchParams.get("price");
 
-    const [items, setItems] = useState([]);
+    const [items, setItems] = useState();
     const [error, setError] = useState();
     const [loading, setLoading] = useState(true);
 
@@ -54,59 +55,59 @@ const Home = () => {
         });
     };
 
-    if (loading) return <p className="warning">Loading...</p>;
+    if (loading) return <Loading />;
     if (error)
         return (
             <p className="warning">Something Went Wrong... {error.message}</p>
         );
 
-    return (
+    return items ? (
         <>
             <Hero />
-            {items ? (
-                <main className="shop-page">
-                    <div className="search-options">
-                        <SearchSelect
-                            name="type"
-                            values={types}
-                            onSelect={handleTypeSelect}
-                            selected={type}
-                        />
-                        <SearchSelect
-                            name="color"
-                            values={colors}
-                            onSelect={handleColorSelect}
-                            selected={color}
-                        />
-                        <SearchSelect
-                            name="price"
-                            values={prices}
-                            onSelect={handlePriceSelect}
-                            selected={price}
-                        />
-                    </div>
+            <main className="shop-page">
+                <div className="search-options">
+                    <SearchSelect
+                        name="type"
+                        values={types}
+                        onSelect={handleTypeSelect}
+                        selected={type}
+                    />
+                    <SearchSelect
+                        name="color"
+                        values={colors}
+                        onSelect={handleColorSelect}
+                        selected={color}
+                    />
+                    <SearchSelect
+                        name="price"
+                        values={prices}
+                        onSelect={handlePriceSelect}
+                        selected={price}
+                    />
+                </div>
+                {items.length > 0 ? (
                     <div className="card-holder">
-                        {items.length > 0 ? (
-                            items.map((item) => (
-                                <Card
-                                    key={item.id}
-                                    id={item.id}
-                                    name={item.name}
-                                    image={item.imageUrl}
-                                    price={item.price}
-                                    author={item.authorUrl}
-                                    discount={item.discount}
-                                />
-                            ))
-                        ) : (
-                            <p>There Are No Items For Such Search Orders</p>
-                        )}
+                        {items.map((item) => (
+                            <Card
+                                key={item.id}
+                                id={item.id}
+                                name={item.name}
+                                image={item.imageUrl}
+                                price={item.price}
+                                author={item.authorUrl}
+                                discount={item.discount}
+                            />
+                        ))}
                     </div>
-                </main>
-            ) : (
-                ""
-            )}
+                ) : (
+                    <p className="centered-text">
+                        There are no items for such search requests
+                    </p>
+                )}
+            </main>
         </>
+    ) : (
+        ""
     );
 };
 

@@ -5,23 +5,18 @@ import AddToCartButton from "../../components/utility/add-to-cart-button/AddToCa
 import ProductPopularityPanel from "../../components/main/product-popularity-panel.component/ProductpopulatiryPanel";
 import SelectModal from "../../components/main/SelectModal/SelectModal";
 import Price from "../../components/utility/price/Price";
+import Loading from "../../components/utility/loading/Loading";
 
-import { useAuthState } from "react-firebase-hooks/auth";
-import { useState, useEffect } from "react";
-import { useParams, Link, useSearchParams } from "react-router-dom";
+import { useState, useEffect, useContext } from "react";
+import { useParams, Link } from "react-router-dom";
 
-import { calculatePrice } from "../../functions";
-import {
-    auth,
-    getItem,
-    getViews,
-    getLikes,
-    addView,
-    addLike,
-} from "../../firebase/firebase";
+import { getItem } from "../../firebase/firebase";
+import { UserContext } from "../../App";
 
 const ItemPage = () => {
-    const [user] = useAuthState(auth);
+    const [user] = useContext(UserContext);
+
+    // const [user] = useAuthState(auth);
 
     const { id } = useParams("id");
 
@@ -45,7 +40,7 @@ const ItemPage = () => {
             .finally(setLoading(false));
     }, []);
 
-    if (loading) return <p>Loading...</p>;
+    if (loading) return <Loading />;
     if (error) return <p>error</p>;
 
     return (
