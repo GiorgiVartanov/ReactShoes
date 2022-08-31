@@ -1,5 +1,7 @@
 import "./adminPageUserItem.scss";
 
+import SearchSelect from "../search-select/SearchSelect";
+
 import { useState, useRef } from "react";
 import { editUser } from "../../../firebase/firebase";
 import { FaEdit, FaCheck } from "react-icons/fa";
@@ -35,7 +37,7 @@ const AdminPageUserItem = ({ id, name, email, status }) => {
     };
 
     return (
-        <tr className="table-row">
+        <tr className="table-row" ref={editRef}>
             {editingData ? (
                 <>
                     <td>
@@ -53,10 +55,16 @@ const AdminPageUserItem = ({ id, name, email, status }) => {
                         />
                     </td>
                     <td>
-                        <input
+                        {/* <input
                             name={userStatus}
                             value={userStatus}
                             onChange={handleStatusChange}
+                        /> */}
+                        <SearchSelect
+                            name=""
+                            values={["admin", "user"]}
+                            onSelect={handleStatusChange}
+                            selected={userStatus}
                         />
                     </td>
                 </>
@@ -69,7 +77,7 @@ const AdminPageUserItem = ({ id, name, email, status }) => {
             )}
 
             <td>
-                <div className="edit-button-holder" ref={editRef}>
+                <div className="edit-button-holder">
                     {editingData ? (
                         <button
                             className="confirm-item-update"

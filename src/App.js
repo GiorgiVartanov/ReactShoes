@@ -15,6 +15,7 @@ import { useAuthState } from "react-firebase-hooks/auth";
 
 import { auth } from "./firebase/firebase";
 
+// context that will store user object, loading, and error.
 export const UserContext = createContext([null, true, null]);
 
 function App() {

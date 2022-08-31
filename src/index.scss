@@ -176,6 +176,17 @@ main {
         button.delete-item {
             color: $error-color;
         }
+        .search-label {
+            .search-select {
+                border: none;
+                padding: 0.25em 0.5em 0.25em 0.25em;
+                margin-right: -2em;
+                background-color: white;
+                font-size: 1em;
+                // appearance: none;
+                text-align: left;
+            }
+        }
     }
     input {
         border: none;

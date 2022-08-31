@@ -1,23 +1,25 @@
 @import "../../../scss-variables.scss";
 
-.search-label {
-    display: flex;
-    flex-direction: column;
-    // width: 300px;
-}
-.search-select {
-    background-color: $main-black;
-    color: $main-white;
-    border: none;
-    padding: 0.25rem 0.5rem;
-    box-shadow: 0 0 10px 2px $main-shadow;
-    transition: 0.2s ease-in;
+.search-options {
+    .search-label {
+        display: flex;
+        flex-direction: column;
+        .search-select {
+            background-color: $main-black;
+            color: $main-white;
+            border: none;
+            padding: 0.25rem 0.5rem;
+            box-shadow: 0 0 10px 2px $main-shadow;
+            transition: 0.2s ease-in;
 
-    font-family: "Poppins", sans-serif;
+            font-family: "Poppins", sans-serif;
+            max-width: 100%;
 
-    &:hover,
-    &:active {
-        box-shadow: 0 0 15px 5px $main-shadow;
+            &:hover,
+            &:active {
+                box-shadow: 0 0 15px 5px $main-shadow;
+            }
+        }
     }
 }
 
