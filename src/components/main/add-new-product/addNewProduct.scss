@@ -7,4 +7,21 @@
 
     max-width: 400px;
     margin: 2rem auto 1rem;
+
+    .submit-new-product-button {
+        height: 2.5rem;
+        font-size: 1.25rem;
+        background-color: $main-orange;
+        color: $main-black;
+        transition: 0.2s ease-in;
+        border: none;
+        &:hover {
+            opacity: 0.9;
+        }
+
+        &:active {
+            background-color: $main-black;
+            color: $main-orange;
+        }
+    }
 }

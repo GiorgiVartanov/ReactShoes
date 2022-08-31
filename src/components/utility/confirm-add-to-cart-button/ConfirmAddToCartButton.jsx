@@ -34,21 +34,12 @@ const ConfirmAddToCartButton = ({ productId, amount, user }) => {
     return (
         <>
             {user !== null ? (
-                !userHas ? (
-                    <button
-                        className="confirm-to-add-button"
-                        onClick={handleAddToCart}
-                    >
-                        <BsCartPlus />
-                    </button>
-                ) : (
-                    <button
-                        className="confirm-to-add-button"
-                        onClick={handleAddToCart}
-                    >
-                        <BsCartCheck />
-                    </button>
-                )
+                <button
+                    className="confirm-to-add-button button"
+                    onClick={handleAddToCart}
+                >
+                    {userHas ? <BsCartCheck /> : <BsCartPlus />}
+                </button>
             ) : (
                 ""
             )}

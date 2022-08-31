@@ -1,9 +1,9 @@
 import "./item.scss";
 
-import Comments from "../../components/main/comments.component/Comments";
+import Comments from "../../components/main/comments/Comments";
 import AddToCartButton from "../../components/utility/add-to-cart-button/AddToCartButton";
 import ProductPopularityPanel from "../../components/main/product-popularity-panel.component/ProductpopulatiryPanel";
-import SelectModal from "../../components/main/SelectModal/SelectModal";
+import SelectModal from "../../components/main/select-modal/SelectModal";
 import Price from "../../components/utility/price/Price";
 import Loading from "../../components/utility/loading/Loading";
 
@@ -76,13 +76,13 @@ const ItemPage = () => {
                             <div className="search-links">
                                 <Link
                                     to={`/?type=${item.type}`}
-                                    className="item-type"
+                                    className="item-type button"
                                 >
                                     {item.type}
                                 </Link>
                                 <Link
                                     to={`/?color=${item.color}`}
-                                    className="item-color"
+                                    className="item-color button"
                                 >
                                     {item.color}
                                 </Link>

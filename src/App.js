@@ -1,4 +1,4 @@
-import Header from "./components/main/header.component/Header";
+import Header from "./components/main/header/Header";
 import Home from "./pages/home.page/home.page";
 import Cart from "./pages/cart.page/Cart.page";
 import About from "./pages/about.page/About";
@@ -7,7 +7,7 @@ import NotFound from "./pages/not-found.page/NotFound";
 import LogIn from "./pages/login.page/Login.page";
 import Register from "./pages/register.page/Register.page";
 import AdminPanel from "./pages/admin-panel.page/AdminPanel.page";
-import Footer from "./components/main/footer.component/Footer";
+import Footer from "./components/main/footer/Footer";
 
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { createContext, useMemo } from "react";

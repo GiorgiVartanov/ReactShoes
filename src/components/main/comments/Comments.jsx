@@ -1,6 +1,6 @@
 import "./comments.scss";
 
-import Comment from "../../utility/comment.component/Comment";
+import Comment from "../../utility/comment/Comment";
 
 import { useState, useEffect } from "react";
 
@@ -109,7 +109,7 @@ const Comments = ({ productId, user }) => {
                         />
                         <button // not sure
                             onClick={handleSubmit}
-                            className="add-comment-button"
+                            className="add-comment-button button"
                             type="button"
                         >
                             comment

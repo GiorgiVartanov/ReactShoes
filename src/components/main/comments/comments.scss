@@ -24,7 +24,7 @@
             .add-comment-input {
                 border: none;
                 // border-radius: 0.5rem;
-                border-radius: 8px;
+                // border-radius: 8px;
                 box-shadow: 0 0 5px 2px $main-shadow;
                 outline: none;
                 // padding: 0.5rem 1rem;
@@ -45,12 +45,8 @@
                 padding: 0 0.5rem;
                 margin-right: auto;
                 margin-left: 0;
-                transition: 0.2s ease-in;
                 // font-weight: bold;
                 letter-spacing: 0.1rem;
-                border: none;
-                box-shadow: 0 0 5px 2px $main-shadow;
-                border-radius: 0.5rem;
 
                 &:hover,
                 &:active {

@@ -1,8 +1,8 @@
 import "./home.scss";
 
-import Card from "../../components/main/card.component/Card";
+import Card from "../../components/main/card/Card";
 import SearchSelect from "../../components/utility/search-select/SearchSelect";
-import Hero from "../../components/main/hero.component/hero";
+import Hero from "../../components/main/hero/hero";
 import Loading from "../../components/utility/loading/Loading";
 
 import { useState, useEffect } from "react";

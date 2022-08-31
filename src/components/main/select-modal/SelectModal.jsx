@@ -21,7 +21,7 @@ const SelectModal = ({
     const [amount, setAmount] = useState(1);
 
     useEffect(() => {
-        // getting and setting amount to amount from database
+        // getting amount of this item in user's cart from database
         getAmountOfItemInCart(productId, user).then((res) => setAmount(res));
     }, []);
 
@@ -46,7 +46,7 @@ const SelectModal = ({
                         <label htmlFor="decrease">
                             <button
                                 name="decrease"
-                                className="select-modal-button"
+                                className="select-modal-button button"
                                 onClick={() => {
                                     if (amount > 0) setAmount(amount - 1);
                                 }}
@@ -66,13 +66,14 @@ const SelectModal = ({
                                         !isNaN(e.target.value)
                                     )
                                         setAmount(parseInt(e.target.value));
+                                    if (e.target.value === "") setAmount(0);
                                 }}
                             />
                         </label>
                         <label htmlFor="increase">
                             <button
                                 name="increase"
-                                className="select-modal-button"
+                                className="select-modal-button button"
                                 onClick={() => {
                                     setAmount(parseInt(amount) + 1);
                                 }}

@@ -1,5 +1,8 @@
 import "./uploadImage.scss";
-const UploadImage = ({ changeImage, image }) => {
+
+import image from "../../../assets/default-image-bg.png";
+
+const UploadImage = ({ changeImage, itemImage }) => {
     return (
         <div className="upload-image-label-holder">
             <label className="upload-image-label">
@@ -10,12 +13,21 @@ const UploadImage = ({ changeImage, image }) => {
                     onChange={changeImage}
                 />
             </label>
-            <img
-                className="uploaded-image"
-                src={image}
-                alt={image}
-                accept="image/png, image/jpeg"
-            />
+            {itemImage ? (
+                <img
+                    className="uploaded-image"
+                    src={itemImage}
+                    alt="no image"
+                    accept="image/png, image/jpeg"
+                />
+            ) : (
+                <img
+                    className="uploaded-image"
+                    src={image}
+                    alt="no image"
+                    accept="image/png, image/jpeg"
+                />
+            )}
         </div>
     );
 };

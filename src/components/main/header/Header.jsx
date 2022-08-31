@@ -26,23 +26,9 @@ const Header = () => {
 
     const navigate = useNavigate();
 
-    const detectStroll = () => {
-        if (window.scrollY >= 20) {
-            setScrolled(true);
-        } else {
-            setScrolled(false);
-        }
-    };
-
-    const handleClick = (e) => {
-        // check if clicked outside of header, if so hide dropdowned navbar
-        if (savedHeader.current && !savedHeader.current.contains(e.target)) {
-            setMenuOpened(false);
-        }
-    };
-
     useEffect(() => {
         if (user) {
+            // checking user status, if it is admin we will show adminpanel in navbar
             checkStatus(user).then((res) => setStatus(res));
             getFullAmountOfItemsInCart(user).then((res) => setAmount(res));
         }
@@ -52,9 +38,47 @@ const Header = () => {
         setMenuOpened(false);
     };
 
-    window.addEventListener("scroll", detectStroll);
+    useEffect(() => {
+        const onScroll = () => {
+            // if page is scrolled navbar will became thinner and transparent
+            if (window.scrollY >= 26) {
+                setScrolled(true);
+            } else {
+                setScrolled(false);
+            }
+        };
 
-    window.addEventListener("click", handleClick);
+        window.addEventListener("scroll", onScroll);
+
+        return () => {
+            // When using the useEffect hook, we’re adding
+            // that event listener when the component mounts,
+            // but when it unmounts, that event listener is
+            // still hanging out waiting for events.
+
+            // so to clean it up, we can return a new function
+            // which removes that event listener
+            window.removeEventListener("scroll", onScroll);
+        };
+    }, []);
+
+    useEffect(() => {
+        const onClick = (e) => {
+            // check if clicked outside of header, if so hide dropdowned navbar
+            if (
+                savedHeader.current &&
+                !savedHeader.current.contains(e.target)
+            ) {
+                setMenuOpened(false);
+            }
+        };
+
+        window.addEventListener("click", onClick);
+
+        return () => {
+            window.removeEventListener("click", onClick);
+        };
+    }, []);
 
     if (loading) return <Loading />;
     if (error) return <p className="warning">Something Went Wrong</p>;

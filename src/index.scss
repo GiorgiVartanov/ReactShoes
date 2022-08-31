@@ -43,6 +43,21 @@ main {
     margin: 7rem auto;
 }
 
+.button {
+    transition: 0.2s ease-in;
+    background-color: $main-orange;
+    color: $main-black;
+    border: none;
+
+    &:hover {
+        opacity: 0.9;
+    }
+    &:active {
+        background-color: $main-black;
+        color: $main-orange;
+    }
+}
+
 .login-form,
 .register-form {
     display: flex;

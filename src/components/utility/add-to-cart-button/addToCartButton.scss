@@ -1,0 +1,21 @@
+@import "../../../scss-variables.scss";
+
+.add-to-cart {
+    padding: 0.5rem 1rem;
+    width: 3.5rem;
+    font-size: 1.5rem;
+
+    svg {
+        display: block;
+    }
+}
+
+@media screen and (max-width: 650px) {
+    .add-to-cart {
+        margin: 2rem auto 0;
+        width: 80% !important;
+        svg {
+            margin: auto;
+        }
+    }
+}

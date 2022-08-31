@@ -33,16 +33,9 @@ const AddToCartButton = ({ productId, user, openModal }) => {
     return (
         <>
             {user !== null ? (
-                !userHas ? (
-                    // change it to closeModal later
-                    <button className="add-to-cart" onClick={openModal}>
-                        <BsCartPlus />
-                    </button>
-                ) : (
-                    <button className="add-to-cart" onClick={openModal}>
-                        <BsCartCheck />
-                    </button>
-                )
+                <button className="add-to-cart button" onClick={openModal}>
+                    {userHas ? <BsCartCheck /> : <BsCartPlus />}
+                </button>
             ) : (
                 ""
             )}

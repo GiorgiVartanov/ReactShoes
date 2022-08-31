@@ -104,8 +104,10 @@ const AddNewProduct = () => {
                     errors={[]}
                     onChange={changeImageAuthor}
                 />
-                <UploadImage changeImage={changeImage} image={image} />
-                <button type="submit">submit</button>
+                <UploadImage changeImage={changeImage} itemImage={image} />
+                <button className="submit-new-product-button" type="submit">
+                    submit
+                </button>
             </form>
         </section>
     );

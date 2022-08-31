@@ -27,30 +27,6 @@
                 font-size: 1.2rem;
                 font-weight: 200;
             }
-
-            .add-to-cart {
-                border: 1px solid $main-gray;
-                padding: 0.5rem 1rem;
-                width: 3.5rem;
-                font-size: 1.5rem;
-                display: block;
-                outline: none;
-                border: none;
-                background-color: $main-orange;
-                transition: 0.2s ease-in;
-
-                &:hover {
-                    opacity: 0.9;
-                }
-                &:active {
-                    color: $main-orange;
-                    background-color: $main-black;
-                }
-
-                svg {
-                    display: block;
-                }
-            }
         }
         .search-links {
             display: flex;
@@ -59,13 +35,6 @@
             margin: 1rem 0;
             a {
                 padding: 0.25rem 0.75rem;
-                color: $main-black;
-                background-color: $main-orange;
-                transition: 0.2s ease-in;
-
-                &:hover {
-                    opacity: 0.9;
-                }
             }
         }
     }
@@ -81,13 +50,6 @@
         }
         .item-text {
             text-align: center;
-            .add-to-cart {
-                margin: 2rem auto 0;
-                width: 80% !important;
-                svg {
-                    margin: auto;
-                }
-            }
             .item-price-holder {
                 justify-content: space-between;
                 width: fit-content;

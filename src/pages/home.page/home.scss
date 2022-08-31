@@ -18,9 +18,9 @@
     }
 }
 
-@media screen and (max-width: 550px) {
+@media screen and (max-width: 500px) {
     .search-options {
         margin: auto;
-        width: calc(100% - 2rem);
+        width: calc(100% - 0.75rem);
     }
 }
