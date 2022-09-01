@@ -14,14 +14,16 @@ import { getFullAmountOfItemsInCart } from "../../../firebase/firebase";
 import { UserContext } from "../../../App";
 
 const Header = () => {
-    const [user, loading, error] = useContext(UserContext);
+    const { providerUser, amount } = useContext(UserContext);
+
+    const [user, loading, error] = providerUser;
 
     const savedHeader = useRef(null);
 
     const [scrolled, setScrolled] = useState(false);
     const [status, setStatus] = useState();
 
-    const [amount, setAmount] = useState(0);
+    // const [amount, setAmount] = useState(0);
     const [menuOpened, setMenuOpened] = useState(false);
 
     const navigate = useNavigate();
@@ -30,7 +32,6 @@ const Header = () => {
         if (user) {
             // checking user status, if it is admin we will show adminpanel in a navbar
             checkStatus(user).then((res) => setStatus(res));
-            getFullAmountOfItemsInCart(user).then((res) => setAmount(res));
         }
     }, [user]);
 

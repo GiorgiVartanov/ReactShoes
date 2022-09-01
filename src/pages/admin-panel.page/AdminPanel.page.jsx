@@ -13,7 +13,9 @@ import { checkStatus } from "../../firebase/firebase";
 import { UserContext } from "../../App";
 
 const AdminPanel = () => {
-    const [user, loading, error] = useContext(UserContext);
+    const { providerUser } = useContext(UserContext);
+
+    const [user, loading, error] = providerUser;
 
     const navigate = useNavigate();
 

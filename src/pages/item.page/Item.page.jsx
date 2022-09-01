@@ -14,9 +14,9 @@ import { getItem } from "../../firebase/firebase";
 import { UserContext } from "../../App";
 
 const ItemPage = () => {
-    const [user] = useContext(UserContext);
+    const { providerUser, amount } = useContext(UserContext);
 
-    // const [user] = useAuthState(auth);
+    const [user] = providerUser;
 
     const { id } = useParams("id");
 

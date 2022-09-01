@@ -4,18 +4,20 @@ import Card from "../../components/main/card/Card";
 import CardPlaceholder from "../../components/utility/card-placeholder/CardPlaceholder";
 import Loading from "../../components/utility/loading/Loading";
 
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useContext } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useNavigate } from "react-router-dom";
 
 import { calculatePrice } from "../../functions";
 import { auth, getCart } from "../../firebase/firebase";
+import { UserContext } from "../../App";
 
 const Cart = () => {
+    const { amount } = useContext(UserContext);
+
     const navigate = useNavigate();
 
     const [user] = useAuthState(auth);
-    const [name, setName] = useState("");
 
     const [cart, setCart] = useState();
     const [error, setError] = useState();
@@ -54,24 +56,27 @@ const Cart = () => {
     return (
         <main className="cart-page">
             <div className="card-holder">
-                {cart ? (
-                    cart.map((item) => {
-                        return (
-                            <Card
-                                key={item.item.id}
-                                id={item.item.id}
-                                name={item.item.name}
-                                price={item.item.price}
-                                image={item.item.imageUrl}
-                                author={item.item.authorUrl}
-                                discount={item.item.discount}
-                                amount={item.amount}
-                            />
-                        );
-                    })
-                ) : (
-                    // while waiting for data, it will display this placeholders
-                    <>
+                {cart
+                    ? cart.map((item) => {
+                          return (
+                              <Card
+                                  key={item.item.id}
+                                  id={item.item.id}
+                                  name={item.item.name}
+                                  price={item.item.price}
+                                  image={item.item.imageUrl}
+                                  author={item.item.authorUrl}
+                                  discount={item.item.discount}
+                                  amount={item.amount}
+                              />
+                          );
+                      })
+                    : // while waiting for data, it will display this placeholders
+                      [...Array(amount)].map((item, index) => (
+                          <CardPlaceholder key={index} />
+                      ))}
+                {/* <>
+                        
                         <CardPlaceholder />
                         <CardPlaceholder />
                         <CardPlaceholder />
@@ -80,8 +85,7 @@ const Cart = () => {
                         <CardPlaceholder />
                         <CardPlaceholder />
                         <CardPlaceholder />
-                    </>
-                )}
+                    </> */}
             </div>
             <div className="total">Total : {total}$</div>
         </main>

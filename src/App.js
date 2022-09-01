@@ -10,25 +10,36 @@ import AdminPanel from "./pages/admin-panel.page/AdminPanel.page";
 import Footer from "./components/main/footer/Footer";
 
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { createContext, useMemo } from "react";
+import { createContext, useMemo, useEffect, useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 
 import { auth } from "./firebase/firebase";
+import { getFullAmountOfItemsInCart } from "./firebase/firebase";
 
 // context that will store user object, loading, and error.
 export const UserContext = createContext([null, true, null]);
 
 function App() {
-    // if user is not logged in user will be null
+    // if user is not logged in, user will be null
     const [user, loading, error] = useAuthState(auth);
+    const [amountOfItemsInCart, setAmountOfItemsInCart] = useState(0);
 
-    const providerValue = useMemo(
+    useEffect(() => {
+        if (!user) return;
+        getFullAmountOfItemsInCart(user).then((res) =>
+            setAmountOfItemsInCart(res)
+        );
+    }, [user]);
+
+    const providerUser = useMemo(
         () => [user, loading, error],
         [user, loading, error]
     );
 
+    const amount = useMemo(() => amountOfItemsInCart, [amountOfItemsInCart]);
+
     return (
-        <UserContext.Provider value={providerValue}>
+        <UserContext.Provider value={{ providerUser, amount }}>
             <Router>
                 <Header />
                 <Routes>

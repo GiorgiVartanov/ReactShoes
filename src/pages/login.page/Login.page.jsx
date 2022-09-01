@@ -8,7 +8,8 @@ import { auth, logInWithEmailAndPassword } from "../../firebase/firebase";
 import { UserContext } from "../../App";
 
 const LogIn = () => {
-    const [user, loading, error] = useContext(UserContext);
+    const { providerUser } = useContext(UserContext);
+    const [user, loading, error] = providerUser;
 
     const [emailErrors, setEmailErrors] = useState([]);
     const [passwordErrors, setPasswordErrors] = useState([]);
@@ -25,7 +26,6 @@ const LogIn = () => {
     };
 
     const handleChange = (e) => {
-        // destructuring e.target to get this 2 values
         const { value, name } = e.target;
 
         switch (name) {

@@ -24,7 +24,8 @@ const Register = () => {
         "_",
     ];
 
-    const [user, loading, error] = useContext(UserContext);
+    const { providerUser } = useContext(UserContext);
+    const [user, loading, error] = providerUser;
 
     const [email, setEmail] = useState("");
     const [username, setUsername] = useState("");
