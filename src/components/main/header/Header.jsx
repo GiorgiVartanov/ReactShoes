@@ -64,7 +64,7 @@ const Header = () => {
 
     useEffect(() => {
         const onClick = (e) => {
-            // check if clicked outside of header, if so hide dropdowned navbar
+            // check if clicked outside of header or it's children, if so hide dropdowned navbar
             if (
                 savedHeader.current &&
                 !savedHeader.current.contains(e.target)
@@ -80,8 +80,9 @@ const Header = () => {
         };
     }, []);
 
-    if (loading) return <Loading />;
-    if (error) return <p className="warning">Something Went Wrong</p>;
+    // if (!status && user !== null) return; // if status is undefined while user is logger in
+    if (loading) return;
+    if (error) return;
 
     return (
         <header
@@ -119,6 +120,7 @@ const Header = () => {
                         </NavLink>
                     </li>
                     {user ? (
+                        // shown if user is logged in
                         <li>
                             <NavLink
                                 onClick={handlePageSelect}
@@ -133,6 +135,7 @@ const Header = () => {
                         </li>
                     ) : null}
                     {status === "admin" && user ? (
+                        // shown if user is an admin and logged in
                         <li>
                             <NavLink
                                 onClick={handlePageSelect}
@@ -145,6 +148,7 @@ const Header = () => {
                     ) : null}
                     <li>
                         {user ? (
+                            // shown if user is logged in
                             <button
                                 className="link-button"
                                 onClick={() => {
@@ -155,6 +159,7 @@ const Header = () => {
                                 log out
                             </button>
                         ) : (
+                            // shown if user is not logged in
                             <NavLink
                                 onClick={handlePageSelect}
                                 className="link-button"
@@ -164,8 +169,10 @@ const Header = () => {
                             </NavLink>
                         )}
                     </li>
-                    <li>
-                        {!user ? (
+
+                    {!user ? (
+                        // shown if user is not logged in
+                        <li>
                             <NavLink
                                 onClick={handlePageSelect}
                                 className="link-button"
@@ -173,10 +180,10 @@ const Header = () => {
                             >
                                 register
                             </NavLink>
-                        ) : (
-                            ""
-                        )}
-                    </li>
+                        </li>
+                    ) : (
+                        ""
+                    )}
                 </ul>
             </nav>
         </header>

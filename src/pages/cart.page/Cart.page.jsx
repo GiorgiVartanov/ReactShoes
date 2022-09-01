@@ -1,6 +1,8 @@
 import "./cart.scss";
 
 import Card from "../../components/main/card/Card";
+import CardPlaceholder from "../../components/utility/card-placeholder/CardPlaceholder";
+import Loading from "../../components/utility/loading/Loading";
 
 import { useState, useEffect, useRef } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
@@ -46,28 +48,40 @@ const Cart = () => {
 
     if (!user) navigate("/");
 
-    if (loading) return <p className="warning">Loading...</p>;
+    if (loading) return <Loading />;
     if (error) return <p className="warning">Something Went Wrong...</p>;
 
     return (
         <main className="cart-page">
             <div className="card-holder">
-                {cart
-                    ? cart.map((item) => {
-                          return (
-                              <Card
-                                  key={item.item.id}
-                                  id={item.item.id}
-                                  name={item.item.name}
-                                  price={item.item.price}
-                                  image={item.item.imageUrl}
-                                  author={item.item.authorUrl}
-                                  discount={item.item.discount}
-                                  amount={item.amount}
-                              />
-                          );
-                      })
-                    : ""}
+                {cart ? (
+                    cart.map((item) => {
+                        return (
+                            <Card
+                                key={item.item.id}
+                                id={item.item.id}
+                                name={item.item.name}
+                                price={item.item.price}
+                                image={item.item.imageUrl}
+                                author={item.item.authorUrl}
+                                discount={item.item.discount}
+                                amount={item.amount}
+                            />
+                        );
+                    })
+                ) : (
+                    // while waiting for data, it will display this placeholders
+                    <>
+                        <CardPlaceholder />
+                        <CardPlaceholder />
+                        <CardPlaceholder />
+                        <CardPlaceholder />
+                        <CardPlaceholder />
+                        <CardPlaceholder />
+                        <CardPlaceholder />
+                        <CardPlaceholder />
+                    </>
+                )}
             </div>
             <div className="total">Total : {total}$</div>
         </main>

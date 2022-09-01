@@ -33,6 +33,7 @@ const FormInput = ({ name, type, value, errors, onChange }) => {
                     onChange={onChange}
                 />
                 {type === "password" && value ? (
+                    // if input is password, it will also render show-password button
                     <button
                         className="show-password"
                         type="button" // by default it would be submit button

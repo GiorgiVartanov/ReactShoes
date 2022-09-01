@@ -4,6 +4,7 @@ import Card from "../../components/main/card/Card";
 import SearchSelect from "../../components/utility/search-select/SearchSelect";
 import Hero from "../../components/main/hero/hero";
 import Loading from "../../components/utility/loading/Loading";
+import CardPlaceholder from "../../components/utility/card-placeholder/CardPlaceholder";
 
 import { useState, useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
@@ -12,6 +13,7 @@ import { getShopPageContent } from "../../firebase/firebase";
 import { types, colors, prices } from "../../searchOptions";
 
 const Home = () => {
+    // default search params
     const [searchParams, setSearchParams] = useSearchParams({
         type: "Any",
         color: "Any",
@@ -61,7 +63,7 @@ const Home = () => {
             <p className="warning">Something Went Wrong... {error.message}</p>
         );
 
-    return items ? (
+    return (
         <>
             <Hero />
             <main className="shop-page">
@@ -85,29 +87,43 @@ const Home = () => {
                         selected={price}
                     />
                 </div>
-                {items.length > 0 ? (
-                    <div className="card-holder">
-                        {items.map((item) => (
-                            <Card
-                                key={item.id}
-                                id={item.id}
-                                name={item.name}
-                                image={item.imageUrl}
-                                price={item.price}
-                                author={item.authorUrl}
-                                discount={item.discount}
-                            />
-                        ))}
-                    </div>
+
+                {items ? (
+                    // checking if at least one item matches the search request
+                    items.length > 0 ? (
+                        <div className="card-holder">
+                            {items.map((item) => (
+                                <Card
+                                    key={item.id}
+                                    id={item.id}
+                                    name={item.name}
+                                    image={item.imageUrl}
+                                    price={item.price}
+                                    author={item.authorUrl}
+                                    discount={item.discount}
+                                />
+                            ))}
+                        </div>
+                    ) : (
+                        <p className="centered-text">
+                            There are no items for such search requests
+                        </p>
+                    )
                 ) : (
-                    <p className="centered-text">
-                        There are no items for such search requests
-                    </p>
+                    // while waiting for data, it will display this placeholders
+                    <div className="card-holder">
+                        <CardPlaceholder />
+                        <CardPlaceholder />
+                        <CardPlaceholder />
+                        <CardPlaceholder />
+                        <CardPlaceholder />
+                        <CardPlaceholder />
+                        <CardPlaceholder />
+                        <CardPlaceholder />
+                    </div>
                 )}
             </main>
         </>
-    ) : (
-        ""
     );
 };
 

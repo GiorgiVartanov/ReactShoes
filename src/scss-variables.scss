@@ -27,3 +27,14 @@ $error-color: #d61500;
         top: 0;
     }
 }
+@keyframes twink {
+    0% {
+        background-color: rgb(252, 250, 250);
+    }
+    50% {
+        background-color: rgb(246, 246, 250);
+    }
+    100% {
+        background-color: rgb(252, 250, 250);
+    }
+}

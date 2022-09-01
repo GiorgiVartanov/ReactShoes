@@ -1,0 +1,46 @@
+@import "../../../scss-variables.scss";
+
+.card-placeholder {
+    width: 200px;
+    height: 158px;
+    display: block;
+    position: relative;
+    .card-placeholder-image {
+        background-color: $main-white-2;
+        height: 133px;
+        box-shadow: 0 0 3px 1px $main-shadow;
+        animation: twink 2s ease-in infinite;
+    }
+    .card-placeholder-text {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        margin-top: 0.5rem;
+        .card-placeholder-name {
+            height: 0.75rem;
+            width: 6rem;
+            background-color: $main-white-2;
+            animation: twink 2s ease-in infinite;
+            box-shadow: 0 0 3px 1px $main-shadow;
+        }
+        .card-placeholder-price {
+            height: 0.75rem;
+            width: 3rem;
+            background-color: $main-white-2;
+            animation: twink 2s ease-in infinite;
+            box-shadow: 0 0 3px 1px $main-shadow;
+        }
+    }
+}
+
+@media screen and (max-width: 450px) {
+    .card-placeholder {
+        .card-placeholder-image {
+            height: 30vw;
+        }
+        width: calc(50vw - 0.75rem);
+        height: calc(30vw + 25px);
+        // height: 30vw;
+        // height: 80px;
+    }
+}
