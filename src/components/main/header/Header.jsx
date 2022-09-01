@@ -28,7 +28,7 @@ const Header = () => {
 
     useEffect(() => {
         if (user) {
-            // checking user status, if it is admin we will show adminpanel in navbar
+            // checking user status, if it is admin we will show adminpanel in a navbar
             checkStatus(user).then((res) => setStatus(res));
             getFullAmountOfItemsInCart(user).then((res) => setAmount(res));
         }
@@ -81,7 +81,7 @@ const Header = () => {
     }, []);
 
     // if (!status && user !== null) return; // if status is undefined while user is logger in
-    if (loading) return;
+    // if (loading) return;
     if (error) return;
 
     return (
