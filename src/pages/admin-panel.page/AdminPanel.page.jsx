@@ -19,7 +19,15 @@ const AdminPanel = () => {
 
     const navigate = useNavigate();
 
-    const [tab, setTab] = useState("users");
+    // getting stored tab from local storage, if there is not any it will use default value
+    const [tab, setTab] = useState(() => {
+        return localStorage.getItem("tab") || "users";
+    });
+
+    // storing selected tab in local storage
+    useEffect(() => {
+        localStorage.setItem("tab", tab);
+    }, [tab]);
 
     useEffect(() => {
         if (user)
