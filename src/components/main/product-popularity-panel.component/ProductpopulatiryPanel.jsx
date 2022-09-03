@@ -49,6 +49,7 @@ const ProductPopularityPanel = ({ user, productId }) => {
     return (
         <div className="product-popularity-panel">
             <div
+                // if the user is not logged in the like button will be unclickable
                 className={`panel-holder  ${
                     user ? "" : "unlogined-user-like-button"
                 }`}
