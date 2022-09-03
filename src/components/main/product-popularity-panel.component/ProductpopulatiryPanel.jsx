@@ -43,7 +43,7 @@ const ProductPopularityPanel = ({ user, productId }) => {
             .finally(setLoading(false));
     }, [user, productId]);
 
-    if (loading) return <p>Loading...</p>;
+    if (loading) return;
     if (error) return <p>Something Went Wrong...</p>;
 
     return (
@@ -85,9 +85,12 @@ const ProductPopularityPanel = ({ user, productId }) => {
                         }
                     }}
                 >
+                    {/* if product is liked and user hovers it, it will display dislike on heart's place */}
                     {hasLiked ? (
                         isHovered ? (
-                            <IoHeartDislike />
+                            <div className="dislike-heart">
+                                <IoHeartDislike />
+                            </div>
                         ) : (
                             <IoHeart />
                         )

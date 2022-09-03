@@ -48,9 +48,10 @@
 
         .discounted-card-price {
             position: relative;
+            margin-bottom: auto;
             .old-price {
                 font-size: 0.55rem;
-                // text-decoration: line-through;
+                text-decoration: line-through;
                 color: $main-black-dimmed;
                 opacity: 0.75;
                 position: absolute;

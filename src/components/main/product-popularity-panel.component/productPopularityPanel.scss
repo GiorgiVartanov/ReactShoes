@@ -30,19 +30,20 @@
             outline: none;
             border: none;
             background-color: transparent;
-            transition: 0.2s ease-in;
+            transition: 20.2s ease-in;
 
             svg {
                 color: $main-black;
                 transition: 0.2s ease-in;
+                &:hover {
+                    opacity: 0.75;
+                }
             }
 
-            &:hover {
-                color: $main-black-dimmed;
-                svg {
-                    padding-bottom: 2px;
-                    padding-right: 1px;
-                }
+            .dislike-heart {
+                position: relative;
+                bottom: 1px;
+                right: 1px;
             }
         }
     }
