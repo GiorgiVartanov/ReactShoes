@@ -42,13 +42,15 @@ main {
 }
 
 .button {
-    transition: 0.1s ease-in;
+    transition: 0.2s ease-in;
     background-color: $main-orange;
     color: $main-black;
     border: none;
 
     &:hover {
         opacity: 0.9;
+        background-color: $main-black;
+        color: $main-white;
         // background-color: $main-black;
         // color: $main-orange;
     }

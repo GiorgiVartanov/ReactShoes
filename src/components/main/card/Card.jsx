@@ -11,15 +11,20 @@ const Card = ({ id, image, name, price, author, discount, amount }) => {
             {/* this component will be shown only if amount variable was passed (it is passed only on a cart page) */}
             {amount ? <p className="item-amount">x{amount}</p> : ""}
             <img src={image} alt={name} className="card-image" />
+            {discount > 0 ? (
+                <div className="discount-text">{discount}% off</div>
+            ) : (
+                ""
+            )}
             <div className="card-text">
                 <p className="card-name">{name}</p>
                 {discount === 0 ? (
                     <p className="card-price">{price}$</p>
                 ) : (
                     <div className="discounted-card-price">
-                        <div className="old-price">{price}</div>
+                        <div className="old-price">{price}$</div>
                         <div className="new-price">
-                            {calculatePrice(price, discount)}
+                            {calculatePrice(price, discount)}$
                         </div>
                     </div>
                 )}
