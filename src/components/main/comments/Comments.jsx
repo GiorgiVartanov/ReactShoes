@@ -8,7 +8,7 @@ import { getComments, addComment } from "../../../firebase/firebase";
 
 const Comments = ({ productId, user }) => {
     const [newComment, setNewComment] = useState("");
-    const [canComment, setCanComment] = useState(false); // it will be set to true if comment contains bad words
+    const [canComment, setCanComment] = useState(false); // it will be set to true if comment contains inappropriate words
     const [submittedComment, setSubmittedComment] = useState("");
 
     const [comments, setComments] = useState();
@@ -22,10 +22,10 @@ const Comments = ({ productId, user }) => {
             .then((res) => setComments(res))
             .catch((err) => setError(err))
             .finally(setLoading(false));
-    }, []);
+    }, [productId]);
 
     useEffect(() => {
-        // checking if comment contains slurs
+        // checking if comment contains inappropriate words
         if (submittedComment) {
             fetch(
                 `https://www.purgomalum.com/service/containsprofanity?text=${submittedComment}`
@@ -40,7 +40,7 @@ const Comments = ({ productId, user }) => {
         if (canComment) {
             addComment(newComment, productId, user);
 
-            getComments(productId) // we are refetching api after adding new comment, it's not the best way, will change it later
+            getComments(productId) // we are refetching data after adding new comment, it's not the best way, will change it later
                 .then((res) => setComments(res))
                 .catch((err) => setError(err))
                 .finally(setLoading(false));
@@ -49,7 +49,7 @@ const Comments = ({ productId, user }) => {
             setNewComment("");
             setCanComment(false);
         } else {
-            if (newComment.length > 1) console.log("😠");
+            if (newComment.length > 1) console.log("😠"); // it will print it to console if inappropriate word was detected
             setSubmittedComment("");
             setNewComment("");
         }
@@ -64,8 +64,7 @@ const Comments = ({ productId, user }) => {
     const handleChange = (e) => {
         setNewComment(e.target.value);
 
-        // if text in textArea takes height, that is more than textArea's height
-        // we will change textArea's height
+        // if text in textArea has bigger height than textArea we will change textArea's height
 
         const rowHeight = 24;
         const height = e.target.scrollHeight - rowHeight - 16; // subtracting padding
@@ -87,7 +86,7 @@ const Comments = ({ productId, user }) => {
                       <Comment
                           key={item.id}
                           text={item.text}
-                          time={new Date() - new Date(item.date)} // it was posted this time age
+                          time={new Date() - new Date(item.date)} // it was posted this amount of time ago
                           userId={item.userId}
                       />
                   ))

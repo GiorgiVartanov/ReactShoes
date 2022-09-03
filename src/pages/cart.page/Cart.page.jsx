@@ -71,7 +71,7 @@ const Cart = () => {
                               />
                           );
                       })
-                    : // while waiting for data, it will display this placeholders
+                    : // while waiting for data, it will display this placeholders in the correct amount
                       [...Array(amount)].map((item, index) => (
                           <CardPlaceholder key={index} />
                       ))}

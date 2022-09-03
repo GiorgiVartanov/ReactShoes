@@ -1,16 +1,13 @@
 import "./header.scss";
 
 import HamburgerButton from "../../utility/hamburger-button/HamburgerButton";
-import Loading from "../../utility/loading/Loading";
 
 import { useState, useEffect, useRef } from "react";
 import { Link, NavLink, useNavigate } from "react-router-dom";
-import { useAuthState } from "react-firebase-hooks/auth";
-import { auth, logout, checkStatus } from "../../../firebase/firebase";
+import { logout, checkStatus } from "../../../firebase/firebase";
 import { BsCart } from "react-icons/bs";
 import { useContext } from "react";
 
-import { getFullAmountOfItemsInCart } from "../../../firebase/firebase";
 import { useDetectClickOutside } from "../../../hooks";
 import { UserContext } from "../../../App";
 

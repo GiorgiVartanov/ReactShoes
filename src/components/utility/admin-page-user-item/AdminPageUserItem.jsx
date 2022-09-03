@@ -18,6 +18,10 @@ const AdminPageUserItem = ({ id, name, email, status }) => {
     const [userStatus, setUserStatus] = useState(status);
 
     useDetectClickOutside(editRef, () => {
+        // if clicked outside we will restore default values
+        setUserName(name);
+        setUserEmail(email);
+        setUserStatus(status);
         setEditingData(false);
     });
 

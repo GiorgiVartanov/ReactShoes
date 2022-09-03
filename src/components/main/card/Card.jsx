@@ -12,7 +12,7 @@ const Card = ({ id, image, name, price, author, discount, amount }) => {
             {amount ? <p className="item-amount">x{amount}</p> : ""}
             <img src={image} alt={name} className="card-image" />
             <div className="card-text">
-                <h3 className="card-name">{name}</h3>
+                <p className="card-name">{name}</p>
                 {discount === 0 ? (
                     <p className="card-price">{price}$</p>
                 ) : (

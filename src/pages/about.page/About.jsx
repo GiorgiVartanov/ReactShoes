@@ -1,7 +1,7 @@
 const About = () => {
     return (
         <main>
-            <h1>This website was made as a portfolio project</h1>
+            <h2>This website was made as a portfolio project</h2>
         </main>
     );
 };

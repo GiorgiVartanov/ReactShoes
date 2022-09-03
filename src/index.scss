@@ -12,8 +12,6 @@
     display: flex;
     flex-direction: column;
     min-height: 100vh;
-
-    // overflow-x: hidden;
 }
 
 body {
@@ -44,13 +42,15 @@ main {
 }
 
 .button {
-    transition: 0.2s ease-in;
+    transition: 0.1s ease-in;
     background-color: $main-orange;
     color: $main-black;
     border: none;
 
     &:hover {
         opacity: 0.9;
+        // background-color: $main-black;
+        // color: $main-orange;
     }
     &:active {
         background-color: $main-black;
@@ -127,7 +127,6 @@ main {
     grid-template-columns: repeat(4, 200px);
     border-radius: 0.5rem;
     width: fit-content;
-    // display: none;
 }
 
 .centered-text {

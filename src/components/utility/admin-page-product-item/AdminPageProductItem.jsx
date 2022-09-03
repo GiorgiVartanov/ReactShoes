@@ -8,6 +8,8 @@ import { FaTrash, FaEdit, FaCheck } from "react-icons/fa";
 import { useDetectClickOutside } from "../../../hooks";
 
 const AdminPageProductItem = ({ id, name, price, discount }) => {
+    // I probably need to merge this component with AdminPageUserItem but I am not sure
+
     const delRed = useRef(null);
     const editRef = useRef(null);
 
@@ -25,6 +27,10 @@ const AdminPageProductItem = ({ id, name, price, discount }) => {
     });
 
     useDetectClickOutside(editRef, () => {
+        // if clicked outside we will restore default values
+        setProductName(name);
+        setProductPrice(price);
+        setProductDiscount(discount);
         setEditingData(false);
     });
 
@@ -59,7 +65,7 @@ const AdminPageProductItem = ({ id, name, price, discount }) => {
             setProductDiscount(e.target.value);
 
         // if the first char of string is zero
-        if (e.target.value[0] == 0)
+        if (e.target.value[0] === "0")
             setProductDiscount(e.target.value.substring(1));
 
         // if it contains any letters
@@ -79,6 +85,7 @@ const AdminPageProductItem = ({ id, name, price, discount }) => {
             className={`table-row ${deleted ? "deleted-row" : ""} ${
                 deleting ? "almost-deleted-row" : ""
             }`}
+            ref={editRef}
         >
             {editingData ? (
                 <>
@@ -133,7 +140,7 @@ const AdminPageProductItem = ({ id, name, price, discount }) => {
                         <FaTrash />
                     </button>
                 )}
-                <span className="edit-button-holder" ref={editRef}>
+                <span className="edit-button-holder">
                     {editingData ? (
                         <button
                             className="confirm-item-update"

@@ -3,7 +3,7 @@ import "./hamburgerButton.scss";
 const HamburgerButton = ({ onClick, shown, scrolled }) => {
     return (
         <button
-            name="hamburger menu"
+            aria-label="hamburger menu" // for more accessibility (screen-readers)
             className={`hamburger-button ${shown ? "menu-shown" : ""} ${
                 scrolled ? "menu-scrolled" : ""
             }`}

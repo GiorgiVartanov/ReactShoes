@@ -17,8 +17,6 @@ header {
         h1 {
             font-size: 1.5rem;
             color: $main-black;
-            opacity: 0;
-            animation: appear 0.1s 0.2s ease-in forwards;
         }
     }
     nav {
@@ -77,6 +75,7 @@ header {
 .header-scrolled {
     background-color: $orange-transparent;
     padding: 0.25rem 1rem;
+    backdrop-filter: blur(2px);
 
     .nav-link-list {
         li {

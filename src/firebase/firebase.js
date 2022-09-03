@@ -14,12 +14,10 @@ import {
     getDocs,
     collection,
     where,
-    addDoc,
     setDoc,
     doc,
     updateDoc,
     arrayUnion,
-    arrayRemove,
     getDoc,
     orderBy,
     deleteDoc,
@@ -211,7 +209,7 @@ export const getCart = async (user) => {
             docSnap.data().cart.map((item) => item.amount)
         );
 
-        items.map((item, index) => {
+        items.forEach((item, index) => {
             result.push({ item: item, amount: amounts[index] });
         });
 
@@ -357,7 +355,7 @@ export const checkIfUserHasLiked = async (productId, user) => {
 export const checkIfUserHasThisItem = async (productId, user) => {
     const cart = await getCart(user);
     let result = false;
-    cart.map((item) => {
+    cart.forEach((item) => {
         if (item.id === productId) result = true;
     });
     return result;
