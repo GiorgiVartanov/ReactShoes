@@ -22,7 +22,7 @@ const Card = ({ id, image, name, price, author, discount, amount }) => {
                     <p className="card-price">{price}$</p>
                 ) : (
                     <div className="discounted-card-price">
-                        <div className="old-price">{price}$</div>
+                        {/* <div className="old-price">{price}$</div> */}
                         <div className="new-price">
                             {calculatePrice(price, discount)}$
                         </div>

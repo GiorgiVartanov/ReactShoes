@@ -30,8 +30,8 @@
     }
     .discount-text {
         position: absolute;
-        color: $main-white;
-        background-color: $main-orange;
+        color: white;
+        background-color: $alert-color;
         font-size: 0.75rem;
         padding: 0 0.25rem;
         top: 0;
@@ -44,6 +44,7 @@
         font-size: 0.75rem;
         font-weight: normal;
         gap: 1rem;
+        letter-spacing: 0.05rem;
 
         .discounted-card-price {
             position: relative;
@@ -58,9 +59,9 @@
                 display: none;
             }
             .new-price {
-                color: $main-white;
+                color: white;
                 padding: 0 0.25rem;
-                background-color: $main-orange;
+                background-color: $alert-color;
             }
         }
 
