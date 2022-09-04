@@ -24,7 +24,8 @@ const Hero = () => {
     return (
         <div className="hero-image">
             {loading ? (
-                <Loading />
+                // <Loading />
+                ""
             ) : (
                 <q
                     // font will be smaller if the text is too long

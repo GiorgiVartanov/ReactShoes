@@ -9,7 +9,7 @@ const Card = ({ id, image, name, price, author, discount, amount }) => {
         <Link to={`/buy/${id}`} className="card">
             <div className="card-tooltip">{author}</div>
             {/* this component will be shown only if amount variable was passed (it is passed only on a cart page) */}
-            {amount ? <p className="item-amount">x{amount}</p> : ""}
+            {amount > 1 ? <p className="item-amount">x{amount}</p> : ""}
             <img src={image} alt={name} className="card-image" />
             {discount > 0 ? (
                 <div className="discount-text">{discount}% off</div>

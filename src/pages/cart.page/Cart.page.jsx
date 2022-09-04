@@ -1,6 +1,6 @@
 import "./cart.scss";
 
-import Card from "../../components/main/card/Card";
+import Card from "../../components/utility/card/Card";
 import CardPlaceholder from "../../components/utility/card-placeholder/CardPlaceholder";
 import Loading from "../../components/utility/loading/Loading";
 
@@ -50,7 +50,7 @@ const Cart = () => {
 
     if (!user) navigate("/");
 
-    if (loading) return <Loading />;
+    if (loading) return; // <Loading />;
     if (error) return <p className="warning">Something Went Wrong...</p>;
 
     return (

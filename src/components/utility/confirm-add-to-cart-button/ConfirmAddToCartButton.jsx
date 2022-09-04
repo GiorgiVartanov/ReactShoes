@@ -38,7 +38,8 @@ const ConfirmAddToCartButton = ({ productId, amount, user }) => {
                     className="confirm-to-add-button button"
                     onClick={handleAddToCart}
                 >
-                    {userHas ? <BsCartCheck /> : <BsCartPlus />}
+                    {/* {userHas ? <BsCartCheck /> : <BsCartPlus />} */}
+                    {amount > 1 ? <BsCartCheck /> : <BsCartPlus />}
                 </button>
             ) : (
                 ""

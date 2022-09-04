@@ -20,7 +20,7 @@ import { getFullAmountOfItemsInCart } from "./firebase/firebase";
 export const UserContext = createContext([null, true, null]);
 
 function App() {
-    // if user is not logged in, user will be null
+    // if the user is not logged in, user will be null
     const [user, loading, error] = useAuthState(auth);
     const [amountOfItemsInCart, setAmountOfItemsInCart] = useState(0);
 
@@ -31,11 +31,13 @@ function App() {
         );
     }, [user]);
 
+    // it won't be rerendered if one of this values is not changed
     const providerUser = useMemo(
         () => [user, loading, error],
         [user, loading, error]
     );
 
+    // it won't be rerendered if one of this values is not changed
     const amount = useMemo(() => amountOfItemsInCart, [amountOfItemsInCart]);
 
     return (

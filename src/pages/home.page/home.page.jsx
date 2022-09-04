@@ -1,6 +1,6 @@
 import "./home.scss";
 
-import Card from "../../components/main/card/Card";
+import Card from "../../components/utility/card/Card";
 import SearchSelect from "../../components/utility/search-select/SearchSelect";
 import Hero from "../../components/main/hero/hero";
 import Loading from "../../components/utility/loading/Loading";
@@ -57,7 +57,7 @@ const Home = () => {
         });
     };
 
-    if (loading) return <Loading />;
+    if (loading) return; // <Loading />;
     if (error)
         return (
             <p className="warning">Something Went Wrong... {error.message}</p>

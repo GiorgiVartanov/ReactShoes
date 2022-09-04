@@ -7,7 +7,7 @@ const Footer = () => {
         <footer>
             <a
                 aria-label="authors github page" // for screen readers
-                href="https://github.com/GeorgeGeroge/ReactClothes"
+                href="https://github.com/GeorgeVRT/ReactClothes"
             >
                 <AiFillGithub />
             </a>
