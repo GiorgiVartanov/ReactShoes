@@ -25,10 +25,10 @@
 ## Overview
 
 <a align="center" href="https://reactshoes.netlify.app/">
-    <img src="https://screenshot-proxy.netlify.app/f_avif,w_336/https://d33wubrfki0l68.cloudfront.net/62efbb2d657d69175957acac/screenshot_2022-08-07-13-17-21-0000.png">
+    <img src="https://ibb.co/kxbXHH5">
 </a>
 
-you can see demo on https://reactclothes.netlify.app/
+you can see demo on https://reachshoes.netlify.app/
 
 simple E-commerce website where you can :
 
