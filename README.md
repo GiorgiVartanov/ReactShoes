@@ -25,7 +25,7 @@
 ## Overview
 
 <a align="center" href="https://reactshoes.netlify.app/">
-    <img src="https://ibb.co/kxbXHH5">
+    <img src="https://i.ibb.co/wRG400B/Reach-Shoes.png">
 </a>
 
 you can see demo on https://reachshoes.netlify.app/
