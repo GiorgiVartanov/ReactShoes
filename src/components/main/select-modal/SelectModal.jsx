@@ -85,7 +85,7 @@ const SelectModal = ({
 
                     <ConfirmAddToCartButton
                         productId={productId}
-                        amount={amount}
+                        productAmount={amount}
                         user={user}
                     />
                 </form>

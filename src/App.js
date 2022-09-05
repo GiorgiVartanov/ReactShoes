@@ -17,7 +17,7 @@ import { auth } from "./firebase/firebase";
 import { getFullAmountOfItemsInCart } from "./firebase/firebase";
 
 // context that will store user object, loading, and error.
-export const UserContext = createContext([null, true, null]);
+export const UserContext = createContext([null, true, null], 0, null);
 
 function App() {
     // if the user is not logged in, user will be null
@@ -39,9 +39,13 @@ function App() {
 
     // it won't be rerendered if one of this values is not changed
     const amount = useMemo(() => amountOfItemsInCart, [amountOfItemsInCart]);
+    const setAmount = useMemo(
+        () => setAmountOfItemsInCart,
+        [amountOfItemsInCart]
+    );
 
     return (
-        <UserContext.Provider value={{ providerUser, amount }}>
+        <UserContext.Provider value={{ providerUser, amount, setAmount }}>
             <Router>
                 <Header />
                 <Routes>

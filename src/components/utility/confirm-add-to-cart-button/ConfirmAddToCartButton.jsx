@@ -1,15 +1,18 @@
 import "./confirmAddToCartButton.scss";
 
-import { BsCartPlus, BsCartCheck } from "react-icons/bs";
-import { useState, useEffect } from "react";
+import { BsCartPlus, BsCartCheck, BsCartDash } from "react-icons/bs";
+import { useState, useEffect, useContext } from "react";
 
 import {
     addToCart,
     removeFromCart,
     checkIfUserHasThisItem,
 } from "../../../firebase/firebase";
+import { UserContext } from "../../../App";
 
-const ConfirmAddToCartButton = ({ productId, amount, user }) => {
+const ConfirmAddToCartButton = ({ productId, productAmount, user }) => {
+    const { amount, setAmount } = useContext(UserContext);
+
     const [userHas, setUserHas] = useState(false);
 
     useEffect(() => {
@@ -21,14 +24,19 @@ const ConfirmAddToCartButton = ({ productId, amount, user }) => {
     }, [user, productId]);
 
     const handleAddToCart = () => {
-        if (productId && user)
-            if (amount !== 0) {
-                addToCart({ id: productId, amount: amount }, user); // adding and amount Id of this product to database
-                setUserHas(true); // setting state of button manually, so we don't need to refetch
-            } else {
-                removeFromCart(productId, user);
-                setUserHas(false);
-            }
+        if (!productId) return;
+        if (!user) return;
+
+        if (productAmount !== 0) {
+            if (!userHas) setAmount(amount + 1);
+
+            addToCart({ id: productId, amount: productAmount }, user); // adding and amount Id of this product to database
+            setUserHas(true); // setting state of button manually, so we don't need to refetch
+        } else {
+            setAmount(amount - 1);
+            removeFromCart(productId, user);
+            setUserHas(false);
+        }
     };
 
     return (
@@ -39,7 +47,7 @@ const ConfirmAddToCartButton = ({ productId, amount, user }) => {
                     onClick={handleAddToCart}
                 >
                     {/* {userHas ? <BsCartCheck /> : <BsCartPlus />} */}
-                    {amount > 1 ? <BsCartCheck /> : <BsCartPlus />}
+                    {productAmount > 0 ? <BsCartPlus /> : <BsCartDash />}
                 </button>
             ) : (
                 ""

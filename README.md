@@ -1,7 +1,7 @@
 <h1 align="center">React Shoes</h1>
 
 <div align="center">
-    E-commerce project for my portfolio
+    Simple E-commerce project
 </div>
 
 <div align="center">
@@ -10,7 +10,7 @@
       Demo
     </a>
     <span> | </span>
-    <a href="https://github.com/GeorgeGeorge/ReactClothes">
+    <a href="https://github.com/GeorgeVRT/ReactShoes">
       Code
     </a>
   </h3>
@@ -54,4 +54,4 @@ simple E-commerce website where you can :
 
 ## Contact
 
--   GitHub [@GeorgeGeroge](https://github.com/GeorgeGeroge)
+-   GitHub [@GeorgeVRT](https://github.com/GeorgeVRT)

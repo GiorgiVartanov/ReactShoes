@@ -356,7 +356,7 @@ export const checkIfUserHasThisItem = async (productId, user) => {
     const cart = await getCart(user);
     let result = false;
     cart.forEach((item) => {
-        if (item.id === productId) result = true;
+        if (item.item.id === productId) result = true;
     });
     return result;
 

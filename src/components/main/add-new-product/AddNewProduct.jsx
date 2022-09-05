@@ -21,7 +21,7 @@ const AddNewProduct = () => {
     };
     const changePrice = (e) => {
         const value = e.target.value;
-        // only numbers and one dot (only 2 dots after number) will be written
+        // only numbers and one dot (only 2 numbers after dot) will be written
         if (/^\d+(\.\d{0,2})?$/.test(value) || value === "")
             if (value === "") setPrice("");
             else setPrice(value);
